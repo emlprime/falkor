@@ -1,3 +1,10 @@
+import React from "react";
+import { Roster } from "./Roster";
+
 export const Project = () => {
-  return <section>Project</section>;
+  return (
+    <section>
+      <Roster />
+    </section>
+  );
 };
