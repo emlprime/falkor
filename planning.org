@@ -1,0 +1,64 @@
+h1. GOAL:
+Have a task manager that can replace Jira but which can interface with Jira so that management is satisfied.
+
+h1. STRATEGY:
+Create a local repository of tasks and sync the results with Jira as the backend.
+Focus on being able to create near term goals. The closer you get to the present, the more granular and defined the tickets become.
+
+
+h1. TEST CASES:
+I can create several Projects.
+I can log in as myself (or others)
+I can see my list of Projects.
+I can switch between Projects easily.
+I can see a brief description for the next few Quarters of my project.
+I can focus on the current Quarter.
+I can see a brief description for the Releases for the current quarter of my project.
+I can see any prior releases in the current Quarter.
+I can focus on the current Release.
+I can see a brief description of the Sprints in my current Release.
+I can see any prior sprints in the current Release.
+I can focus on the current Sprint.
+I can see a list of demo goals.
+Each demo goal has an owner assigned to it.
+Some goals may have supporters assigned to them.
+There is one column for each available work day for any of the Assigned Owners.
+Filled work days will have a milestone which calls out a falsifiable demo goal.
+Each work day has a blank icon that indicates it's available for work.
+Each milestone has a description, an estimate, and an actual.
+Milestones can be crept, which increases their scope by one day.
+Creeping a Milestone converts the Milestone at the end to a Millstone.
+Millstones are displayed in a separate area.
+Multi-day Milestones may be shrunk if they are demoed earlier than expected. Milestones to the right will pull back.
+If all Milestones are fulfilled and it is not the end of the week, the owner may choose a Millstone to help with.
+Sprint milestones display a progress based on how many of their daily milestones are fulfilled.
+A burndown chart is display indicating the total number of planned Milestones and the total number of completed Milestones.
+Escalations which interrupt the sprint get flagged as unplanned.
+Interrupts get indicates as below the line in the burndown chart and indicate a failure in planning or quality.
+Milestones indicate their status as TODO (Planned), DOING (Active), or DONE (Demoed).
+
+
+
+h1. TACTICS:
+Create a page in Sketch that demonstrates the Projects page.
+Symbolize the elements of the Projects page.
+Create a page in Sketch that demonstrates the Quarters page.
+Symbolize any new elements of the Quarters Page for reuse.
+Create a page in Sketch that demonstrates the Releases page.
+Symbolize any new elements of the Releases page.
+Create a page in Sketch that demonstrates the fully planned Sprints page.
+Symbolize any new elements of the Sprints page.
+Create symbols that indicate an empty Sprint.
+Create symbols that indicate a Sprint with Goals.
+Create symbols that indicate a Sprint with one Goal planned.
+Create symbols that indicate a Sprint with all goals planned.
+Create symbols that indicate multi-day planned Milestones.
+Create symbols that indicate Milestones with creep.
+Create symbols that indicate Milestones with sandbags.
+Create symbols to indicate Millstones.
+Create symbols to indicate Millstones that are in another Swim lane.
+Create controls for entering Milestones (Goal, Strategy).
+Create controls for planning Milestones (Test cases, Tactics).
+Create controls for transitioning Milestone to DOING (create branch, create sheet, create confluence page).
+Create controls for transitioning Milestone to DONE (attach screenshots or screencast).
+

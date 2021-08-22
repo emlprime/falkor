@@ -1,0 +1,24 @@
+# Needed Stubs
+
+- Workers by Role [{model, id, role}]
+- Chosen Worker Detail {id, model, icon, label, role, enneagram, swimlane, currentTicketKey}
+- Projects [{id}]
+- Project {id, label, status}
+- Chosen Project {id, model, icon, label}
+- Project Quarters [{id, status}] - for chart
+- Project Releases [{id, status}] - for chart
+- Project Sprints [{id, status}] - for chart
+- Project Days [{id, status}] - for chart
+- Chosen Project Quarters [{model, id}]
+- Project Quarter {id, model, label, status}
+- Chosen Project Releases [{model, id}]
+- Project Release {id, model, label, status}
+- Chosen Project Sprints [{model, id}]
+- Project Sprint {id, model, label, status}
+- Chosen Project Days [{model, id}]
+- Project Day {id, model}
+- Chosen Project Sprint Goals [{model, id}]
+- Project Sprint Goal {id, model, label, status, leadKey: WORKER, supportingKeys: [WORKER]}
+- Chosen Sprint Goal Days [{model, id}]
+- Sprint Goal Day {id, model, status, plannedUnits, actualUnits, goal, strategy}
+- Burndown [{datePlanned, dateMerged, units}]
