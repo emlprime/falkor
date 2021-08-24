@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Roster } from "./Roster";
-
+import { Breadcrumb } from "./Breadcrumb";
 import { ChosenFocus } from "./ChosenFocus";
 import { Breakdown } from "./Breakdown";
 import { Goals } from "./Goals";
@@ -12,7 +12,9 @@ export const Project = () => {
       <div id="roster">
         <Roster />
       </div>
-      <div id="progress"></div>
+      <div id="progress">
+        <Breadcrumb />
+      </div>
       <div id="chosenfocus">
         <ChosenFocus />
       </div>
