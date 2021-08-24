@@ -1,7 +1,7 @@
 import * as R from "ramda";
 import { colors } from "./constants";
 
-const { prop, equals } = R;
+const { prop, propOr } = R;
 
 function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
   var angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
@@ -23,15 +23,23 @@ function describeArc(x, y, radius, startAngle, endAngle) {
   return d;
 }
 
-export const ArcNemesis = ({ radius, size = "big", status, startPercent = 0, endPercent = 0 }) => {
-  const x = 200;
-  const y = 200;
+export const ArcNemesis = ({
+  center = 200,
+  radius,
+  size = "big",
+  status,
+  startPercent = 0,
+  endPercent = 0,
+}) => {
+  const x = center;
+  const y = center;
 
   const startAngle = (startPercent / 100) * 360;
   const endAngle = (endPercent / 100) * 360;
   const arcConfig = describeArc(x, y, radius, startAngle, endAngle);
 
-  const strokeWidth = equals("big", size) ? 15 : 5;
+  const strokeWidth = propOr(5, size, { big: 15, huge: 30 });
+  console.log("size:", size);
 
   return (
     <path

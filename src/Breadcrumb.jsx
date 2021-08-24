@@ -35,7 +35,7 @@ export const Breadcrumb = () => {
     console.log("value:", value);
   };
 
-  const size = 800;
+  const size = 600;
   return (
     <Style>
       <svg
@@ -57,10 +57,11 @@ export const Breadcrumb = () => {
           (values, i) => (
             <ProgressChart
               key={i}
-              radius={115 + i * 30}
+              center={size / 2}
+              radius={115 + i * 40}
               values={values}
               onClick={onClick}
-              size="big"
+              size="huge"
             />
           ),
           swimlanes
