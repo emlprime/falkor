@@ -9,24 +9,24 @@ const mapWithIndex = addIndex(map);
 
 const swimlanes = [
   [
-    ["resolved", [0, 40]],
-    ["active", [40, 60]],
-    ["planned", [60, 99.9]],
+    ["resolved", [0, 50]],
+    ["active", [50, 75]],
+    ["planned", [75, 99.9]],
   ],
   [
-    ["resolved", [0, 40]],
-    ["active", [40, 60]],
-    ["planned", [60, 99.9]],
+    ["resolved", [0, 50]],
+    ["active", [50, 56.26]],
+    ["planned", [56.25, 75]],
   ],
   [
-    ["resolved", [0, 20]],
-    ["active", [20, 60]],
-    ["planned", [60, 99.9]],
+    ["resolved", [0, 50]],
+    ["active", [50, 53]],
+    ["planned", [53, 56.25]],
   ],
   [
-    ["resolved", [0, 40]],
-    ["active", [40, 60]],
-    ["planned", [60, 99.9]],
+    ["resolved", [0, 50]],
+    ["active", [50, 51]],
+    ["planned", [51, 53]],
   ],
 ];
 
