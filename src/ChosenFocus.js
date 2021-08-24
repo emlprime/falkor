@@ -77,9 +77,7 @@ export const ChosenFocus = () => {
 };
 
 const Style = styled.div`
-  circle {
-    transition: stroke-dashoffset 0.35s;
-    transform: rotate(270deg);
-    transform-origin: 50% 50%;
+  path {
+    transition: 0.35s;
   }
 `;
