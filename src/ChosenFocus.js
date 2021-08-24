@@ -1,36 +1,43 @@
+import * as R from "ramda";
 import styled from "styled-components";
 import { colors } from "./constants";
+import { ProgressChart } from "./ProgressChart";
 
-function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
-  var angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
+const { map, addIndex } = R;
 
-  return {
-    x: centerX + radius * -1 * Math.cos(angleInRadians),
-    y: centerY + radius * Math.sin(angleInRadians),
-  };
-}
+const mapWithIndex = addIndex(map);
 
-function describeArc(x, y, radius, startAngle, endAngle) {
-  var start = polarToCartesian(x, y, radius, endAngle);
-  var end = polarToCartesian(x, y, radius, startAngle);
+const sprintValues = [
+  ["resolved", [0, 40]],
+  ["active", [40, 60]],
+  ["planned", [60, 99.9]],
+];
 
-  var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-
-  var d = ["M", start.x, start.y, "A", radius, radius, 0, largeArcFlag, 1, end.x, end.y].join(" ");
-
-  return d;
-}
+const swimlanes = [
+  [
+    ["resolved", [0, 40]],
+    ["active", [40, 60]],
+    ["planned", [60, 99.9]],
+  ],
+  [
+    ["resolved", [0, 40]],
+    ["active", [40, 60]],
+    ["planned", [60, 99.9]],
+  ],
+  [
+    ["resolved", [0, 20]],
+    ["active", [20, 60]],
+    ["planned", [60, 99.9]],
+  ],
+  [
+    ["resolved", [0, 40]],
+    ["active", [40, 60]],
+    ["planned", [60, 99.9]],
+  ],
+];
 
 export const ChosenFocus = () => {
-  const x = 200;
-  const y = 200;
-  const radius = 100;
-  const startAngle = 155;
-  const endAngle = 200;
-  const arcConfig = describeArc(x, y, radius, startAngle, endAngle);
-  const arcConfig2 = describeArc(x, y, radius, 0, 90);
-
-  const handleClick = (value) => {
+  const onClick = (value) => {
     console.log("value:", value);
   };
 
@@ -46,26 +53,24 @@ export const ChosenFocus = () => {
         <text
           x={200}
           y={210}
-          text-anchor="middle"
+          textAnchor="middle"
           style={{ color: "#31CBFF", fontSize: "2rem", fill: colors.selected }}
         >
           Week 3
         </text>
-        <path
-          d={arcConfig2}
-          stroke={colors.resolved}
-          strokeWidth={15}
-          fill="transparent"
-          onClick={() => handleClick("bar")}
-        />
-        <path
-          d={arcConfig}
-          stroke={colors.planned}
-          strokeWidth={15}
-          fill="transparent"
-          onClick={() => handleClick("foo")}
-        />
-        }
+        <ProgressChart radius={100} values={sprintValues} onClick={onClick} />
+        {mapWithIndex(
+          (values, i) => (
+            <ProgressChart
+              key={i}
+              radius={115 + i * 10}
+              values={values}
+              onClick={onClick}
+              size="small"
+            />
+          ),
+          swimlanes
+        )}
       </svg>
     </Style>
   );

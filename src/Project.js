@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Roster } from "./Roster";
-import { ProgressChart } from "./ProgressChart";
+
 import { ChosenFocus } from "./ChosenFocus";
 import { Breakdown } from "./Breakdown";
 import { Goals } from "./Goals";
@@ -12,9 +12,7 @@ export const Project = () => {
       <div id="roster">
         <Roster />
       </div>
-      <div id="progress">
-        <ProgressChart />
-      </div>
+      <div id="progress"></div>
       <div id="chosenfocus">
         <ChosenFocus />
       </div>

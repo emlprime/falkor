@@ -1,37 +1,28 @@
 import * as R from "ramda";
-import Highcharts from "highcharts";
-import HC_more from "highcharts/highcharts-more";
-import HighchartsReact from "highcharts-react-official";
-import { List } from "./List";
-import styled from "styled-components";
+import { ArcSmall, ArcBig } from "./ArcNemesis";
 
-const { map } = R;
+const { map, equals } = R;
 
-import { options } from "./progressOptions";
-
-HC_more(Highcharts);
-
-const mQId = (id) => ({ model: "quarters", id });
-const mRId = (id) => ({ model: "releases", id });
-const mSId = (id) => ({ model: "sprints", id });
-
-export const ProgressChart = () => {
-  const quartersAllIds = map(mQId, ["2021-Q3", "2021-Q4", "2022-Q1", "2022-Q2"]);
-  const releasesAllIds = map(mRId, ["R157", "R158", "R159", "R160"]);
-  const sprintsAllIds = map(mSId, ["Week1", "Week2", "Week3"]);
-
-  return (
-    <Section>
-      <HighchartsReact id="chart" highcharts={Highcharts} options={options} />
-      <section id="legends">
-        <List id="quarters" allIds={quartersAllIds} />
-        <List id="releases" allIds={releasesAllIds} />
-        <List id="sprints" allIds={sprintsAllIds} />
-      </section>
-    </Section>
+/* const mQId = (id) => ({ model: "quarters", id });
+ * const mRId = (id) => ({ model: "releases", id });
+ * const mSId = (id) => ({ model: "sprints", id });
+ * const quartersAllIds = map(mQId, ["2021-Q3", "2021-Q4", "2022-Q1", "2022-Q2"]);
+ * const releasesAllIds = map(mRId, ["R157", "R158", "R159", "R160"]);
+ * const sprintsAllIds = map(mSId, ["Week1", "Week2", "Week3"]);
+ *  */
+export const ProgressChart = ({ handleClick, radius, values, size = "big" }) => {
+  const Arc = equals("big", size) ? ArcBig : ArcSmall;
+  return map(
+    ([status, [startPercent, endPercent]]) => (
+      <Arc
+        key={status}
+        radius={radius}
+        status={status}
+        startPercent={startPercent}
+        endPercent={endPercent}
+        onClick={handleClick}
+      />
+    ),
+    values
   );
 };
-
-const Section = styled.section`
-  display: flex;
-`;

@@ -18,7 +18,7 @@ export const Goals = () => {
     <Section>
       {map(
         (i) => (
-          <Goal index={i} />
+          <Goal key={i} index={i} />
         ),
         [1, 2, 3, 4]
       )}

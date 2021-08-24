@@ -11,7 +11,7 @@ export const Bullet = ({ status }) => (
     width={60}
     height={60}
   >
-    <circle cx="30" cy="30" r="30" stroke={colors.resolved} stroke-width="3" fill="transparent" />
+    <circle cx="30" cy="30" r="30" stroke={colors.resolved} strokeWidth="3" fill="transparent" />
     <circle cx="30" cy="30" r="10" fill={prop(status, colors)} />
   </svg>
 );

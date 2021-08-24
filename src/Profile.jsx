@@ -7,9 +7,9 @@ export const Profile = () => {
       <Member id="currentMember" initials="PS" isDriver={true} />
       <h3>Peter Stradinger</h3>
       <h4>Team Lead</h4>
-      <div class="enneagram">E7</div>
-      <div class="swimlane">Bug Fix</div>
-      <div class="currentTicket">DEV-12345</div>
+      <div className="enneagram">E7</div>
+      <div className="swimlane">Bug Fix</div>
+      <div className="currentTicket">DEV-12345</div>
     </Card>
   );
 };

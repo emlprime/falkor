@@ -29,7 +29,7 @@ export const Breakdown = () => {
     <Section>
       {map(
         (i) => (
-          <BreakdownItem index={i} />
+          <BreakdownItem key={i} index={i} />
         ),
         [1, 2, 3, 4]
       )}

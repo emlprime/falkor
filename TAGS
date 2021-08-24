@@ -1,0 +1,266 @@
+
+neededStubs.md,32
+# Needed StubsNeeded Stubs1,0
+
+README.md,644
+# Getting Started with Create React AppGetting Started with Create React App1,0
+## Available ScriptsAvailable Scripts5,143
+### `yarn start``yarn start`9,205
+### `yarn test``yarn test`17,434
+### `yarn build``yarn build`22,633
+### `yarn eject``yarn eject`32,1017
+## Learn MoreLearn More42,1896
+### Code SplittingCode Splitting48,2114
+### Analyzing the Bundle SizeAnalyzing the Bundle Size52,2295
+### Making a Progressive Web AppMaking a Progressive Web App56,2509
+### Advanced ConfigurationAdvanced Configuration60,2732
+### DeploymentDeployment64,2937
+### `yarn build` fails to minify`yarn build` fails to minify68,3106
+
+public/index.html,39
+    <div id="root"></div>root31,1270
+
+public/sprint.svg,0
+
+public/colin.svg,0
+
+public/manifest.json,703
+  "short_name": "React App",short_name2,2
+  "name": "Create React App Sample",name3,31
+    {05,81
+      "src": "favicon.ico",src6,87
+      "sizes": "64x64 32x32 24x24 16x16",sizes7,115
+      "type": "image/x-icon"type8,157
+    {110,193
+      "src": "logo192.png",src11,199
+      "type": "image/png",type12,227
+      "sizes": "192x192"sizes13,254
+    {215,286
+      "src": "logo512.png",src16,292
+      "type": "image/png",type17,320
+      "sizes": "512x512"sizes18,347
+  "icons": [icons4,68
+  "start_url": ".",start_url21,383
+  "display": "standalone",display22,403
+  "theme_color": "#000000",theme_color23,430
+  "background_color": "#ffffff"background_color24,458
+
+public/delete.svg,0
+
+public/robots.txt,0
+
+public/tree.svg,0
+
+public/decompose.svg,0
+
+package.json,2729
+  "name": "falkor",name2,2
+  "version": "0.1.0",version3,22
+  "private": true,private4,44
+    "@testing-library/jest-dom": "^5.11.4",@testing-library/jest-dom6,83
+    "@testing-library/react": "^11.1.0",@testing-library/react7,127
+    "@testing-library/user-event": "^12.1.10",@testing-library/user-event8,168
+    "faker": "^5.5.3",faker9,215
+    "highcharts": "^9.2.1",highcharts10,238
+    "highcharts-more": "^0.1.7",highcharts-more11,266
+    "highcharts-react-official": "^3.0.0",highcharts-react-official12,299
+    "mathjs": "^9.4.4",mathjs13,342
+    "prettier": "^2.3.2",prettier14,366
+    "ramda": "^0.27.1",ramda15,392
+    "react": "^17.0.2",react16,416
+    "react-dom": "^17.0.2",react-dom17,440
+    "react-grid-layout": "^1.2.5",react-grid-layout18,468
+    "react-redux": "^7.2.4",react-redux19,503
+    "react-scripts": "4.0.3",react-scripts20,532
+    "react-spring": "^9.2.4",react-spring21,562
+    "redux-devtools-extension": "^2.13.9",redux-devtools-extension22,592
+    "redux-saga": "^1.1.3",redux-saga23,635
+    "reselect": "^4.0.0",reselect24,663
+    "styled-components": "^5.3.0",styled-components25,689
+    "web-vitals": "^1.0.1"web-vitals26,724
+  "dependencies": {dependencies5,63
+    "start": "react-scripts start",start29,771
+    "build": "react-scripts build",build30,807
+    "test": "react-scripts test",test31,843
+    "eject": "react-scripts eject"eject32,877
+  "scripts": {scripts28,756
+      "<rootDir>/.#",036,962
+      "/.#"137,984
+    "watchPathIgnorePatterns": [watchPathIgnorePatterns35,929
+  "jest": {jest34,917
+      "react-app",042,1044
+      "react-app/jest"143,1063
+    "extends": [extends41,1027
+      {046,1112
+          "**/*.stories.*"048,1139
+        "files": [files47,1120
+          "import/no-anonymous-default-export": "off"import/no-anonymous-default-export51,1196
+        "rules": {rules50,1177
+    "overrides": [overrides45,1093
+  "eslintConfig": {eslintConfig40,1007
+      ">0.2%",058,1319
+      "not dead",159,1334
+      "not op_mini all"260,1352
+    "production": [production57,1299
+      "last 1 chrome version",063,1404
+      "last 1 firefox version",164,1435
+      "last 1 safari version"265,1467
+    "development": [development62,1383
+  "browserslist": {browserslist56,1279
+    "eslint-config-airbnb": "^18.2.1",eslint-config-airbnb69,1531
+    "eslint-plugin-import": "^2.23.4",eslint-plugin-import70,1570
+    "eslint-plugin-jsx-a11y": "^6.4.1",eslint-plugin-jsx-a11y71,1609
+    "eslint-plugin-react": "^7.24.0",eslint-plugin-react72,1649
+    "eslint-plugin-react-hooks": "^4.2.0"eslint-plugin-react-hooks73,1687
+  "devDependencies": {devDependencies68,1508
+
+FalkorDesign.sketch,0
+
+planning.org,0
+
+.eslintrc.json,585
+        "browser": true,browser3,15
+        "es6": truees64,40
+    "env": {env2,2
+    "extends": "eslint:recommended",extends6,67
+        "Atomics": "readonly",Atomics8,121
+        "SharedArrayBuffer": "readonly"SharedArrayBuffer9,152
+    "globals": {globals7,104
+            "jsx": truejsx13,248
+        "ecmaFeatures": {ecmaFeatures12,222
+        "ecmaVersion": 2018,ecmaVersion15,283
+        "sourceType": "module"sourceType16,312
+    "parserOptions": {parserOptions11,199
+        "react"019,367
+    "plugins": [plugins18,350
+    "rules": {rules21,390
+
+src/constants.js,219
+  resolved: "#17435e",resolved2,24
+  active: "#5a0d51",active3,47
+  planned: "#31CBFF",planned4,68
+  selected: "#31CBFF",selected5,90
+  deselected: "#17435e",deselected6,113
+export const colors = {colors1,0
+
+src/ArcNemesis.jsx,715
+function polarToCartesian(centerX, centerY, radius, angleInDegrees) {polarToCartesian6,96
+function describeArc(x, y, radius, startAngle, endAngle) {describeArc15,361
+export const ArcNemesis = ({ radius, size = "big", status, startPercent = 0, endPercent = 0 }) =ArcNemesis26,713
+  const x = 200;x27,813
+  const y = 200;y28,830
+  const startAngle = (startPercent / 100) * 360;startAngle30,848
+  const endAngle = (endPercent / 100) * 360;endAngle31,897
+  const strokeWidth = equals("big", size) ? 15 : 5;strokeWidth33,1011
+export const ArcBig = (props) => <ArcNemesis size="big" {...props} />;ArcBig45,1214
+export const ArcSmall = (props) => <ArcNemesis size="small" {...props} />;ArcSmall46,1285
+
+src/Goals.js,177
+const Goal = ({ index }) => {Goal7,124
+export const Goals = () => {Goals16,338
+const Section = styled.section`Section29,523
+const Article = styled.article`Article35,615
+
+src/progressOptions.js,1674
+const size = 600;size3,39
+  colors: [colors.resolved, colors.active, colors.planned],colors5,82
+    width: size,width7,153
+    height: size,height8,170
+    outline: "1px solid white",outline9,188
+    type: "column",type10,220
+    inverted: true,inverted11,240
+    polar: true,polar12,260
+    color: colors.selected,color13,277
+    backgroundColor: "transparent",backgroundColor14,305
+  chart: {chart6,142
+    text: "Resources",text17,357
+    style: { color: colors.selected, fontSize: "2rem" },color18,380
+    style: { color: colors.selected, fontSize: "2rem" },fontSize18,380
+    style: { color: colors.selected, fontSize: "2rem" },style18,380
+  title: {title16,346
+    outside: true,outside21,455
+  tooltip: {tooltip20,442
+    size: "85%",size24,489
+    innerSize: "20%",innerSize25,506
+    endAngle: 360,endAngle26,528
+  pane: {pane23,479
+    tickInterval: 1,tickInterval29,563
+    lineWidth: 0,lineWidth30,584
+    categories: ["Quarter", "Release", "Sprint", "Day"],categories31,602
+  xAxis: {xAxis28,552
+  legend: { enabled: false },enabled33,664
+  legend: { enabled: false },legend33,664
+    lineWidth: 0,lineWidth35,705
+    tickInterval: 45,tickInterval36,723
+    reversedStacks: false,reversedStacks37,745
+    endOnTick: true,endOnTick38,772
+    reversed: true,reversed39,793
+  yAxis: {yAxis34,694
+      stacking: "normal",stacking43,849
+      borderWidth: 0,borderWidth44,875
+      pointPadding: 0,pointPadding45,897
+      groupPadding: 0.15,groupPadding46,920
+    column: {column42,835
+  plotOptions: {plotOptions41,818
+  series: [series49,958
+export const options = {options4,57
+
+src/Profile.jsx,81
+export const Profile = () => {Profile4,76
+const Card = styled.div`Card17,414
+
+src/reportWebVitals.js,61
+const reportWebVitals = onPerfEntry => {reportWebVitals1,0
+
+src/App.css,0
+
+src/index.js,0
+
+src/index.css,35
+body {body1,0
+code {code12,352
+
+src/Roster.jsx,90
+export const Roster = () => {Roster5,113
+const Section = styled.section`Section31,749
+
+src/Breakdown.js,234
+const width = 240;width7,127
+const BreakdownItem = ({ index }) => {BreakdownItem9,147
+export const Breakdown = () => {Breakdown27,632
+const Section = styled.section`Section40,830
+const Article = styled.article`Article46,913
+
+src/App.test.js,0
+
+src/Project.js,92
+export const Project = () => {Project9,223
+const Section = styled.section`Section29,573
+
+src/Bullet.js,52
+export const Bullet = ({ status }) => (Bullet6,88
+
+src/setupTests.js,0
+
+src/ChosenFocus.js,216
+const Item = () => (Item5,128
+export const ChosenFocus = () => {ChosenFocus9,242
+  const onClick = (value) => {onClick10,277
+  const sprintValues = [sprintValues14,348
+const Style = styled.div`Style47,1037
+
+src/ProgressChart.jsx,114
+export const ProgressChart = ({ handleClick, radius }) => {ProgressChart13,474
+  const values = [values14,534
+
+src/List.jsx,80
+export const List = ({ allIds }) => {List6,89
+const UL = styled.ul`UL19,259
+
+src/App.js,26
+function App() {App4,58
+
+src/Member.jsx,188
+export const Member = ({ isDriver, initials }) => {Member3,41
+const calcColor = ({ isDriver }) => (isDriver ? "#5a0d51" : "#17435e");calcColor7,151
+const Tile = styled.div`Tile9,224
