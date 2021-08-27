@@ -9,7 +9,7 @@ const values = [
 
 export const BreadcrumbDay = ({originX, originY}) => {
   const handleClick = value => {
-    console.log("Day value:", value);
+    console.log("Day Value:", value);
   };
 
   return (

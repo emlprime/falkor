@@ -12,7 +12,7 @@ const values = [
 
 export const BreadcrumbQuarter = ({originX, originY}) => {
   const handleClick = value => {
-    console.log("Quarter value:", value);
+    console.log("Quarter Value:", value);
   };
 
   const bracketConfig = {

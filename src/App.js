@@ -19,4 +19,6 @@ export default App;
 
 const Main = styled.main`
   height: 100vh;
+  min-height: 1000px;
+  min-width: 1300px;
 `;

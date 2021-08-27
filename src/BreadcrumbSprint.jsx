@@ -12,7 +12,7 @@ const values = [
 
 export const BreadcrumbSprint = ({originX, originY}) => {
   const handleClick = value => {
-    console.log("Day value:", value);
+    console.log("Sprint Value:", value);
   };
 
   const bracketConfig = {

@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import {Roster} from "./Roster";
 import {Breadcrumb} from "./Breadcrumb";
-// import {ChosenFocus} from "./ChosenFocus";
+import {ChosenFocus} from "./ChosenFocus";
 // import {Breakdown} from "./Breakdown";
 // import {Goals} from "./Goals";
 
@@ -21,6 +21,7 @@ export const Project = ({width, height}) => {
           <Roster />
         </foreignObject>
         <Breadcrumb originX={800} originY={300} />
+        <ChosenFocus originX={200} originY={600} />
       </svg>
     </Section>
   );

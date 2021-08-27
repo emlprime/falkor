@@ -12,7 +12,7 @@ const values = [
 
 export const BreadcrumbRelease = ({originX, originY}) => {
   const handleClick = value => {
-    console.log("value:", value);
+    console.log("Release Value:", value);
   };
 
   const bracketConfig = {

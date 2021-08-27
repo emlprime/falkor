@@ -1,83 +1,48 @@
 import * as R from "ramda";
-import styled from "styled-components";
-import { colors } from "./constants";
-import { ProgressChart } from "./ProgressChart";
+import {ProgressChart} from "./ProgressChart";
 
-const { map, addIndex } = R;
+const {map, addIndex} = R;
 
 const mapWithIndex = addIndex(map);
 
-const sprintValues = [
-  ["resolved", [0, 40]],
-  ["active", [40, 60]],
-  ["planned", [60, 99.9]],
-];
-
 const swimlanes = [
-  [
-    ["resolved", [0, 40]],
-    ["active", [40, 60]],
-    ["planned", [60, 99.9]],
-  ],
-  [
-    ["resolved", [0, 40]],
-    ["active", [40, 60]],
-    ["planned", [60, 99.9]],
-  ],
-  [
-    ["resolved", [0, 20]],
-    ["active", [20, 60]],
-    ["planned", [60, 99.9]],
-  ],
-  [
-    ["resolved", [0, 40]],
-    ["active", [40, 60]],
-    ["planned", [60, 99.9]],
-  ],
+  [["resolved", [0, 40]], ["active", [40, 60]], ["planned", [60, 99.9]]],
+  [["resolved", [0, 40]], ["active", [40, 60]], ["planned", [60, 99.9]]],
+  [["resolved", [0, 20]], ["active", [20, 60]], ["planned", [60, 99.9]]],
+  [["resolved", [0, 40]], ["active", [40, 60]], ["planned", [60, 99.9]]],
 ];
 
-export const ChosenFocus = () => {
-  const onClick = (value) => {
-    console.log("value:", value);
+export const ChosenFocus = ({originX, originY}) => {
+  const handleClick = value => {
+    console.log("Chosen Focusvalue:", value);
   };
+  const width = 130;
+  const height = 40;
 
   return (
-    <Style>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        version="1.1"
-        viewBox="0 0 400 400"
-        width={400}
-        height={400}
+    <g>
+      <foreignObject
+        x={originX - width / 2}
+        y={originY - height / 2}
+        height={height}
+        width={width}
       >
-        <text
-          x={200}
-          y={210}
-          textAnchor="middle"
-          style={{ color: "#31CBFF", fontSize: "2rem", fill: colors.selected }}
-        >
-          Week 3
-        </text>
-        <ProgressChart radius={100} values={sprintValues} onClick={onClick} />
-        {mapWithIndex(
-          (values, i) => (
-            <ProgressChart
-              key={i}
-              radius={115 + i * 10}
-              values={values}
-              onClick={onClick}
-              size="small"
-            />
-          ),
-          swimlanes
-        )}
-      </svg>
-    </Style>
+        <h2>Week 3</h2>
+      </foreignObject>
+      {mapWithIndex(
+        (values, i) => (
+          <ProgressChart
+            key={i}
+            originX={originX}
+            originY={originY}
+            radius={80 + i * 10}
+            values={values}
+            handleClick={handleClick}
+            width={5}
+          />
+        ),
+        swimlanes,
+      )}
+    </g>
   );
 };
-
-const Style = styled.div`
-  path {
-    transition: 0.35s;
-  }
-`;
