@@ -1,6 +1,7 @@
 import {ProgressChart} from "./ProgressChart";
 import {Bracket} from "./Bracket";
 import {BreadcrumbDay} from "./BreadcrumbDay";
+import {SprintList} from "./SprintList";
 
 const values = [
   ["resolved", [0, 50]],
@@ -15,6 +16,7 @@ export const BreadcrumbSprint = () => {
 
   const size = 600;
   const bracketConfig = {
+    Component: SprintList,
     originX: 395,
     originY: 530,
     breakoffHeight: 70,

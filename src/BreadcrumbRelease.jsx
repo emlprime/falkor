@@ -1,6 +1,7 @@
 import {ProgressChart} from "./ProgressChart";
 import {Bracket} from "./Bracket";
 import {BreadcrumbSprint} from "./BreadcrumbSprint";
+import {ReleaseList} from "./ReleaseList";
 
 const values = [
   ["resolved", [0, 50]],
@@ -15,11 +16,12 @@ export const BreadcrumbRelease = () => {
 
   const size = 600;
   const bracketConfig = {
+    Component: ReleaseList,
     originX: 510,
     originY: 300,
     breakoffHeight: 70,
-    breakoffWidth: 40,
-    breakoffSplit: 100,
+    breakoffWidth: 20,
+    breakoffSplit: 50,
     bottomAngleHeight: 100,
   };
   return (

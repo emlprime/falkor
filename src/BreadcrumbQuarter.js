@@ -1,6 +1,7 @@
 import {ProgressChart} from "./ProgressChart";
 import {BreadcrumbRelease} from "./BreadcrumbRelease";
 import {Bracket} from "./Bracket";
+import {QuarterList} from "./QuarterList";
 
 const values = [
   ["resolved", [0, 50]],
@@ -15,11 +16,12 @@ export const BreadcrumbQuarter = () => {
 
   const size = 600;
   const bracketConfig = {
+    Component: QuarterList,
     originX: 300,
     originY: 130,
     breakoffHeight: 70,
     breakoffWidth: 40,
-    breakoffSplit: 400,
+    breakoffSplit: 320,
     bottomAngleHeight: 100,
   };
 

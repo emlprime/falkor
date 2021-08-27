@@ -20,18 +20,32 @@ const calcD = ({
   const bottomAngleX = add(10, breakoffSplitX);
   const bottomAngleY = add(bottomAngleHeight, breakoffY);
   const bottomSplitX = add(50, bottomAngleX);
-  return `M${originX} ${originY}L${breakoffX} ${breakoffY}H${breakoffSplitX} L${topAngleX} ${topAngleY}H${topSplitX} M${breakoffSplitX} ${breakoffY}L${bottomAngleX} ${bottomAngleY}H${bottomSplitX}`;
+  return {
+    d: `M${originX} ${originY}L${breakoffX} ${breakoffY}H${breakoffSplitX} L${topAngleX} ${topAngleY}H${topSplitX} M${breakoffSplitX} ${breakoffY}L${bottomAngleX} ${bottomAngleY}H${bottomSplitX}`,
+    subComponentX: add(10, topAngleX),
+    subComponentY: add(10, topAngleY),
+  };
 };
 
-export function Bracket(props) {
-  const d = calcD(props);
+export function Bracket({Component, ...props}) {
+  const {d, subComponentX, subComponentY} = calcD(props);
 
   return (
-    <path
-      d={d}
-      stroke={colors.selected}
-      stroke-linecap="square"
-      fill="transparent"
-    />
+    <g>
+      <path
+        d={d}
+        stroke={colors.selected}
+        stroke-linecap="square"
+        fill="transparent"
+      />
+      <foreignObject
+        x={subComponentX}
+        y={subComponentY}
+        width="200"
+        height="100"
+      >
+        <Component />
+      </foreignObject>
+    </g>
   );
 }
