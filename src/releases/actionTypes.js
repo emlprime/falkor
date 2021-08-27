@@ -1,0 +1,6 @@
+export const ADD = "RELEASES/ADD";
+export const DELETE = "RELEASES/DELETE";
+export const EDIT = "RELEASES/EDIT";
+export const COMPLETE = "RELEASES/COMPLETE";
+export const COMPLETE_ALL = "RELEASES/COMPLETE_ALL";
+export const CLEAR_COMPLETED = "RELEASES/CLEAR_COMPLETED";
