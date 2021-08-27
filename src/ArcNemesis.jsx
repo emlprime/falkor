@@ -1,5 +1,3 @@
-import {useState} from "react";
-import {animated, useSpring, config} from "react-spring";
 import {useCallback} from "react";
 import * as R from "ramda";
 import {colors} from "./constants";
@@ -48,16 +46,6 @@ export const ArcNemesis = ({
   endPercent = 0,
   handleClick,
 }) => {
-  const [flip, set] = useState(false);
-  const animatedProps = useSpring({
-    to: {opacity: 1},
-    from: {opacity: 0.6},
-    reset: true,
-    reverse: flip,
-    config: config.molasses,
-    delay: 200,
-    onRest: () => set(!flip),
-  });
   const onClick = useCallback(() => {
     handleClick(status);
   }, [handleClick]);
@@ -71,13 +59,12 @@ export const ArcNemesis = ({
   const strokeWidth = width;
 
   return (
-    <animated.path
+    <path
       d={arcConfig}
       stroke={prop(status, colors)}
       strokeWidth={strokeWidth}
       fill="transparent"
       onClick={onClick}
-      {...animatedProps}
     />
   );
 };

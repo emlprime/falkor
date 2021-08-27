@@ -1,54 +1,114 @@
 import * as R from "ramda";
-import styled from "styled-components";
+
 import {colors} from "./constants";
 
-const {map} = R;
+const {append, equals, prop, reduce} = R;
+const itemWidth = 200;
+const gap = 15;
 
-const BreakdownItem = ({index}) => {
-  const width = 200;
+const BreakdownItem = ({
+  offset,
+  size,
+  id,
+  originX,
+  originY,
+  planned,
+  actual,
+}) => {
+  const width = size - 1 * 15 + itemWidth * size;
   return (
-    <Article>
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        version="1.1"
-        viewBox={`0 0 ${width} 20`}
-        width={200}
-        height={20}
-      >
-        <rect x={0} y={0} width={width} height={10} fill={colors.planned} />
-        <rect x={0} y={10} width={width} height={10} fill={colors.active} />
-      </svg>
-      <p>Goal for Swimlane {index}. Things that we should know.</p>
-    </Article>
+    <svg x={originX + offset} y={originY}>
+      <rect
+        x={0}
+        y={0}
+        width={itemWidth * planned}
+        height={10}
+        fill={colors.planned}
+      />
+      <rect
+        x={0}
+        y={12}
+        width={itemWidth * actual}
+        height={10}
+        fill={colors.active}
+      />
+      <foreignObject y={22} width={width} height={60}>
+        <p>Goal for Swimlane: {id}</p>
+      </foreignObject>
+    </svg>
   );
 };
 
-const width = 840;
-const height = 100;
+const CurrentBreakdownItem = ({
+  offset,
+  size,
+  id,
+  originX,
+  originY,
+  planned,
+  actual,
+}) => {
+  const width = size - 1 * 15 + itemWidth * size;
+  return (
+    <svg x={originX + offset} y={originY}>
+      <rect
+        x={0}
+        y={0}
+        width={itemWidth * planned}
+        height={10}
+        fill={colors.planned}
+      />
+      <rect
+        x={0}
+        y={12}
+        width={itemWidth * actual}
+        height={10}
+        fill={colors.active}
+      />
+      <foreignObject y={22} width={width} height="60">
+        <p>Goal for Swimlane: {id}</p>
+      </foreignObject>
+    </svg>
+  );
+};
+
 export const Breakdown = ({originX, originY}) => {
+  const currentId = "Do Tuesday and Wednesday's Thing";
   return (
-    <Container x={originX} y={originY} width={width} height={height}>
-      <section>
-        {map(
-          i => (
-            <BreakdownItem key={i} index={i} />
-          ),
-          [1, 2, 3, 4],
-        )}
-      </section>
-    </Container>
+    <>
+      {prop(
+        "result",
+        reduce(
+          ({offset, result}, [id, [planned, actual]]) => {
+            const size = actual > planned ? actual : planned;
+            const Item = equals(currentId, id)
+              ? CurrentBreakdownItem
+              : BreakdownItem;
+            return {
+              result: append(
+                <Item
+                  key={id}
+                  id={id}
+                  size={size}
+                  offset={offset}
+                  originX={originX}
+                  originY={originY}
+                  planned={planned}
+                  actual={actual}
+                />,
+                result,
+              ),
+              offset: offset + itemWidth * size + gap,
+            };
+          },
+          {offset: 0, result: []},
+          [
+            ["Do Monday's Thing", [1, 1]],
+            ["Do Tuesday and Wednesday's Thing", [1, 2]],
+            ["Do Thursday's Thing", [1, 1]],
+          ],
+        ),
+      )}
+    </>
   );
 };
-
-const Container = styled.foreignObject`
-  width: ${width}px;
-  section {
-    display: flex;
-    gap: 15px;
-  }
-`;
-
-const Article = styled.article`
-  width: 200px;
-  height: 80px;
-`;
