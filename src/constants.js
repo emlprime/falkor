@@ -4,6 +4,9 @@ export const colors = {
   planned: "#31CBFF",
   selected: "#31CBFF",
   deselected: "#17435e",
+
+  unplannedResolved: "#4F274B",
+  unplannedRemaining: "#F02E65",
 };
 
 export const baseProgressRadius = 100;
