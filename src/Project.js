@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Roster} from "./Roster";
 import {Breadcrumb} from "./Breadcrumb";
 import {ChosenFocus} from "./ChosenFocus";
-// import {Breakdown} from "./Breakdown";
+import {Breakdown} from "./Breakdown";
 // import {Goals} from "./Goals";
 
 export const Project = ({width, height}) => {
@@ -22,13 +22,14 @@ export const Project = ({width, height}) => {
         </foreignObject>
         <Breadcrumb originX={800} originY={300} />
         <ChosenFocus originX={200} originY={600} />
+        <Breakdown originX={200} originY={800} />
       </svg>
     </Section>
   );
 };
 
 const Section = styled.section`
-  svg {
+  > svg {
     margin: 1rem;
     width: 98%;
     height: 98vh;
