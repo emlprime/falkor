@@ -24,7 +24,7 @@ const calcD = ({
 
 export function Bracket(props) {
   const d = calcD(props);
-  console.log("d", d);
+
   return (
     <path
       d={d}
