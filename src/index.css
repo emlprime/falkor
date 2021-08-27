@@ -1,14 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Skranji:regular,bold,italic&subset=latin,latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Orbitron:regular,bold,italic&subset=latin,latin-ext');
 
 body {
     background-color: rgba(0, 43, 77, 1.00);
     color: rgba(49, 203, 255, 1.00);
   margin: 0;
-  font-family: "Skranji";
+  font-family: "Orbitron";
+  font-size: 12px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+h1 {
+    text-align: center;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

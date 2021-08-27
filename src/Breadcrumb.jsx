@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import {colors} from "./constants";
 import {BreadcrumbQuarter} from "./BreadcrumbQuarter";
 
 // const swimlanes = [
@@ -37,14 +36,9 @@ export const Breadcrumb = () => {
         width={width}
         height={height}
       >
-        <text
-          x={300}
-          y={310}
-          textAnchor="middle"
-          style={{color: "#31CBFF", fontSize: "2rem", fill: colors.selected}}
-        >
-          Resources
-        </text>
+        <foreignObject x={180} y={290} height="300px" width="230px">
+          <h1>Resources</h1>
+        </foreignObject>
         <BreadcrumbQuarter />
       </svg>
     </Style>
