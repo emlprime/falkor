@@ -1,5 +1,6 @@
 import {ProgressChart} from "./ProgressChart";
 import {Bracket} from "./Bracket";
+import {BreadcrumbDay} from "./BreadcrumbDay";
 
 const values = [
   ["resolved", [0, 50]],
@@ -9,7 +10,7 @@ const values = [
 
 export const BreadcrumbSprint = () => {
   const handleClick = value => {
-    console.log("Sprint value:", value);
+    console.log("Day value:", value);
   };
 
   const size = 600;
@@ -23,8 +24,8 @@ export const BreadcrumbSprint = () => {
   };
   return (
     <>
+      <BreadcrumbDay />
       <ProgressChart
-        key="breadcrumb_goals"
         center={size / 2}
         radius={115 + 3 * 40}
         values={values}
