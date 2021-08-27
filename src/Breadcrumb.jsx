@@ -1,40 +1,31 @@
-import * as R from "ramda";
 import styled from "styled-components";
-import { colors } from "./constants";
-import { ProgressChart } from "./ProgressChart";
+import {colors} from "./constants";
+import {BreadcrumbQuarter} from "./BreadcrumbQuarter";
 
-const { map, addIndex } = R;
-
-const mapWithIndex = addIndex(map);
-
-const swimlanes = [
-  [
-    ["resolved", [0, 50]],
-    ["active", [50, 75]],
-    ["planned", [75, 99.9]],
-  ],
-  [
-    ["resolved", [0, 50]],
-    ["active", [50, 56.26]],
-    ["planned", [56.25, 75]],
-  ],
-  [
-    ["resolved", [0, 50]],
-    ["active", [50, 53]],
-    ["planned", [53, 56.25]],
-  ],
-  [
-    ["resolved", [0, 50]],
-    ["active", [50, 51]],
-    ["planned", [51, 53]],
-  ],
-];
+// const swimlanes = [
+//   [
+//     ["resolved", [0, 50]],
+//     ["active", [50, 75]],
+//     ["planned", [75, 99.9]],
+//   ],
+//   [
+//     ["resolved", [0, 50]],
+//     ["active", [50, 56.26]],
+//     ["planned", [56.25, 75]],
+//   ],
+//   [
+//     ["resolved", [0, 50]],
+//     ["active", [50, 53]],
+//     ["planned", [53, 56.25]],
+//   ],
+//   [
+//     ["resolved", [0, 50]],
+//     ["active", [50, 51]],
+//     ["planned", [51, 53]],
+//   ],
+// ];
 
 export const Breadcrumb = () => {
-  const onClick = (value) => {
-    console.log("value:", value);
-  };
-
   const size = 600;
   return (
     <Style>
@@ -49,23 +40,11 @@ export const Breadcrumb = () => {
           x={size / 2}
           y={size / 2}
           textAnchor="middle"
-          style={{ color: "#31CBFF", fontSize: "2rem", fill: colors.selected }}
+          style={{color: "#31CBFF", fontSize: "2rem", fill: colors.selected}}
         >
           Resources
         </text>
-        {mapWithIndex(
-          (values, i) => (
-            <ProgressChart
-              key={i}
-              center={size / 2}
-              radius={115 + i * 40}
-              values={values}
-              onClick={onClick}
-              size="huge"
-            />
-          ),
-          swimlanes
-        )}
+        <BreadcrumbQuarter />
       </svg>
     </Style>
   );

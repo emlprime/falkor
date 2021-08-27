@@ -1,10 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Skranji:regular,bold,italic&subset=latin,latin-ext');
+
 body {
     background-color: rgba(0, 43, 77, 1.00);
     color: rgba(49, 203, 255, 1.00);
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: "Skranji";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

@@ -1,7 +1,7 @@
 import * as R from "ramda";
-import { ArcNemesis } from "./ArcNemesis";
+import {ArcNemesis} from "./ArcNemesis";
 
-const { map } = R;
+const {map} = R;
 
 /* const mQId = (id) => ({ model: "quarters", id });
  * const mRId = (id) => ({ model: "releases", id });
@@ -10,7 +10,7 @@ const { map } = R;
  * const releasesAllIds = map(mRId, ["R157", "R158", "R159", "R160"]);
  * const sprintsAllIds = map(mSId, ["Week1", "Week2", "Week3"]);
  *  */
-export const ProgressChart = ({ handleClick, radius, values, ...rest }) => {
+export const ProgressChart = ({handleClick, radius, values, ...rest}) => {
   return map(
     ([status, [startPercent, endPercent]]) => (
       <ArcNemesis
@@ -19,10 +19,10 @@ export const ProgressChart = ({ handleClick, radius, values, ...rest }) => {
         status={status}
         startPercent={startPercent}
         endPercent={endPercent}
-        onClick={handleClick}
+        handleClick={handleClick}
         {...rest}
       />
     ),
-    values
+    values,
   );
 };
