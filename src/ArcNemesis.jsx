@@ -1,8 +1,10 @@
+import {useState} from "react";
+import {animated, useSpring, config} from "react-spring";
 import {useCallback} from "react";
 import * as R from "ramda";
 import {colors} from "./constants";
 
-const {prop, propOr} = R;
+const {prop} = R;
 
 function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
   var angleInRadians = ((angleInDegrees - 90) * Math.PI) / 180.0;
@@ -40,12 +42,22 @@ export const ArcNemesis = ({
   originX,
   originY,
   radius,
-  size = "big",
+  width,
   status,
   startPercent = 0,
   endPercent = 0,
   handleClick,
 }) => {
+  const [flip, set] = useState(false);
+  const animatedProps = useSpring({
+    to: {opacity: 1},
+    from: {opacity: 0.6},
+    reset: true,
+    reverse: flip,
+    config: config.molasses,
+    delay: 200,
+    onRest: () => set(!flip),
+  });
   const onClick = useCallback(() => {
     handleClick(status);
   }, [handleClick]);
@@ -56,15 +68,16 @@ export const ArcNemesis = ({
   const endAngle = (endPercent / 100) * 360;
   const arcConfig = describeArc(x, y, radius, startAngle, endAngle);
 
-  const strokeWidth = propOr(5, size, {big: 15, huge: 30});
+  const strokeWidth = width;
 
   return (
-    <path
+    <animated.path
       d={arcConfig}
       stroke={prop(status, colors)}
       strokeWidth={strokeWidth}
       fill="transparent"
       onClick={onClick}
+      {...animatedProps}
     />
   );
 };

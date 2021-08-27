@@ -7,3 +7,5 @@ export const colors = {
 };
 
 export const baseProgressRadius = 100;
+export const progressWidth = 30;
+export const ringGap = 20;

@@ -1,4 +1,5 @@
 import {ProgressChart} from "./ProgressChart";
+import {baseProgressRadius, progressWidth, ringGap} from "./constants";
 
 const values = [
   ["resolved", [0, 50]],
@@ -6,20 +7,20 @@ const values = [
   ["planned", [51, 53]],
 ];
 
-export const BreadcrumbDay = () => {
+export const BreadcrumbDay = ({originX, originY}) => {
   const handleClick = value => {
     console.log("Day value:", value);
   };
 
-  const size = 600;
   return (
     <>
       <ProgressChart
-        center={size / 2}
-        radius={115 + 4 * 40}
+        originX={originX}
+        originY={originY}
+        radius={baseProgressRadius + 6 * ringGap}
         values={values}
         handleClick={handleClick}
-        size="huge"
+        width={progressWidth}
       />
     </>
   );

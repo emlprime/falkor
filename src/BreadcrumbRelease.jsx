@@ -2,6 +2,7 @@ import {ProgressChart} from "./ProgressChart";
 import {Bracket} from "./Bracket";
 import {BreadcrumbSprint} from "./BreadcrumbSprint";
 import {ReleaseList} from "./ReleaseList";
+import {baseProgressRadius, progressWidth, ringGap} from "./constants";
 
 const values = [
   ["resolved", [0, 50]],
@@ -9,15 +10,14 @@ const values = [
   ["planned", [56.25, 75]],
 ];
 
-export const BreadcrumbRelease = () => {
+export const BreadcrumbRelease = ({originX, originY}) => {
   const handleClick = value => {
     console.log("value:", value);
   };
 
-  const size = 600;
   const bracketConfig = {
     Component: ReleaseList,
-    originX: 510,
+    originX: originX + baseProgressRadius,
     originY: 300,
     breakoffHeight: 70,
     breakoffWidth: 20,
@@ -26,14 +26,15 @@ export const BreadcrumbRelease = () => {
   };
   return (
     <>
-      <BreadcrumbSprint />
+      <BreadcrumbSprint originX={originX} originY={originY} />
       <ProgressChart
         key="breadcrumb_goals"
-        center={size / 2}
-        radius={115 + 2 * 40}
+        originX={originX}
+        originY={originY}
+        radius={baseProgressRadius + 2 * ringGap}
         values={values}
         handleClick={handleClick}
-        size="huge"
+        width={progressWidth}
       />
       <Bracket {...bracketConfig} />
     </>

@@ -2,7 +2,7 @@ import {ProgressChart} from "./ProgressChart";
 import {BreadcrumbRelease} from "./BreadcrumbRelease";
 import {Bracket} from "./Bracket";
 import {QuarterList} from "./QuarterList";
-import {baseProgressRadius} from "./constants";
+import {baseProgressRadius, progressWidth} from "./constants";
 
 const values = [
   ["resolved", [0, 50]],
@@ -18,7 +18,7 @@ export const BreadcrumbQuarter = ({originX, originY}) => {
   const bracketConfig = {
     Component: QuarterList,
     originX,
-    originY: originY - (baseProgressRadius + 50),
+    originY: originY - (baseProgressRadius + progressWidth / 2),
     breakoffHeight: 70,
     breakoffWidth: 40,
     breakoffSplit: 320,
@@ -27,14 +27,14 @@ export const BreadcrumbQuarter = ({originX, originY}) => {
 
   return (
     <>
-      <BreadcrumbRelease />
+      <BreadcrumbRelease originX={originX} originY={originY} />
       <ProgressChart
         originX={originX}
         originY={originY}
-        radius={baseProgressRadius + 40}
+        radius={baseProgressRadius}
         values={values}
         handleClick={handleClick}
-        size="huge"
+        width={progressWidth}
       />
       <Bracket {...bracketConfig} />
     </>

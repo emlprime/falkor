@@ -7,9 +7,7 @@ import {Breadcrumb} from "./Breadcrumb";
 // import {Goals} from "./Goals";
 
 export const Project = ({width, height}) => {
-  console.log("size:", width, height);
   const viewBox = `0 0 ${width} ${height}`;
-  console.log("viewBox:", viewBox);
   return (
     <Section>
       <svg
@@ -30,6 +28,9 @@ export const Project = ({width, height}) => {
 
 const Section = styled.section`
   svg {
+    margin: 1rem;
+    width: 98%;
+    height: 98vh;
     outline: 2px dashed red;
     foreignObject {
       outline: 2px dashed green;
