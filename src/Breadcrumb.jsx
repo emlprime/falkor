@@ -26,19 +26,20 @@ import {BreadcrumbQuarter} from "./BreadcrumbQuarter";
 // ];
 
 export const Breadcrumb = () => {
-  const size = 600;
+  const width = 800;
+  const height = 600;
   return (
     <Style>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         version="1.1"
-        viewBox={`0 0 ${size} ${size}`}
-        width={size}
-        height={size}
+        viewBox={`0 0 ${width} ${height}`}
+        width={width}
+        height={height}
       >
         <text
-          x={size / 2}
-          y={size / 2}
+          x={300}
+          y={310}
           textAnchor="middle"
           style={{color: "#31CBFF", fontSize: "2rem", fill: colors.selected}}
         >

@@ -1,3 +1,4 @@
+import {useState, useEffect} from "react";
 import * as R from "ramda";
 import {ArcNemesis} from "./ArcNemesis";
 
@@ -11,9 +12,16 @@ const {map} = R;
  * const sprintsAllIds = map(mSId, ["Week1", "Week2", "Week3"]);
  *  */
 export const ProgressChart = ({handleClick, radius, values, ...rest}) => {
+  const [toggle, setToggle] = useState(false);
+  useEffect(() => {
+    setImmediate(() => {
+      setToggle(true);
+    });
+  });
   return map(
     ([status, [startPercent, endPercent]]) => (
       <ArcNemesis
+        toggle={toggle}
         key={status}
         radius={radius}
         status={status}

@@ -1,6 +1,8 @@
 import {useCallback} from "react";
+import {animated} from "react-spring";
 import * as R from "ramda";
 import {colors} from "./constants";
+import {useAnimatedPath} from "./useAnimatedPath";
 
 const {prop, propOr} = R;
 
@@ -44,7 +46,9 @@ export const ArcNemesis = ({
   startPercent = 0,
   endPercent = 0,
   handleClick,
+  toggle,
 }) => {
+  const animationProps = useAnimatedPath({toggle});
   const onClick = useCallback(() => {
     handleClick(status);
   }, [handleClick]);
@@ -58,7 +62,8 @@ export const ArcNemesis = ({
   const strokeWidth = propOr(5, size, {big: 15, huge: 30});
 
   return (
-    <path
+    <animated.path
+      {...animationProps}
       d={arcConfig}
       stroke={prop(status, colors)}
       strokeWidth={strokeWidth}

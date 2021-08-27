@@ -1,4 +1,5 @@
 import {ProgressChart} from "./ProgressChart";
+import {Bracket} from "./Bracket";
 
 const values = [
   ["resolved", [0, 50]],
@@ -12,14 +13,24 @@ export const BreadcrumbRelease = () => {
   };
 
   const size = 600;
+  const bracketConfig = {
+    originX: 470,
+    originY: 300,
+    breakoffHeight: 70,
+    breakoffWidth: 100,
+    bottomAngleHeight: 100,
+  };
   return (
-    <ProgressChart
-      key="breadcrumb_goals"
-      center={size / 2}
-      radius={115 + 2 * 40}
-      values={values}
-      handleClick={handleClick}
-      size="huge"
-    />
+    <>
+      <ProgressChart
+        key="breadcrumb_goals"
+        center={size / 2}
+        radius={115 + 2 * 40}
+        values={values}
+        handleClick={handleClick}
+        size="huge"
+      />
+      <Bracket {...bracketConfig} />
+    </>
   );
 };

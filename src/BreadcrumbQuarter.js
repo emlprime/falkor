@@ -1,5 +1,6 @@
 import {ProgressChart} from "./ProgressChart";
 import {BreadcrumbRelease} from "./BreadcrumbRelease";
+import {Bracket} from "./Bracket";
 
 const values = [
   ["resolved", [0, 50]],
@@ -13,6 +14,14 @@ export const BreadcrumbQuarter = () => {
   };
 
   const size = 600;
+  const bracketConfig = {
+    originX: 300,
+    originY: 130,
+    breakoffHeight: 70,
+    breakoffWidth: 400,
+    bottomAngleHeight: 100,
+  };
+
   return (
     <>
       <BreadcrumbRelease />
@@ -24,6 +33,7 @@ export const BreadcrumbQuarter = () => {
         handleClick={handleClick}
         size="huge"
       />
+      <Bracket {...bracketConfig} />
     </>
   );
 };
