@@ -6,40 +6,22 @@ const {append, equals, prop, reduce} = R;
 const itemWidth = 200;
 const gap = 15;
 
-const BreakdownItem = ({
-  offset,
-  size,
-  id,
-  originX,
-  originY,
-  planned,
-  actual,
-}) => {
-  const width = size - 1 * 15 + itemWidth * size;
+const SelectedIndicator = ({width}) => {
+  const d = `M0 0H${width - 25}L${width} 22V140H30L0 113V0Z`;
   return (
-    <svg x={originX + offset} y={originY}>
-      <rect
-        x={0}
-        y={0}
-        width={itemWidth * planned}
-        height={10}
-        fill={colors.planned}
-      />
-      <rect
-        x={0}
-        y={12}
-        width={itemWidth * actual}
-        height={10}
-        fill={colors.active}
-      />
-      <foreignObject y={22} width={width} height={60}>
-        <p>Goal for Swimlane: {id}</p>
-      </foreignObject>
-    </svg>
+    <path
+      x={0}
+      y={0}
+      d={d}
+      fill="transparent"
+      stroke={colors.selected}
+      strokeWidth={1}
+    />
   );
 };
 
-const CurrentBreakdownItem = ({
+const BreakdownItem = ({
+  isCurrent,
   offset,
   size,
   id,
@@ -51,21 +33,22 @@ const CurrentBreakdownItem = ({
   const width = size - 1 * 15 + itemWidth * size;
   return (
     <svg x={originX + offset} y={originY}>
+      {isCurrent && <SelectedIndicator width={width + 20} />}
       <rect
-        x={0}
-        y={0}
+        x={10}
+        y={10}
         width={itemWidth * planned}
         height={10}
         fill={colors.planned}
       />
       <rect
-        x={0}
-        y={12}
+        x={10}
+        y={22}
         width={itemWidth * actual}
         height={10}
         fill={colors.active}
       />
-      <foreignObject y={22} width={width} height="60">
+      <foreignObject x={10} y={32} width={width} height={60}>
         <p>Goal for Swimlane: {id}</p>
       </foreignObject>
     </svg>
@@ -81,12 +64,10 @@ export const Breakdown = ({originX, originY}) => {
         reduce(
           ({offset, result}, [id, [planned, actual]]) => {
             const size = actual > planned ? actual : planned;
-            const Item = equals(currentId, id)
-              ? CurrentBreakdownItem
-              : BreakdownItem;
             return {
               result: append(
-                <Item
+                <BreakdownItem
+                  isCurrent={equals(currentId, id)}
                   key={id}
                   id={id}
                   size={size}

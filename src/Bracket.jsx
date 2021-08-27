@@ -32,12 +32,7 @@ export function Bracket({Component, ...props}) {
 
   return (
     <g>
-      <path
-        d={d}
-        stroke={colors.selected}
-        stroke-linecap="square"
-        fill="transparent"
-      />
+      <path d={d} stroke={colors.selected} fill="transparent" />
       <foreignObject
         x={subComponentX}
         y={subComponentY}
