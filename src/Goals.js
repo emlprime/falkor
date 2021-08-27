@@ -1,10 +1,10 @@
 import * as R from "ramda";
 import styled from "styled-components";
-import { Bullet } from "./Bullet";
+import {Bullet} from "./Bullet";
 
-const { map } = R;
+const {map} = R;
 
-const Goal = ({ index }) => {
+const Goal = ({index}) => {
   return (
     <Article>
       <Bullet status={index == 2 ? "active" : "deselected"} />
@@ -17,10 +17,10 @@ export const Goals = () => {
   return (
     <Section>
       {map(
-        (i) => (
+        i => (
           <Goal key={i} index={i} />
         ),
-        [1, 2, 3, 4]
+        [1, 2, 3, 4],
       )}
     </Section>
   );
@@ -28,12 +28,12 @@ export const Goals = () => {
 
 const Section = styled.section`
   display: flex;
+  height: 400px;
   flex-direction: column;
-  gap: 45px;
+  justify-content: space-between;
 `;
 
 const Article = styled.article`
-  width: 220px;
   display: flex;
   gap: 5px;
 `;

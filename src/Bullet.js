@@ -1,17 +1,35 @@
 import * as R from "ramda";
-import { colors } from "./constants";
+import {colors} from "./constants";
 
-const { prop } = R;
+const {prop} = R;
 
-export const Bullet = ({ status }) => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    version="1.1"
-    viewBox={`0 0 60 60`}
-    width={60}
-    height={60}
-  >
-    <circle cx="30" cy="30" r="30" stroke={colors.resolved} strokeWidth="3" fill="transparent" />
-    <circle cx="30" cy="30" r="10" fill={prop(status, colors)} />
-  </svg>
-);
+export const Bullet = ({status, size = 30}) => {
+  const viewBoxSize = size + 1;
+  const center = size / 2;
+  const outerCircleRadius = size / 2;
+  const innerCircleRadius = size / 5;
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      version="1.1"
+      viewBox={`0 0 ${viewBoxSize} ${viewBoxSize}`}
+      width={viewBoxSize}
+      height={viewBoxSize}
+    >
+      <circle
+        cx={center}
+        cy={center}
+        r={outerCircleRadius}
+        stroke={colors.resolved}
+        strokeWidth="3"
+        fill="transparent"
+      />
+      <circle
+        cx={center}
+        cy={center}
+        r={innerCircleRadius}
+        fill={prop(status, colors)}
+      />
+    </svg>
+  );
+};

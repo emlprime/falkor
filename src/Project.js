@@ -4,7 +4,7 @@ import {Roster} from "./Roster";
 import {Breadcrumb} from "./Breadcrumb";
 import {ChosenFocus} from "./ChosenFocus";
 import {Breakdown} from "./Breakdown";
-// import {Goals} from "./Goals";
+import {Goals} from "./Goals";
 
 export const Project = ({width, height}) => {
   const viewBox = `0 0 ${width} ${height}`;
@@ -23,6 +23,9 @@ export const Project = ({width, height}) => {
         <Breadcrumb originX={800} originY={300} />
         <ChosenFocus originX={200} originY={600} />
         <Breakdown originX={200} originY={800} />
+        <foreignObject id="goals" width="300px" height="400px" x="1050" y="720">
+          <Goals />
+        </foreignObject>
       </svg>
     </Section>
   );
