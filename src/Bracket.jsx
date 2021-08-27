@@ -7,12 +7,13 @@ const calcD = ({
   originX,
   originY,
   breakoffWidth,
+  breakoffSplit,
   breakoffHeight,
   bottomAngleHeight,
 }) => {
-  const breakoffX = add(30, originX);
+  const breakoffX = add(breakoffWidth, originX);
   const breakoffY = subtract(originY, breakoffHeight);
-  const breakoffSplitX = add(breakoffWidth, breakoffX);
+  const breakoffSplitX = add(breakoffSplit, breakoffX);
   const topAngleX = add(10, breakoffSplitX);
   const topAngleY = subtract(breakoffY, 40);
   const topSplitX = add(50, topAngleX);

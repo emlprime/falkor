@@ -18,7 +18,8 @@ export const BreadcrumbRelease = () => {
     originX: 510,
     originY: 300,
     breakoffHeight: 70,
-    breakoffWidth: 100,
+    breakoffWidth: 40,
+    breakoffSplit: 100,
     bottomAngleHeight: 100,
   };
   return (

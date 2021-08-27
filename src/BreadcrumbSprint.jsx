@@ -14,10 +14,11 @@ export const BreadcrumbSprint = () => {
 
   const size = 600;
   const bracketConfig = {
-    originX: 470,
-    originY: 500,
+    originX: 395,
+    originY: 530,
     breakoffHeight: 70,
     breakoffWidth: 100,
+    breakoffSplit: 50,
     bottomAngleHeight: 100,
   };
   return (
