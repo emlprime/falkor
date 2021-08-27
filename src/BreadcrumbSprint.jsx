@@ -17,12 +17,12 @@ export const BreadcrumbSprint = ({originX, originY}) => {
 
   const bracketConfig = {
     Component: SprintList,
-    originX,
-    originY,
-    breakoffHeight: 70,
-    breakoffWidth: 100,
+    originX: originX + 3.7 * ringGap,
+    originY: originY + baseProgressRadius + 4 * ringGap,
+    breakoffHeight: -40,
+    breakoffWidth: 60,
     breakoffSplit: 50,
-    bottomAngleHeight: 100,
+    bottomAngleHeight: 65,
   };
   return (
     <>

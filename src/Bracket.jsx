@@ -41,8 +41,8 @@ export function Bracket({Component, ...props}) {
       <foreignObject
         x={subComponentX}
         y={subComponentY}
-        width="200"
-        height="100"
+        width="150"
+        height="85"
       >
         <Component />
       </foreignObject>

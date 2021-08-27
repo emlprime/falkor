@@ -22,7 +22,7 @@ export const BreadcrumbQuarter = ({originX, originY}) => {
     breakoffHeight: 70,
     breakoffWidth: 40,
     breakoffSplit: 320,
-    bottomAngleHeight: 100,
+    bottomAngleHeight: 65,
   };
 
   return (

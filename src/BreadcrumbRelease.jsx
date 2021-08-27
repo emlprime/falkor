@@ -17,12 +17,12 @@ export const BreadcrumbRelease = ({originX, originY}) => {
 
   const bracketConfig = {
     Component: ReleaseList,
-    originX: originX + baseProgressRadius,
+    originX: originX + baseProgressRadius + progressWidth + ringGap * 1.2,
     originY: 300,
-    breakoffHeight: 70,
+    breakoffHeight: 30,
     breakoffWidth: 20,
     breakoffSplit: 50,
-    bottomAngleHeight: 100,
+    bottomAngleHeight: 65,
   };
   return (
     <>
