@@ -1,59 +1,9 @@
 import * as R from "ramda";
-
-import {colors} from "./constants";
+import {itemWidth} from "./constants";
+import {BreakdownItem} from "./BreakdownItem";
 
 const {append, equals, prop, reduce} = R;
-const itemWidth = 200;
 const gap = 15;
-
-const SelectedIndicator = ({width}) => {
-  const d = `M0 0H${width - 25}L${width} 22V140H30L0 113V0Z`;
-  return (
-    <path
-      x={0}
-      y={0}
-      d={d}
-      fill="transparent"
-      stroke={colors.selected}
-      strokeWidth={1}
-    />
-  );
-};
-
-const BreakdownItem = ({
-  isCurrent,
-  offset,
-  size,
-  id,
-  originX,
-  originY,
-  planned,
-  actual,
-}) => {
-  const width = size - 1 * 15 + itemWidth * size;
-  return (
-    <svg x={originX + offset} y={originY}>
-      {isCurrent && <SelectedIndicator width={width + 20} />}
-      <rect
-        x={10}
-        y={10}
-        width={itemWidth * planned}
-        height={10}
-        fill={colors.planned}
-      />
-      <rect
-        x={10}
-        y={22}
-        width={itemWidth * actual}
-        height={10}
-        fill={colors.active}
-      />
-      <foreignObject x={10} y={32} width={width} height={60}>
-        <p>Goal for Swimlane: {id}</p>
-      </foreignObject>
-    </svg>
-  );
-};
 
 export const Breakdown = ({originX, originY}) => {
   const currentId = "Do Tuesday and Wednesday's Thing";

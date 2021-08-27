@@ -9,3 +9,6 @@ export const colors = {
 export const baseProgressRadius = 100;
 export const progressWidth = 30;
 export const ringGap = 20;
+
+export const itemWidth = 200;
+export const gap = 15;
