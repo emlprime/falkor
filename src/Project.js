@@ -1,51 +1,38 @@
 import React from "react";
 import styled from "styled-components";
-import { Roster } from "./Roster";
-import { Breadcrumb } from "./Breadcrumb";
-import { ChosenFocus } from "./ChosenFocus";
-import { Breakdown } from "./Breakdown";
-import { Goals } from "./Goals";
+import {Roster} from "./Roster";
+import {Breadcrumb} from "./Breadcrumb";
+// import {ChosenFocus} from "./ChosenFocus";
+// import {Breakdown} from "./Breakdown";
+// import {Goals} from "./Goals";
 
-export const Project = () => {
+export const Project = ({width, height}) => {
+  console.log("size:", width, height);
+  const viewBox = `0 0 ${width} ${height}`;
+  console.log("viewBox:", viewBox);
   return (
     <Section>
-      <div id="roster">
-        <Roster />
-      </div>
-      <div id="progress">
-        <Breadcrumb />
-      </div>
-      <div id="chosenfocus">
-        <ChosenFocus />
-      </div>
-      <div id="breakdown">
-        <Breakdown />
-      </div>
-      <div id="goals">
-        <Goals />
-      </div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        version="1.1"
+        viewBox={viewBox}
+        width={width}
+        height={height}
+      >
+        <foreignObject id="roster" width="500px" height="200px" x="0" y="0">
+          <Roster />
+        </foreignObject>
+        <Breadcrumb originX={800} originY={300} />
+      </svg>
     </Section>
   );
 };
 
 const Section = styled.section`
-  display: grid;
-  #roster {
-    grid-area: roster;
+  svg {
+    outline: 2px dashed red;
+    foreignObject {
+      outline: 2px dashed green;
+    }
   }
-  #progress {
-    grid-area: progress;
-  }
-  #chosenfocusFocus {
-    grid-area: chosenFocus;
-  }
-  #breakdown {
-    grid-area: breakdown;
-    margin-left: 10rem;
-    margin-top: 80px;
-  }
-  #goals {
-    grid-area: goals;
-  }
-  grid-template: "roster progress progress" auto "chosenFocus chosenFocus chosenFocus" auto "breakdown breakdown goals" auto / 450px 1fr 400px;
 `;

@@ -5,3 +5,5 @@ export const colors = {
   selected: "#31CBFF",
   deselected: "#17435e",
 };
+
+export const baseProgressRadius = 100;

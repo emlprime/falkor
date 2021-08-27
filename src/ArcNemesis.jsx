@@ -1,8 +1,6 @@
 import {useCallback} from "react";
-import {animated} from "react-spring";
 import * as R from "ramda";
 import {colors} from "./constants";
-import {useAnimatedPath} from "./useAnimatedPath";
 
 const {prop, propOr} = R;
 
@@ -39,21 +37,20 @@ function describeArc(x, y, radius, startAngle, endAngle) {
 }
 
 export const ArcNemesis = ({
-  center = 200,
+  originX,
+  originY,
   radius,
   size = "big",
   status,
   startPercent = 0,
   endPercent = 0,
   handleClick,
-  toggle,
 }) => {
-  const animationProps = useAnimatedPath({toggle});
   const onClick = useCallback(() => {
     handleClick(status);
   }, [handleClick]);
-  const x = center;
-  const y = center;
+  const x = originX;
+  const y = originY;
 
   const startAngle = (startPercent / 100) * 360;
   const endAngle = (endPercent / 100) * 360;
@@ -62,8 +59,7 @@ export const ArcNemesis = ({
   const strokeWidth = propOr(5, size, {big: 15, huge: 30});
 
   return (
-    <animated.path
-      {...animationProps}
+    <path
       d={arcConfig}
       stroke={prop(status, colors)}
       strokeWidth={strokeWidth}
