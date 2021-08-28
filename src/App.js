@@ -4,7 +4,7 @@ import styled from "styled-components";
 import {BrowserRouter as Router, Switch, Route, Link} from "react-router-dom";
 import "./App.css";
 import {Project} from "./Project";
-import {Budget} from "./Budget";
+import {Budget} from "./budget/Budget";
 
 function App() {
   const target = useRef(null);
