@@ -4,7 +4,7 @@ import {Roster} from "./Roster";
 import {Breadcrumb} from "./Breadcrumb";
 import {ChosenFocus} from "./ChosenFocus";
 import {Breakdown} from "./Breakdown";
-import {Goals} from "./Goals";
+import {Goals} from "./global/Goals";
 import {CurrentActions} from "./CurrentActions";
 import {BurndownChart} from "./BurndownChart";
 import {Yggdrasil} from "./Yggdrasil";

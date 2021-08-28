@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import {colors} from "./constants";
+import {colors} from "./global/constants";
 
 const {map, addIndex} = R;
 
@@ -62,7 +62,7 @@ export function BurndownChart({originX, originY}) {
             fill: colors.unplannedRemaining,
           };
           return (
-            <g>
+            <g key={index}>
               <Bar {...presProps} />
               <Bar {...premProps} />
               <Bar {...upresProps} />

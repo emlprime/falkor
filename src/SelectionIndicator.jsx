@@ -1,4 +1,4 @@
-import {colors} from "./constants";
+import {colors} from "./global/constants";
 
 export function SelectionIndicator({width}) {
   const d = `M0 0H${width - 25}L${width} 22V140H30L0 113V0Z`;

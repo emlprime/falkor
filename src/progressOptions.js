@@ -1,4 +1,4 @@
-import { colors } from "./constants";
+import {colors} from "./global/constants";
 
 const size = 600;
 export const options = {
@@ -15,7 +15,7 @@ export const options = {
   },
   title: {
     text: "Resources",
-    style: { color: colors.selected, fontSize: "2rem" },
+    style: {color: colors.selected, fontSize: "2rem"},
   },
   tooltip: {
     outside: true,
@@ -30,7 +30,7 @@ export const options = {
     lineWidth: 0,
     categories: ["Quarter", "Release", "Sprint", "Day"],
   },
-  legend: { enabled: false },
+  legend: {enabled: false},
   yAxis: {
     lineWidth: 0,
     tickInterval: 45,

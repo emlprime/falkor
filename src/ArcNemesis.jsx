@@ -1,6 +1,6 @@
 import {useCallback} from "react";
 import * as R from "ramda";
-import {colors} from "./constants";
+import {colors} from "./global/constants";
 
 const {prop} = R;
 

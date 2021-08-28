@@ -1,4 +1,4 @@
-import {BreadcrumbQuarter} from "./BreadcrumbQuarter";
+import {Breadcrumb as BreadcrumbQuarter} from "./quarters/Breadcrumb";
 
 export const Breadcrumb = ({originX, originY}) => {
   const width = 180;

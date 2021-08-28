@@ -1,11 +1,17 @@
 import {useCallback} from "react";
 import {useDispatch} from "react-redux";
-import {ProgressChart} from "./ProgressChart";
-import {BreadcrumbRelease} from "./BreadcrumbRelease";
-import {Bracket} from "./Bracket";
-import {QuarterList} from "./QuarterList";
-import {baseProgressRadius, progressWidth} from "./constants";
-import * as a from "./actions";
+import {ProgressChart} from "../ProgressChart";
+import {BreadcrumbRelease} from "../BreadcrumbRelease";
+import {QuarterList} from "../QuarterList";
+import {baseProgressRadius, progressWidth} from "../global/constants";
+import global from "../global";
+
+const {
+  components: {
+    default: {Bracket},
+  },
+  actions: a,
+} = global;
 
 const values = [
   ["resolved", [0, 50]],
@@ -13,7 +19,7 @@ const values = [
   ["planned", [75, 99.9]],
 ];
 
-export const BreadcrumbQuarter = ({originX, originY}) => {
+export const Breadcrumb = ({originX, originY}) => {
   const dispatch = useDispatch();
   const handleClick = useCallback(() => {
     dispatch(a.setCurrentScope("quarter"));

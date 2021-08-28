@@ -1,5 +1,5 @@
 import {ProgressChart} from "./ProgressChart";
-import {baseProgressRadius, progressWidth, ringGap} from "./constants";
+import {baseProgressRadius, progressWidth, ringGap} from "./global/constants";
 
 const values = [
   ["resolved", [0, 50]],

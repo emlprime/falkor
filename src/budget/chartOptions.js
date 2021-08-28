@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import * as R from "ramda";
-import {colors} from "../constants";
+import {colors} from "../global/constants";
 import {fixedExpenses, variableExpenses} from "./expenses";
 
 const {add, equals, curry, reduce, append, last, range, prop} = R;

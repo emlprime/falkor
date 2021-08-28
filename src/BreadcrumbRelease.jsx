@@ -1,8 +1,8 @@
 import {ProgressChart} from "./ProgressChart";
-import {Bracket} from "./Bracket";
+import {Bracket} from "./global/Bracket";
 import {BreadcrumbSprint} from "./BreadcrumbSprint";
 import {ReleaseList} from "./ReleaseList";
-import {baseProgressRadius, progressWidth, ringGap} from "./constants";
+import {baseProgressRadius, progressWidth, ringGap} from "./global/constants";
 
 const values = [
   ["resolved", [0, 50]],
