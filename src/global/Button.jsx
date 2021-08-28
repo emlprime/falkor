@@ -1,7 +1,7 @@
 import {useCallback} from "react";
 import * as R from "ramda";
 import styled from "styled-components";
-import {colors} from "./global/constants";
+import {colors} from "./constants";
 import {Trash, Decompose} from "./icons";
 
 const {prop} = R;

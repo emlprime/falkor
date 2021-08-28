@@ -1,4 +1,4 @@
-import {colors} from "./global/constants";
+import {colors} from "./constants";
 const size = 24;
 export function Icon({d}) {
   return (

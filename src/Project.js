@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import {Roster} from "./Roster";
-import {Breadcrumb} from "./Breadcrumb";
-import {ChosenFocus} from "./ChosenFocus";
-import {Breakdown} from "./Breakdown";
+import {Roster} from "./members/Roster";
+import {Breadcrumb} from "./global/Breadcrumb";
+import {ChosenFocus} from "./global/ChosenFocus";
+import {Breakdown} from "./global/Breakdown";
 import {Goals} from "./global/Goals";
-import {CurrentActions} from "./CurrentActions";
-import {BurndownChart} from "./BurndownChart";
-import {Yggdrasil} from "./Yggdrasil";
+import {CurrentActions} from "./global/CurrentActions";
+import {BurndownChart} from "./global/BurndownChart";
+import {Yggdrasil} from "./global/Yggdrasil";
 
 export const Project = ({width, height}) => {
   const viewBox = `0 0 ${width} ${height}`;

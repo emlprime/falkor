@@ -1,4 +1,4 @@
-export function QuarterList() {
+export function List() {
   return (
     <ul>
       <li>2021-Q3</li>

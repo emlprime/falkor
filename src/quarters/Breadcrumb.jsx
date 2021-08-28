@@ -1,10 +1,10 @@
 import {useCallback} from "react";
 import {useDispatch} from "react-redux";
-import {ProgressChart} from "../ProgressChart";
-import {BreadcrumbRelease} from "../BreadcrumbRelease";
-import {QuarterList} from "../QuarterList";
-import {baseProgressRadius, progressWidth} from "../global/constants";
+import {List} from "./List";
 import global from "../global";
+import {ProgressChart} from "../global/ProgressChart";
+import {baseProgressRadius, progressWidth} from "../global/constants";
+import {Breadcrumb as BreadcrumbReleases} from "../releases/Breadcrumb";
 
 const {
   components: {
@@ -26,7 +26,7 @@ export const Breadcrumb = ({originX, originY}) => {
   }, [dispatch]);
 
   const bracketConfig = {
-    Component: QuarterList,
+    Component: List,
     originX,
     originY: originY - (baseProgressRadius + progressWidth / 2),
     breakoffHeight: 70,
@@ -37,7 +37,7 @@ export const Breadcrumb = ({originX, originY}) => {
 
   return (
     <>
-      <BreadcrumbRelease originX={originX} originY={originY} />
+      <BreadcrumbReleases originX={originX} originY={originY} />
       <ProgressChart
         originX={originX}
         originY={originY}

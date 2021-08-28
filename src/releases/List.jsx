@@ -1,4 +1,4 @@
-export function ReleaseList() {
+export function List() {
   return (
     <ul>
       <li>Release 158</li>

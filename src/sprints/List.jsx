@@ -1,4 +1,4 @@
-export function SprintList() {
+export function List() {
   return (
     <ul>
       <li>Week 1</li>

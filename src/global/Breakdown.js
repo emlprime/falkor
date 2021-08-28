@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import {itemWidth} from "./global/constants";
+import {itemWidth} from "./constants";
 import {BreakdownItem} from "./BreakdownItem";
 
 const {append, equals, prop, reduce} = R;
