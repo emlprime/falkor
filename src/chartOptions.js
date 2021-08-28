@@ -17,6 +17,7 @@ function calcIsRecurringOffset({unit, mod}, startDate, currentDate) {
 
 function calcAmountForDate({result, currentDate}, {type, ...config}) {
   let addAmount = 0;
+
   switch (type) {
     case "days":
       addAmount = calcIsRecurringOffset(
@@ -46,19 +47,33 @@ const calcAllForDate = curry((type, context, currentDate) => {
 });
 
 function cashflowReducer(
-  {result: {balanceData, incomeData, fixedExpenseData}, context},
+  {
+    result: {balanceData, incomeData, fixedExpenseData, variableExpenseData},
+    context,
+  },
   currentDate,
 ) {
   const newIncome = calcAllForDate("income", context, currentDate);
   const newFixedExpense = calcAllForDate("fixedExpenses", context, currentDate);
-  const newBalance = 10;
+  const newVariableExpense = calcAllForDate(
+    "variableExpenses",
+    context,
+    currentDate,
+  );
+
+  const netChange = newIncome - (newFixedExpense + newVariableExpense);
+
   return {
     result: {
-      balanceData: append(newBalance, balanceData),
+      balanceData: append(add(last(balanceData), netChange), balanceData),
       incomeData: append(add(last(incomeData), newIncome), incomeData),
       fixedExpenseData: append(
-        add(last(fixedExpenseData), newFixedExpense),
+        add(last(fixedExpenseData), -1 * newFixedExpense),
         fixedExpenseData,
+      ),
+      variableExpenseData: append(
+        add(last(variableExpenseData), -1 * newVariableExpense),
+        variableExpenseData,
       ),
     },
     context,
@@ -66,7 +81,6 @@ function cashflowReducer(
 }
 
 const context = {
-  balance: 2282.88,
   income: [
     {
       type: "days",
@@ -81,11 +95,16 @@ const context = {
 };
 
 const {
-  result: {balanceData, incomeData, fixedExpenseData},
+  result: {balanceData, incomeData, fixedExpenseData, variableExpenseData},
 } = reduce(
   cashflowReducer,
   {
-    result: {balanceData: [2000], incomeData: [0], fixedExpenseData: [0]},
+    result: {
+      balanceData: [2282.88],
+      incomeData: [0],
+      fixedExpenseData: [0],
+      variableExpenseData: [0],
+    },
     context,
   },
   dates,
@@ -94,7 +113,7 @@ const {
 export const chartOptions = {
   chart: {
     type: "area",
-    height: "800px",
+    height: "600px",
     zoomType: "x",
     panning: true,
     panKey: "shift",
@@ -140,38 +159,38 @@ export const chartOptions = {
     },
   },
 
-  tooltip: {
-    headerFormat: "Distance: {point.x:.1f}<br>",
-    pointFormat: "${point.y}",
-    shared: true,
-  },
-
   legend: {
     enabled: false,
-  },
-  plotOptions: {
-    stacking: "normal",
   },
 
   series: [
     {
       data: balanceData,
-      lineColor: colors.selected,
-      color: colors.resolved,
-      fillOpacity: 0.5,
+      lineColor: colors.balance,
+      color: colors.balance,
+      fillOpacity: 0.4,
       name: "Balance",
     },
     {
       data: incomeData,
-      lineColor: colors.resolved,
-      color: colors.resolved,
+      type: "line",
+      lineColor: colors.income,
+      color: colors.income,
       name: "Income",
     },
     {
       data: fixedExpenseData,
-      lineColor: colors.unplannedResolved,
-      color: colors.resolved,
+      type: "line",
+      lineColor: colors.fixedExpenses,
+      color: colors.fixedExpenses,
       name: "Fixed Expenses",
+    },
+    {
+      data: variableExpenseData,
+      type: "line",
+      lineColor: colors.variableExpenses,
+      color: colors.variableExpenses,
+      name: "Variable Expenses",
     },
   ],
 };

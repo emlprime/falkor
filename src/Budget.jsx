@@ -1,12 +1,12 @@
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
-import {chartOptions} from "./chartOptions";
+import {chartOptions as cashflowOptions} from "./chartOptions";
 
 export function Budget() {
   return (
     <section>
       <h1>Budget</h1>
-      <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+      <HighchartsReact highcharts={Highcharts} options={cashflowOptions} />
     </section>
   );
 }

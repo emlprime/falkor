@@ -7,6 +7,11 @@ export const colors = {
 
   unplannedResolved: "#4F274B",
   unplannedRemaining: "#F02E65",
+
+  income: "#006600",
+  balance: "#33CC33",
+  fixedExpenses: "#F66",
+  variableExpenses: "#C00",
 };
 
 export const baseProgressRadius = 100;
