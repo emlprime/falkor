@@ -16,7 +16,7 @@ export const getRecordIdsFor = parentId =>
     getAll,
     records =>
       pipe(
-        filter(propEq("goalId", parentId)),
+        filter(propEq("sprintId", parentId)),
         map(prop("id")),
       )(records),
   );

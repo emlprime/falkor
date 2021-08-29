@@ -20,7 +20,9 @@ const getCurrentIdFor = key =>
     current => prop(key, current),
   );
 
+export const getCurrentProjectId = getCurrentIdFor("projectId");
 export const getCurrentQuarterId = getCurrentIdFor("quarterId");
 export const getCurrentReleaseId = getCurrentIdFor("releaseId");
 export const getCurrentSprintId = getCurrentIdFor("sprintId");
+export const getCurrentGoalId = getCurrentIdFor("goalId");
 export const getCurrentDayId = getCurrentIdFor("dayId");
