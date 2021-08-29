@@ -1,8 +1,13 @@
 import * as R from "ramda";
 import {useSelector} from "react-redux";
-import {getRecordIdsFor} from "./selectors";
+import {getRecordIdsFor, getRecordFor} from "./selectors";
 
 const {map} = R;
+
+function ListItem({id}) {
+  const {label} = useSelector(getRecordFor(id));
+  return <li>{label}</li>;
+}
 
 export function List() {
   const recordIds = useSelector(getRecordIdsFor("abc123"));
@@ -11,7 +16,7 @@ export function List() {
     <ul>
       {map(
         id => (
-          <li key={id}>{id}</li>
+          <ListItem key={id} id={id} />
         ),
         recordIds,
       )}
