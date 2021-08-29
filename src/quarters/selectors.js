@@ -1,12 +1,16 @@
+import * as R from "ramda";
 import {createSelector} from "reselect";
-
 import {NAME} from "./constants";
 
-export const getAll = state => state[NAME];
+const {filter, propEq, prop, map} = R;
 
-export const getCounts = createSelector(
-  getAll,
-  all => ({
-    all: all.length,
-  }),
-);
+export const getAll = state => {
+  const {allIds, byId} = state[NAME];
+  return map(id => prop(id, byId), allIds);
+};
+
+export const getRecordsFor = parentId =>
+  createSelector(
+    getAll,
+    records => filter(propEq("projectId", parentId), records),
+  );
