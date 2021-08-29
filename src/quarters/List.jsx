@@ -1,25 +1,7 @@
-import * as R from "ramda";
-import {useSelector} from "react-redux";
 import {getRecordIdsFor, getRecordFor} from "./selectors";
+import {ListItem as GlobalListItem} from "../global/ListItem";
+import {List as GlobalList} from "../global/List";
 
-const {map} = R;
+const ListItem = GlobalListItem(getRecordFor);
 
-function ListItem({id}) {
-  const {label} = useSelector(getRecordFor(id));
-  return <li>{label}</li>;
-}
-
-export function List() {
-  const recordIds = useSelector(getRecordIdsFor("abc123"));
-  console.log("recordIds:", recordIds);
-  return (
-    <ul>
-      {map(
-        id => (
-          <ListItem key={id} id={id} />
-        ),
-        recordIds,
-      )}
-    </ul>
-  );
-}
+export const List = GlobalList(getRecordIdsFor, ListItem);

@@ -11,7 +11,13 @@ describe("With quarters relative to a Project", () => {
     expect(result).toEqual(expectation);
   });
 
-  test.only("Show the detail for a specific quarter", () => {
+  test("Show the list of other interesting quarters", () => {
+    const expectation = ["fdsfds", "hghghg", "ututuy", "ppooii"];
+    const result = getRecordIdsFor("def234")(state);
+    expect(result).toEqual(expectation);
+  });
+
+  test("Show the detail for a specific quarter", () => {
     const expectation = {id: "abc123", label: "2021-Q3", projectId: "abc123"};
     const result = getRecordFor("abc123")(state);
     expect(result).toEqual(expectation);

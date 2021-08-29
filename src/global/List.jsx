@@ -1,23 +1,20 @@
 import * as R from "ramda";
-import styled from "styled-components";
+import {useSelector} from "react-redux";
 
-const { map } = R;
+const {map, curry} = R;
 
-export const List = ({ allIds }) => {
+export const List = curry((selector, ListItem, {id}) => {
+  console.log(id);
+  const recordIds = useSelector(selector("abc123"));
+
   return (
-    <UL>
+    <ul>
       {map(
-        ({ id }) => (
-          <li>{id}</li>
+        id => (
+          <ListItem key={id} id={id} />
         ),
-        allIds
+        recordIds,
       )}
-    </UL>
+    </ul>
   );
-};
-
-const UL = styled.ul`
-  li {
-    list-style-type: circle;
-  }
-`;
+});

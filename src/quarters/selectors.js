@@ -2,11 +2,11 @@ import * as R from "ramda";
 import {createSelector} from "reselect";
 import {NAME} from "./constants";
 
-const {filter, propEq, propOr, prop, pathOr, map, pipe} = R;
+const {filter, propEq, propOr, prop, pathOr, map, pipe, values} = R;
 
 export const getAll = state => {
-  const {allIds, byId} = state[NAME];
-  return map(id => prop(id, byId), allIds);
+  const {byId} = state[NAME];
+  return values(byId);
 };
 
 export const getById = pathOr({}, [NAME, "byId"]);
