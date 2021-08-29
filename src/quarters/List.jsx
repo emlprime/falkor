@@ -1,10 +1,20 @@
+import * as R from "ramda";
+import {useSelector} from "react-redux";
+import {getRecordIdsFor} from "./selectors";
+
+const {map} = R;
+
 export function List() {
+  const recordIds = useSelector(getRecordIdsFor("abc123"));
+  console.log("recordIds:", recordIds);
   return (
     <ul>
-      <li>2021-Q3</li>
-      <li>2021-Q4</li>
-      <li>2022-Q1</li>
-      <li>2022-Q2</li>
+      {map(
+        id => (
+          <li key={id}>{id}</li>
+        ),
+        recordIds,
+      )}
     </ul>
   );
 }
