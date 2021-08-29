@@ -1,11 +1,13 @@
 import * as R from "ramda";
 import {useSelector} from "react-redux";
 
-const {map, curry} = R;
+const {map} = R;
 
-export const List = curry((selector, ListItem, {id}) => {
-  console.log(id);
-  const recordIds = useSelector(selector("abc123"));
+export const List = (currentIdSelector, selector, ListItem) => () => {
+  const currentId = useSelector(currentIdSelector);
+  // console.log("currentId:", currentId);
+  const recordIds = useSelector(selector(currentId));
+  // console.log("recordIds:", recordIds);
 
   return (
     <ul>
@@ -17,4 +19,4 @@ export const List = curry((selector, ListItem, {id}) => {
       )}
     </ul>
   );
-});
+};

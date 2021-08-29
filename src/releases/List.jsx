@@ -1,10 +1,8 @@
-export function List() {
-  return (
-    <ul>
-      <li>Release 158</li>
-      <li>Release 159</li>
-      <li>Release 160</li>
-      <li>Release 161</li>
-    </ul>
-  );
-}
+import {getCurrentReleaseId} from "../global/selectors";
+import {getRecordIdsFor, getRecordFor} from "./selectors";
+import {ListItem as GlobalListItem} from "../global/ListItem";
+import {List as GlobalList} from "../global/List";
+
+const ListItem = GlobalListItem(getRecordFor);
+
+export const List = GlobalList(getCurrentReleaseId, getRecordIdsFor, ListItem);

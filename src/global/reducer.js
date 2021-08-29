@@ -1,14 +1,8 @@
 import * as R from "ramda";
 import * as t from "./actionTypes";
+import {initialState} from "./initialState";
 
 const {assocPath, path, curry} = R;
-
-const initialState = {
-  current: {
-    scope: "sprints",
-    id: "abc123",
-  },
-};
 
 const setCurrentScope = curry((state, action) =>
   assocPath(["current", "scope"], path(["payload", "scope"], action), state),

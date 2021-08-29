@@ -1,3 +1,5 @@
+export const NAME = "global";
+
 export const colors = {
   resolved: "#17435e",
   active: "#5a0d51",
