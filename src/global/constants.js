@@ -22,3 +22,12 @@ export const ringGap = 20;
 
 export const itemWidth = 200;
 export const gap = 15;
+
+export const scopeToIdKey = {
+  projects: "projectId",
+  quarters: "quarterId",
+  releases: "releaseId",
+  sprints: "sprintId",
+  goals: "goalId",
+  days: "dayId",
+};

@@ -1,6 +1,6 @@
 import * as R from "ramda";
 import {createSelector} from "reselect";
-import {NAME} from "./constants";
+import {NAME, scopeToIdKey} from "./constants";
 
 const {prop, pathOr} = R;
 
@@ -18,15 +18,6 @@ export const getCurrentIdFor = key =>
     getCurrent,
     current => prop(key, current),
   );
-
-const scopeToIdKey = {
-  projects: "projectId",
-  quarters: "quarterId",
-  releases: "releaseId",
-  sprints: "sprintId",
-  goals: "goalId",
-  days: "dayId",
-};
 
 export const getCurrentIdForScope = scope =>
   createSelector(

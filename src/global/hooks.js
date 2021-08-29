@@ -10,3 +10,12 @@ export const useSetCurrentScope = scope => {
   };
   return handleClick;
 };
+
+export const useSetCurrentScopeAndId = (scope, id) => {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(a.setCurrentScope(scope));
+      dispatch(a.setCurrentId(scope, id));
+  };
+  return handleClick;
+};

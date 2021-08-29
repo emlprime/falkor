@@ -1,15 +1,20 @@
 import * as R from "ramda";
 import * as t from "./actionTypes";
 import {initialState} from "./initialState";
+import {scopeToIdKey} from "./constants";
 
-const {assocPath, path, curry} = R;
+const {assocPath, path, curry, prop} = R;
 
 const setCurrentScope = curry((state, action) =>
   assocPath(["current", "scope"], path(["payload", "scope"], action), state),
 );
 
 const setCurrentId = curry((state, action) =>
-  assocPath(["current", "id"], path(["payload", "id"], action), state),
+  assocPath(
+    ["current", prop(path(["payload", "scope"], action), scopeToIdKey)],
+    path(["payload", "id"], action),
+    state,
+  ),
 );
 
 const reducer = (state = initialState, action) => {
