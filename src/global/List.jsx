@@ -5,9 +5,7 @@ const {map} = R;
 
 export const List = (currentIdSelector, selector, ListItem) => () => {
   const currentId = useSelector(currentIdSelector);
-  // console.log("currentId:", currentId);
   const recordIds = useSelector(selector(currentId));
-  // console.log("recordIds:", recordIds);
 
   return (
     <ul>

@@ -22,3 +22,5 @@ const getCurrentIdFor = key =>
 
 export const getCurrentQuarterId = getCurrentIdFor("quarterId");
 export const getCurrentReleaseId = getCurrentIdFor("releaseId");
+export const getCurrentSprintId = getCurrentIdFor("sprintId");
+export const getCurrentDayId = getCurrentIdFor("dayId");
