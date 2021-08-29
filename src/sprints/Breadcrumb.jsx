@@ -1,8 +1,9 @@
 import {ProgressChart} from "../global/ProgressChart";
 import {Bracket} from "../global/Bracket";
-import {Breadcrumb as BreadcrumbDays} from "../days/Breadcrumb";
+import {Breadcrumb as BreadcrumbGoals} from "../goals/Breadcrumb";
 import {List} from "./List";
 import {baseProgressRadius, progressWidth, ringGap} from "../global/constants";
+import {useSetCurrentScope} from "../global/hooks";
 
 const values = [
   ["resolved", [0, 50]],
@@ -11,9 +12,7 @@ const values = [
 ];
 
 export const Breadcrumb = ({originX, originY}) => {
-  const handleClick = value => {
-    console.log("Sprint Value:", value);
-  };
+  const handleClick = useSetCurrentScope("sprints");
 
   const bracketConfig = {
     Component: List,
@@ -26,7 +25,7 @@ export const Breadcrumb = ({originX, originY}) => {
   };
   return (
     <>
-      <BreadcrumbDays originX={originX} originY={originY} />
+      <BreadcrumbGoals originX={originX} originY={originY} />
       <ProgressChart
         originX={originX}
         originY={originY}

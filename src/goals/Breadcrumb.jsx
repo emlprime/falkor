@@ -1,5 +1,6 @@
 import {ProgressChart} from "../global/ProgressChart";
 import {baseProgressRadius, progressWidth, ringGap} from "../global/constants";
+import {useSetCurrentScope} from "../global/hooks";
 
 const values = [
   ["resolved", [0, 50]],
@@ -8,9 +9,7 @@ const values = [
 ];
 
 export const Breadcrumb = ({originX, originY}) => {
-  const handleClick = value => {
-    console.log("Day Value:", value);
-  };
+  const handleClick = useSetCurrentScope("goals");
 
   return (
     <>

@@ -1,12 +1,10 @@
-import {useDispatch} from "react-redux";
 import {ProgressChart} from "../global/ProgressChart";
 import {Bracket} from "../global/Bracket";
-import global from "../global";
 import {Breadcrumb as BreadcrumbSprints} from "../sprints/Breadcrumb";
 import {List} from "./List";
 import {baseProgressRadius, progressWidth, ringGap} from "../global/constants";
+import {useSetCurrentScope} from "../global/hooks";
 
-const {actions: a} = global;
 const values = [
   ["resolved", [0, 50]],
   ["active", [50, 56.26]],
@@ -14,11 +12,7 @@ const values = [
 ];
 
 export const Breadcrumb = ({originX, originY}) => {
-  const dispatch = useDispatch();
-    const handleClick = () => {
-    dispatch(a.setCurrentScope("releases"));
-  };
-
+  const handleClick = useSetCurrentScope("releases");
   const bracketConfig = {
     Component: List,
     originX: originX + baseProgressRadius + progressWidth + ringGap * 1.2,
