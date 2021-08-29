@@ -17,10 +17,10 @@ export const Breadcrumb = ({originX, originY}) => {
     Component: List,
     originX: originX + baseProgressRadius + progressWidth + ringGap * 1.2,
     originY: 300,
-    breakoffHeight: 30,
+    breakoffHeight: 10,
     breakoffWidth: 20,
-    breakoffSplit: 50,
-    bottomAngleHeight: 65,
+    breakoffSplit: 120,
+    bottomAngleHeight: 135,
   };
   return (
     <>

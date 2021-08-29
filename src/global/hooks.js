@@ -15,7 +15,7 @@ export const useSetCurrentScopeAndId = (scope, id) => {
   const dispatch = useDispatch();
   const handleClick = () => {
     dispatch(a.setCurrentScope(scope));
-      dispatch(a.setCurrentId(scope, id));
+    dispatch(a.setCurrentId(scope, id));
   };
   return handleClick;
 };

@@ -21,7 +21,7 @@ export const Breadcrumb = ({originX, originY}) => {
     breakoffHeight: -40,
     breakoffWidth: 60,
     breakoffSplit: 50,
-    bottomAngleHeight: 65,
+    bottomAngleHeight: 100,
   };
   return (
     <>

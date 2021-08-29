@@ -20,8 +20,8 @@ export const Breadcrumb = ({originX, originY}) => {
     originY: originY - (baseProgressRadius + progressWidth / 2),
     breakoffHeight: 70,
     breakoffWidth: 40,
-    breakoffSplit: 320,
-    bottomAngleHeight: 65,
+    breakoffSplit: 400,
+    bottomAngleHeight: 135,
   };
 
   return (

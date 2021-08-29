@@ -19,7 +19,7 @@ export const Bullet = ({status, size = 30}) => {
       <circle
         cx={center}
         cy={center}
-        r={outerCircleRadius}
+        r={outerCircleRadius - 2}
         stroke={colors.resolved}
         strokeWidth="3"
         fill="transparent"
