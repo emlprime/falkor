@@ -1,5 +1,8 @@
 import * as R from "ramda";
-import {ProgressChart} from "./ProgressChart";
+import {useSelector} from "react-redux";
+import {getCurrentScope, getCurrentIdForScope} from "../global/selectors";
+
+import {ProgressChart} from "../global/ProgressChart";
 
 const {map, addIndex} = R;
 
@@ -13,6 +16,13 @@ const swimlanes = [
 ];
 
 export const ChosenFocus = ({originX, originY}) => {
+  // get the current scope
+  const currentScope = useSelector(getCurrentScope);
+  // select the id for the current scope
+  const currentSprintId = useSelector(getCurrentIdForScope(currentScope));
+    // figure out progress chart to get based on scope
+  console.log("currentScope:", currentScope, currentSprintId);
+
   const handleClick = value => {
     console.log("Chosen Focusvalue:", value);
   };

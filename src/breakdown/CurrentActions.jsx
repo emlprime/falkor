@@ -1,5 +1,5 @@
-import {colors} from "./constants";
-import {Button} from "./Button";
+import {colors} from "../global/constants";
+import {Button} from "../global/Button";
 
 export function CurrentActions({originX, originY}) {
   return (

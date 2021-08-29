@@ -1,5 +1,5 @@
-import {colors, itemWidth, gap} from "./constants";
-import {SelectionIndicator} from "./SelectionIndicator";
+import {colors, itemWidth, gap} from "../global/constants";
+import {SelectionIndicator} from "../global/SelectionIndicator";
 
 export function BreakdownItem({
   isCurrent,

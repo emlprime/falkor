@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import {colors} from "./constants";
+import {colors} from "../global/constants";
 
 const {map, addIndex} = R;
 

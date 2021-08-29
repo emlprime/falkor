@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import {Roster} from "./members/Roster";
 import {Breadcrumb} from "./global/Breadcrumb";
-import {ChosenFocus} from "./global/ChosenFocus";
-import {Breakdown} from "./global/Breakdown";
+import {ChosenFocus} from "./breakdown/ChosenFocus";
+import {Breakdown} from "./breakdown/Breakdown";
 import {List as GoalList} from "./goals/List";
-import {CurrentActions} from "./global/CurrentActions";
-import {BurndownChart} from "./global/BurndownChart";
+import {CurrentActions} from "./breakdown/CurrentActions";
+import {BurndownChart} from "./breakdown/BurndownChart";
 import {Yggdrasil} from "./global/Yggdrasil";
 
 export const Project = ({width, height}) => {

@@ -8,16 +8,29 @@ export const getAll = state => state[NAME];
 
 export const getCurrent = state => pathOr({}, [NAME, "current"], state);
 
-export const getCurrentScope = () =>
-  createSelector(
-    getCurrent,
-    current => prop("scope", current),
-  );
+export const getCurrentScope = createSelector(
+  getCurrent,
+  current => prop("scope", current),
+);
 
-const getCurrentIdFor = key =>
+export const getCurrentIdFor = key =>
   createSelector(
     getCurrent,
     current => prop(key, current),
+  );
+
+const scopeToIdKey = {
+  projects: "projectId",
+  quarters: "quarterId",
+  releases: "releaseId",
+  sprints: "sprintId",
+  days: "dayId",
+};
+
+export const getCurrentIdForScope = scope =>
+  createSelector(
+    getCurrent,
+    current => prop(prop(scope, scopeToIdKey), current),
   );
 
 export const getCurrentProjectId = getCurrentIdFor("projectId");
