@@ -43,7 +43,7 @@ export const fixedExpenses = map(formatExpense, [
   ["weekly", "2021-08-01", "Jill Therapy", 170],
 
   // Groceries
-  ["weekly", "2021-08-01", "Quokka", 622 / 6],
+  ["weekly", "2021-08-01", "Quokka", 100],
 
   // Investment
   ["monthly", 22, "Stocklabs", 60],
@@ -85,8 +85,8 @@ export const variableExpenses = map(formatExpense, [
   ["monthly", 1, "7-Eleven", 20],
 
   // Elaina
-  ["weekly", "2021-08-07", "Restaurant", 220 / 4],
-  ["weekly", "2021-08-07", "Apiary", 200 / 4],
+  ["weekly", "2021-08-07", "Restaurant", 55],
+  ["weekly", "2021-08-07", "Apiary", 50],
   // ["weekly", "2021-08-07", "Peter & Elaina Therapy", 230],
 
   // Transport Fuel

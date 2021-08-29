@@ -1,6 +1,7 @@
 import {useCallback} from "react";
 import * as R from "ramda";
 import {colors} from "./constants";
+import styled from "styled-components";
 
 const {prop} = R;
 
@@ -59,7 +60,7 @@ export const ArcNemesis = ({
   const strokeWidth = width;
 
   return (
-    <path
+    <Path
       d={arcConfig}
       stroke={prop(status, colors)}
       strokeWidth={strokeWidth}
@@ -71,3 +72,9 @@ export const ArcNemesis = ({
 
 export const ArcBig = props => <ArcNemesis size="big" {...props} />;
 export const ArcSmall = props => <ArcNemesis size="small" {...props} />;
+
+const Path = styled.path`
+  :hover {
+    filter: brightness(1.4);
+  }
+`;

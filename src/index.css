@@ -10,8 +10,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+a.selected {
     color: #31CBFF;
+}
+
+a {
+    color: #17435e
 }
 
 
