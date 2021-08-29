@@ -18,8 +18,10 @@ const values = [
 
 export const Breadcrumb = ({originX, originY}) => {
   const handleClick = useSetCurrentScope(NAME);
+
   const currentScope = useSelector(getCurrentScope);
   const isCurrentScope = equals(NAME, currentScope);
+
   const bracketConfig = {
     Component: List,
     originX,

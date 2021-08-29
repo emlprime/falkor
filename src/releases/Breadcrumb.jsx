@@ -10,6 +10,7 @@ import {useSetCurrentScope} from "../global/hooks";
 import {getCurrentScope} from "../global/selectors";
 
 const {equals} = R;
+
 const values = [
   ["resolved", [0, 50]],
   ["active", [50, 56.26]],
@@ -34,7 +35,8 @@ export const Breadcrumb = ({originX, originY}) => {
   return (
     <>
       {!isCurrentScope && (
-              <BreadcrumbSprints originX={originX} originY={originY} />)}
+        <BreadcrumbSprints originX={originX} originY={originY} />
+      )}
       <ProgressChart
         key="breadcrumb_goals"
         originX={originX}

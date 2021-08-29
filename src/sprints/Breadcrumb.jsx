@@ -1,9 +1,15 @@
+import * as R from "ramda";
+import {NAME} from "./constants";
+import {useSelector} from "react-redux";
 import {ProgressChart} from "../global/ProgressChart";
 import {Bracket} from "../global/Bracket";
 import {Breadcrumb as BreadcrumbGoals} from "../goals/Breadcrumb";
 import {List} from "./List";
 import {baseProgressRadius, progressWidth, ringGap} from "../global/constants";
 import {useSetCurrentScope} from "../global/hooks";
+import {getCurrentScope} from "../global/selectors";
+
+const {equals} = R;
 
 const values = [
   ["resolved", [0, 50]],
@@ -13,6 +19,9 @@ const values = [
 
 export const Breadcrumb = ({originX, originY}) => {
   const handleClick = useSetCurrentScope("sprints");
+
+  const currentScope = useSelector(getCurrentScope);
+  const isCurrentScope = equals(NAME, currentScope);
 
   const bracketConfig = {
     Component: List,
@@ -25,7 +34,9 @@ export const Breadcrumb = ({originX, originY}) => {
   };
   return (
     <>
-      <BreadcrumbGoals originX={originX} originY={originY} />
+      {!isCurrentScope && (
+        <BreadcrumbGoals originX={originX} originY={originY} />
+      )}
       <ProgressChart
         originX={originX}
         originY={originY}
