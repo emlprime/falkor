@@ -29,8 +29,8 @@ const calcColor = ({isCurrent}) =>
   isCurrent ? colors.selected : colors.deselected;
 
 const LI = styled.li`
-display: flex;
-align-items: center;
+  display: flex;
+  align-items: center;
   list-style-type: none;
   button {
     background-color: transparent;

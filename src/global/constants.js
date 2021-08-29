@@ -1,5 +1,13 @@
 export const NAME = "global";
 
+export const scopes = [
+  "projects",
+  "quarters",
+  "releases",
+  "sprints",
+  "goals",
+  "days",
+];
 export const colors = {
   resolved: "#17435e",
   active: "#5a0d51",
