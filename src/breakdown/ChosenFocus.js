@@ -1,6 +1,7 @@
 import * as R from "ramda";
 import {useSelector} from "react-redux";
 import {getCurrentScope, getCurrentIdForScope} from "../global/selectors";
+import {getRecordFor as getSprintFor} from "../sprints/selectors";
 
 import {ProgressChart} from "../global/ProgressChart";
 
@@ -16,12 +17,14 @@ const swimlanes = [
 ];
 
 export const ChosenFocus = ({originX, originY}) => {
-    // get the current scope
-    const currentScope = useSelector(getCurrentScope);
-    // select the id for the current scope
-  const currentSprintId = useSelector(getCurrentIdForScope(currentScope));
-
-  console.log("currentScope:", currentScope, currentSprintId);
+  // get the current scope
+  const currentScope = useSelector(getCurrentScope);
+  // select the id for the current scope
+  const currentId = useSelector(getCurrentIdForScope(currentScope));
+  // figure out progress chart to get based on scope
+  const getCurrentFocusSelector = getSprintFor;
+  const {label} = useSelector(getCurrentFocusSelector(currentId));
+  console.log("currentScope:", currentScope, currentId, label);
 
   const handleClick = value => {
     console.log("Chosen Focusvalue:", value);
@@ -37,7 +40,7 @@ export const ChosenFocus = ({originX, originY}) => {
         height={height}
         width={width}
       >
-        <h2>Week 3</h2>
+        <h2>{label}</h2>
       </foreignObject>
       {mapWithIndex(
         (values, i) => (
