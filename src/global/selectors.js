@@ -24,6 +24,7 @@ const scopeToIdKey = {
   quarters: "quarterId",
   releases: "releaseId",
   sprints: "sprintId",
+  goals: "goalId",
   days: "dayId",
 };
 

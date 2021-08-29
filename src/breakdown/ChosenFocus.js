@@ -1,7 +1,10 @@
 import * as R from "ramda";
 import {useSelector} from "react-redux";
 import {getCurrentScope, getCurrentIdForScope} from "../global/selectors";
-import {getRecordFor as getSprintFor} from "../sprints/selectors";
+// import {getRecordFor as getSprintFor} from "../sprints/selectors";
+import {getRecordFor as getGoalFor} from "../goals/selectors";
+// import {getRecordIdsFor as getDayRecordIdsFor} from "../days/selectors";
+import {getRecordIdsFor as getGoalRecordIdsFor} from "../goals/selectors";
 
 import {ProgressChart} from "../global/ProgressChart";
 
@@ -22,9 +25,13 @@ export const ChosenFocus = ({originX, originY}) => {
   // select the id for the current scope
   const currentId = useSelector(getCurrentIdForScope(currentScope));
   // figure out progress chart to get based on scope
-  const getCurrentFocusSelector = getSprintFor;
-  const {label} = useSelector(getCurrentFocusSelector(currentId));
+  const getCurrentFocus = getGoalFor;
+  const {label} = useSelector(getCurrentFocus(currentId));
   console.log("currentScope:", currentScope, currentId, label);
+
+  const getCurrentFocusItems = getGoalRecordIdsFor;
+  const recordIds = useSelector(getCurrentFocusItems(currentId));
+  console.log("recordIds:", recordIds);
 
   const handleClick = value => {
     console.log("Chosen Focusvalue:", value);

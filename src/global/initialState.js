@@ -1,6 +1,6 @@
 export const initialState = {
   current: {
-    scope: "sprints",
+    scope: "goals",
     projectId: "abc123",
     quarterId: "abc123",
     releaseId: "abc123",
