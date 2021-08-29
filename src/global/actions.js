@@ -7,5 +7,5 @@ export const setCurrentScope = scope => ({
 
 export const setCurrentId = (scope, id) => ({
   type: t.setCurrentId,
-    payload: {scope, id},
+  payload: {scope, id},
 });
