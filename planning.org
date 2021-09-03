@@ -40,25 +40,26 @@ Milestones indicate their status as TODO (Planned), DOING (Active), or DONE (Dem
 
 
 h1. TACTICS:
-Create a page in Sketch that demonstrates the Projects page.
-Symbolize the elements of the Projects page.
-Create a page in Sketch that demonstrates the Quarters page.
-Symbolize any new elements of the Quarters Page for reuse.
-Create a page in Sketch that demonstrates the Releases page.
-Symbolize any new elements of the Releases page.
-Create a page in Sketch that demonstrates the fully planned Sprints page.
-Symbolize any new elements of the Sprints page.
-Create symbols that indicate an empty Sprint.
-Create symbols that indicate a Sprint with Goals.
-Create symbols that indicate a Sprint with one Goal planned.
-Create symbols that indicate a Sprint with all goals planned.
-Create symbols that indicate multi-day planned Milestones.
-Create symbols that indicate Milestones with creep.
-Create symbols that indicate Milestones with sandbags.
-Create symbols to indicate Millstones.
-Create symbols to indicate Millstones that are in another Swim lane.
-Create controls for entering Milestones (Goal, Strategy).
-Create controls for planning Milestones (Test cases, Tactics).
-Create controls for transitioning Milestone to DOING (create branch, create sheet, create confluence page).
-Create controls for transitioning Milestone to DONE (attach screenshots or screencast).
+* DONE Create a page in Sketch that demonstrates the Projects page.
+* DONE Symbolize the elements of the Projects page.
+* Create a reducer for add Release
+* Create an action creator for add release
+* Create an SVG button that dispatches an add release action
+* Display the add Release SVG button at the first empty release position
+* Reduce burndown data from the status of the items and the current scope
+* Animate the paths for the breadcrumb
+* Decide what gets shown when you click on the Release list items
+* Decide what gets shown when you click the breadcrumb level/status
+* Create a reducer for "Delay Demo Date"
+* Create a hopper for carryover work
+* Create docked configurations when navigation elements move to the sides
+* Animate bars for burndown
+* Show estimated burndown path
+* Create delete reducer/action/buttonIcon for item
+* Create decompose reducer/action/buttonIcon for item
+* Have Roster animate to show selected status of current item
+* Clicking on roster filters view to chosen icon
+* Animate bracket paths out
+* Scrolling chosen scope changes currently selected goal
+
 

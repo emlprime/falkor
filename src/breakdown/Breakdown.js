@@ -1,11 +1,14 @@
 import * as R from "ramda";
 import {itemWidth} from "../global/constants";
 import {BreakdownItem} from "./BreakdownItem";
+import {useCurrentRecordIds} from "./hooks";
 
 const {append, equals, prop, reduce} = R;
 const gap = 15;
 
 export const Breakdown = ({originX, originY}) => {
+  const {label, recordIds} = useCurrentRecordIds();
+  console.log("recordIds:", label, recordIds);
   const currentId = "Do Tuesday and Wednesday's Thing";
   return (
     <>
