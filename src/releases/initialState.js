@@ -1,5 +1,4 @@
 export const initialState = {
-  allIds: ["abc123", "def234", "fds343", "xcy343"],
   byId: {
     abc123: {
       id: "abc123",
