@@ -1,5 +1,6 @@
+import {useCallback, useState} from "react";
 import * as R from "ramda";
-import {useSelector} from "react-redux";
+import {useSelector, useDispatch} from "react-redux";
 import {getCurrentScope, getCurrentIdForScope} from "../global/selectors";
 import {
   getRecordFor as getQuarterFor,
@@ -13,6 +14,7 @@ import {
   getRecordFor as getSprintFor,
   getRecordIdsFor as getSprintRecordIdsFor,
 } from "../sprints/selectors";
+import {add as addSprint} from "../sprints/actions";
 import {
   getRecordFor as getGoalFor,
   getRecordIdsFor as getGoalRecordIdsFor,
@@ -22,7 +24,7 @@ import {
   getRecordIdsFor as getDayRecordIdsFor,
 } from "../days/selectors";
 
-const {prop} = R;
+const {gt, last, map, sum, prop} = R;
 
 const scopeToRecordSelector = {
   quarters: getQuarterFor,
@@ -40,6 +42,27 @@ const scopeToRecordIdsSelector = {
   days: getDayRecordIdsFor,
 };
 
+const scopeLength = 4;
+const AddButton = ({originX, originY, scope, parentId}) => {
+  const [label, setLabel] = useState("");
+  const dispatch = useDispatch();
+  const onClick = useCallback(() => {
+    dispatch(addSprint({scope, parentId, label}));
+  }, [dispatch, scope, parentId, label]);
+  return (
+    <foreignObject width={200} height={100} x={originX} y={originY}>
+      <input
+        type="text"
+        id="add"
+        name="label"
+        value={label}
+        onChange={e => setLabel(e.target.value)}
+      />
+      <button onClick={onClick}>Add</button>
+    </foreignObject>
+  );
+};
+
 export const useCurrentRecordIds = () => {
   // get the current scope
   const currentScope = useSelector(getCurrentScope);
@@ -51,5 +74,20 @@ export const useCurrentRecordIds = () => {
 
   const getCurrentFocusItems = prop(currentScope, scopeToRecordIdsSelector);
   const recordIds = useSelector(getCurrentFocusItems(currentId));
-  return {label, recordIds};
+  const records = map(recordId => [recordId, 1], recordIds);
+  const recordLength = map(last, records);
+  const canAdd = gt(scopeLength, sum(recordLength));
+  console.log(
+    `recordLength:`,
+    scopeLength,
+    sum(recordLength),
+    gt(scopeLength, sum(recordLength)),
+  );
+  const AddActionButton = canAdd
+    ? props => (
+        <AddButton {...props} scope={currentScope} parentId={currentId} />
+      )
+    : null;
+
+  return {label, records, AddActionButton};
 };

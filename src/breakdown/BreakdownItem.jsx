@@ -1,16 +1,9 @@
 import {colors, itemWidth, gap} from "../global/constants";
 import {SelectionIndicator} from "../global/SelectionIndicator";
 
-export function BreakdownItem({
-  isCurrent,
-  offset,
-  size,
-  id,
-  originX,
-  originY,
-  planned,
-  actual,
-}) {
+export function BreakdownItem({isCurrent, offset, size, id, originX, originY}) {
+  const planned = 1;
+  const actual = 1;
   const width = size - 1 * 15 + itemWidth * size;
   return (
     <svg x={originX + offset} y={originY}>

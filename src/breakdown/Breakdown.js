@@ -7,16 +7,15 @@ const {append, equals, prop, reduce} = R;
 const gap = 15;
 
 export const Breakdown = ({originX, originY}) => {
-  const {label, recordIds} = useCurrentRecordIds();
-  console.log("recordIds:", label, recordIds);
+  const {records, AddActionButton} = useCurrentRecordIds();
+
   const currentId = "Do Tuesday and Wednesday's Thing";
   return (
     <>
       {prop(
         "result",
         reduce(
-          ({offset, result}, [id, [planned, actual]]) => {
-            const size = actual > planned ? actual : planned;
+          ({offset, result}, [id, size]) => {
             return {
               result: append(
                 <BreakdownItem
@@ -27,8 +26,6 @@ export const Breakdown = ({originX, originY}) => {
                   offset={offset}
                   originX={originX}
                   originY={originY}
-                  planned={planned}
-                  actual={actual}
                 />,
                 result,
               ),
@@ -36,12 +33,11 @@ export const Breakdown = ({originX, originY}) => {
             };
           },
           {offset: 0, result: []},
-          [
-            ["Do Monday's Thing", [1, 1]],
-            ["Do Tuesday and Wednesday's Thing", [1, 2]],
-            ["Do Thursday's Thing", [1, 1]],
-          ],
+          records,
         ),
+      )}
+      {AddActionButton && (
+        <AddActionButton originX={originX} originY={originY} />
       )}
     </>
   );
