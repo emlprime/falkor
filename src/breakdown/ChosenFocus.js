@@ -16,8 +16,8 @@ const swimlanes = [
 // create a subcomponent to display progress here
 
 export const ChosenFocus = ({originX, originY}) => {
-  const {label, recordIds} = useCurrentRecordIds();
-  console.log(recordIds);
+  const {label} = useCurrentRecordIds();
+
   const handleClick = value => {
     console.log("Chosen Focusvalue:", value);
   };

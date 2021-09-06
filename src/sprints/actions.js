@@ -3,5 +3,11 @@ import * as t from "./actionTypes";
 
 export const add = ({parentId, label}) => ({
   type: t.ADD,
-  payload: {id: git.shortSha(), scope: "sprints", releaseId: parentId, label},
+  payload: {
+    id: git.shortSha(),
+    status: "planned",
+    scope: "sprints",
+    releaseId: parentId,
+    label,
+  },
 });

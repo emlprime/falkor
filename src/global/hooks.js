@@ -25,7 +25,6 @@ export const useSetCurrentScopeAndId = (scope, id) => {
   const dispatch = useDispatch();
   const handleClick = () => {
     const newScope = getChildScope(scope);
-    console.log(`scope: ${scope} -> ${newScope}`);
     dispatch(a.setCurrentScope(newScope));
     dispatch(a.setCurrentId(scope, id));
   };

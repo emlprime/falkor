@@ -24,7 +24,7 @@ import {
   getRecordIdsFor as getDayRecordIdsFor,
 } from "../days/selectors";
 
-const {gt, last, map, sum, prop} = R;
+const {add, gt, last, map, sum, prop} = R;
 
 const scopeToRecordSelector = {
   quarters: getQuarterFor,
@@ -43,14 +43,29 @@ const scopeToRecordIdsSelector = {
 };
 
 const scopeLength = 4;
-const AddButton = ({originX, originY, scope, parentId}) => {
+const AddButton = ({
+  offset,
+  itemWidth,
+  gap,
+  originX,
+  originY,
+  scope,
+  parentId,
+}) => {
   const [label, setLabel] = useState("");
   const dispatch = useDispatch();
   const onClick = useCallback(() => {
     dispatch(addSprint({scope, parentId, label}));
   }, [dispatch, scope, parentId, label]);
+  const xOffset = offset * (itemWidth + gap);
+
   return (
-    <foreignObject width={200} height={100} x={originX} y={originY}>
+    <foreignObject
+      width={200}
+      height={100}
+      x={add(originX, xOffset)}
+      y={originY + 40}
+    >
       <input
         type="text"
         id="add"
@@ -58,7 +73,9 @@ const AddButton = ({originX, originY, scope, parentId}) => {
         value={label}
         onChange={e => setLabel(e.target.value)}
       />
-      <button onClick={onClick}>Add</button>
+      <div>
+        <button onClick={onClick}>Add</button>
+      </div>
     </foreignObject>
   );
 };
@@ -75,17 +92,16 @@ export const useCurrentRecordIds = () => {
   const getCurrentFocusItems = prop(currentScope, scopeToRecordIdsSelector);
   const recordIds = useSelector(getCurrentFocusItems(currentId));
   const records = map(recordId => [recordId, 1], recordIds);
-  const recordLength = map(last, records);
-  const canAdd = gt(scopeLength, sum(recordLength));
-  console.log(
-    `recordLength:`,
-    scopeLength,
-    sum(recordLength),
-    gt(scopeLength, sum(recordLength)),
-  );
+  const recordLength = sum(map(last, records));
+  const canAdd = gt(scopeLength, recordLength);
   const AddActionButton = canAdd
     ? props => (
-        <AddButton {...props} scope={currentScope} parentId={currentId} />
+        <AddButton
+          {...props}
+          scope={currentScope}
+          parentId={currentId}
+          offset={recordLength}
+        />
       )
     : null;
 

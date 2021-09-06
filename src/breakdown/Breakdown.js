@@ -37,7 +37,12 @@ export const Breakdown = ({originX, originY}) => {
         ),
       )}
       {AddActionButton && (
-        <AddActionButton originX={originX} originY={originY} />
+        <AddActionButton
+          originX={originX}
+          originY={originY}
+          itemWidth={itemWidth}
+          gap={gap}
+        />
       )}
     </>
   );
