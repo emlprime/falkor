@@ -1,4 +1,5 @@
 import {useCallback, useState} from "react";
+import {colors} from "../global/constants";
 import * as R from "ramda";
 import {useSelector, useDispatch} from "react-redux";
 import {getCurrentScope, getCurrentIdForScope} from "../global/selectors";
@@ -10,6 +11,7 @@ import {
   getRecordFor as getReleaseFor,
   getRecordIdsFor as getReleaseRecordIdsFor,
 } from "../releases/selectors";
+import {add as addRelease} from "../releases/actions";
 import {
   getRecordFor as getSprintFor,
   getRecordIdsFor as getSprintRecordIdsFor,
@@ -23,6 +25,8 @@ import {
   getRecordFor as getDayFor,
   getRecordIdsFor as getDayRecordIdsFor,
 } from "../days/selectors";
+import {add as addDay} from "../days/actions";
+import styled from "styled-components";
 
 const {add, gt, last, map, sum, prop} = R;
 
@@ -42,6 +46,12 @@ const scopeToRecordIdsSelector = {
   days: getDayRecordIdsFor,
 };
 
+const addActions = {
+  quarters: addRelease,
+  releases: addSprint,
+  sprints: addDay,
+};
+
 const scopeLength = 4;
 const AddButton = ({
   offset,
@@ -53,9 +63,10 @@ const AddButton = ({
   parentId,
 }) => {
   const [label, setLabel] = useState("");
-  const dispatch = useDispatch();
+    const dispatch = useDispatch();
+    const addAction = prop(scope, addActions)
   const onClick = useCallback(() => {
-    dispatch(addSprint({scope, parentId, label}));
+    dispatch(addAction({scope, parentId, label}));
   }, [dispatch, scope, parentId, label]);
   const xOffset = offset * (itemWidth + gap);
 
@@ -66,16 +77,18 @@ const AddButton = ({
       x={add(originX, xOffset)}
       y={originY + 40}
     >
-      <input
-        type="text"
-        id="add"
-        name="label"
-        value={label}
-        onChange={e => setLabel(e.target.value)}
-      />
-      <div>
-        <button onClick={onClick}>Add</button>
-      </div>
+      <Article>
+        <textarea
+          type="text"
+          id="add"
+          name="label"
+          value={label}
+          onChange={e => setLabel(e.target.value)}
+        />
+        <div>
+          <button onClick={onClick}>Add</button>
+        </div>
+      </Article>
     </foreignObject>
   );
 };
@@ -104,6 +117,15 @@ export const useCurrentRecordIds = () => {
         />
       )
     : null;
-
-  return {label, records, AddActionButton};
+  console.log(`currentScope:`, currentScope);
+  return {label, records, AddActionButton, scope: currentScope};
 };
+
+const Article = styled.article`
+  textarea,
+  button {
+    background: transparent;
+    border: 1px solid ${colors.planned};
+    color: ${colors.planned};
+  }
+`;

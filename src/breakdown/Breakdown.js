@@ -7,7 +7,7 @@ const {append, equals, prop, reduce} = R;
 const gap = 15;
 
 export const Breakdown = ({originX, originY}) => {
-  const {records, AddActionButton} = useCurrentRecordIds();
+    const {scope, records, AddActionButton} = useCurrentRecordIds();
 
   const currentId = "Do Tuesday and Wednesday's Thing";
   return (
@@ -21,6 +21,7 @@ export const Breakdown = ({originX, originY}) => {
                 <BreakdownItem
                   isCurrent={equals(currentId, id)}
                   key={id}
+                  scope={scope}
                   id={id}
                   size={size}
                   offset={offset}

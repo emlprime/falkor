@@ -1,13 +1,6 @@
-import * as R from "ramda";
 import * as t from "./actionTypes";
 import {initialState} from "./initialState";
-
-const {assocPath, prop} = R;
-
-const addItem = (payload, state) => {
-  const id = prop("id", payload);
-  return assocPath(["byId", id], payload, state);
-};
+import {addItem} from "../global/reducerUtils";
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

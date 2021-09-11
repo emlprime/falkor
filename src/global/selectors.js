@@ -25,6 +25,12 @@ export const getCurrentIdForScope = scope =>
     current => prop(prop(scope, scopeToIdKey), current),
   );
 
+export const getByScopeAndId = (scope, id) => state => {
+    console.log(`scope:`, scope, id)
+    
+    return   pathOr({}, [scope, "byId", id], state);
+}
+
 export const getCurrentProjectId = getCurrentIdFor("projectId");
 export const getCurrentQuarterId = getCurrentIdFor("quarterId");
 export const getCurrentReleaseId = getCurrentIdFor("releaseId");

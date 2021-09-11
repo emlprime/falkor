@@ -1,7 +1,18 @@
+import {useSelector} from "react-redux";
 import {colors, itemWidth, gap} from "../global/constants";
+import {getByScopeAndId} from "../global/selectors";
 import {SelectionIndicator} from "../global/SelectionIndicator";
 
-export function BreakdownItem({isCurrent, offset, size, id, originX, originY}) {
+export function BreakdownItem({
+  isCurrent,
+  scope,
+  offset,
+  size,
+  id,
+  originX,
+  originY,
+}) {
+  const {label} = useSelector(getByScopeAndId(scope, id));
   const planned = 1;
   const actual = 1;
   const width = size - 1 * 15 + itemWidth * size;
@@ -23,7 +34,9 @@ export function BreakdownItem({isCurrent, offset, size, id, originX, originY}) {
         fill={colors.active}
       />
       <foreignObject x={10} y={32} width={width} height={60}>
-        <p>Goal for Swimlane: {id}</p>
+        <p>
+          {id}: {label}
+        </p>
       </foreignObject>
     </svg>
   );

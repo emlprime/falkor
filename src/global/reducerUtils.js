@@ -1,9 +1,8 @@
 import * as R from "ramda";
 
-const {assocPath, prop, propOr} = R;
+const {assocPath, curry, prop} = R;
 
-export function addItem(state, action) {
-  const data = propOr({}, "payload", action);
-  const id = prop(["id"], data);
-  return assocPath(["byId", id], data, state);
-}
+export const addItem = curry((payload, state) => {
+  const id = prop("id", payload);
+  return assocPath(["byId", id], payload, state);
+});

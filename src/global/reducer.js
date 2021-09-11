@@ -3,13 +3,13 @@ import * as t from "./actionTypes";
 import {initialState} from "./initialState";
 import {scopeToIdKey} from "./constants";
 
-const {assocPath, path, curry, prop} = R;
+const {assocPath, curry, path, pipe, prop} = R;
 
-const setCurrentScope = curry((state, action) =>
+const setCurrentScope = curry((action, state) =>
   assocPath(["current", "scope"], path(["payload", "scope"], action), state),
 );
 
-const setCurrentId = curry((state, action) =>
+const setCurrentId = curry((action, state) =>
   assocPath(
     ["current", prop(path(["payload", "scope"], action), scopeToIdKey)],
     path(["payload", "id"], action),
@@ -20,9 +20,12 @@ const setCurrentId = curry((state, action) =>
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case t.setCurrentScope:
-      return setCurrentScope(state, action);
+      return setCurrentScope(action, state);
     case t.setCurrentId:
-      return setCurrentId(state, action);
+      return pipe(
+        setCurrentScope(action),
+        setCurrentId(action),
+      )(state);
     default:
       return state;
   }

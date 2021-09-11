@@ -5,7 +5,7 @@ import {addItem} from "../global/reducerUtils";
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case t.ADD:
-      return addItem(state, action);
+      return addItem(action.payload, state);
     default:
       return state;
   }
