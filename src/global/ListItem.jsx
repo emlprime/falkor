@@ -6,7 +6,10 @@ import {useSetCurrentItem} from "./hooks";
 import styled from "styled-components";
 
 export const ListItem = itemKey => {
+    console.log("itemKey:", itemKey)
   const item = useSelector(getByItem(itemKey));
+    console.log("item:", item)
+
   const handleClick = useSetCurrentItem(item);
 
   const isCurrent = useSelector(getIsCurrent(item));

@@ -1,8 +1,23 @@
 import * as R from "ramda";
 import {createSelector} from "reselect";
 import {NAME} from "./constants";
+import {getChildModel} from "./utils";
 
-const {curry, equals, last, prop, pathOr} = R;
+const {
+  curry,
+  equals,
+  filter,
+  last,
+  map,
+  pick,
+  pipe,
+  prop,
+  path,
+  pathOr,
+  propEq,
+  values,
+
+} = R;
 
 export const getAll = state => state[NAME];
 
@@ -35,13 +50,28 @@ export const getIsCurrent = itemKey =>
   );
 
 export const getByItem = curry(({model, id}, state) => {
+  console.log("foo:", model, id);
   return pathOr({}, [model, "byId", id], state);
 });
 
-export const getItemsByParent = curry(({model, id}, state) => {
-  console.log("model", model, id);
-  console.log("state", state);
-  return [];
-});
+const getRecordsByModel = curry((model, state) =>
+  pipe(
+    path([model, "byId"]),
+    values,
+  )(state),
+);
 
-// pathOr({}, [model, "byId", id], state);
+const filterByParent = curry((parentId, records) =>
+  pipe(
+    filter(propEq("projectId", parentId)),
+    map(pick(["model", "id"])),
+  )(records),
+);
+
+export const getItemsByParent = curry(({model, id}, state) => {
+  const childModel = getChildModel(model);
+  return pipe(
+    getRecordsByModel(childModel),
+    filterByParent({model, id}),
+  )(state);
+});

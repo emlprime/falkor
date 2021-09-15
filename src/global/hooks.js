@@ -1,10 +1,8 @@
-import * as R from "ramda";
 import {useDispatch} from "react-redux";
 import global from "../global";
-import {scopes} from "./constants";
+import {getChildModel} from "./utils";
 
 const {actions: a} = global;
-const {pipe, findIndex, equals, inc, flip, nth} = R;
 
 export const useSetCurrentItemByModel = model => {
   const dispatch = useDispatch();
@@ -22,17 +20,10 @@ export const useSetCurrentItem = itemKey => {
   return handleClick;
 };
 
-const getChildScope = scope =>
-  pipe(
-    findIndex(equals(scope)),
-    inc,
-    flip(nth)(scopes),
-  )(scopes);
-
 export const useSetCurrentScopeAndId = (scope, id) => {
   const dispatch = useDispatch();
   const handleClick = () => {
-    const newScope = getChildScope(scope);
+    const newScope = getChildModel(scope);
     dispatch(a.setCurrentScope(newScope));
     dispatch(a.setCurrentId(scope, id));
   };
