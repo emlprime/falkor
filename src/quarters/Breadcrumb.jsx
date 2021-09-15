@@ -6,8 +6,8 @@ import {Bracket} from "../global/Bracket";
 import {ProgressChart} from "../global/ProgressChart";
 import {baseProgressRadius, progressWidth} from "../global/constants";
 import {Breadcrumb as BreadcrumbReleases} from "../releases/Breadcrumb";
-import {useSetCurrentScope} from "../global/hooks";
-import {getCurrentScope} from "../global/selectors";
+import {useSetCurrentItemByModel} from "../global/hooks";
+import {getCurrentModel} from "../global/selectors";
 
 const {equals} = R;
 const values = [
@@ -17,10 +17,10 @@ const values = [
 ];
 
 export const Breadcrumb = ({originX, originY}) => {
-  const handleClick = useSetCurrentScope(NAME);
+  const handleClick = useSetCurrentItemByModel(NAME);
 
-  const currentScope = useSelector(getCurrentScope);
-  const isCurrentScope = equals(NAME, currentScope);
+  const currentModel = useSelector(getCurrentModel);
+  const isCurrentScope = equals(NAME, currentModel);
 
   const bracketConfig = {
     Component: List,

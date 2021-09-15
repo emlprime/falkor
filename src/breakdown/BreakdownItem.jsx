@@ -1,18 +1,17 @@
 import {useSelector} from "react-redux";
 import {colors, itemWidth, gap} from "../global/constants";
-import {getByScopeAndId} from "../global/selectors";
+import {getByItem} from "../global/selectors";
 import {SelectionIndicator} from "../global/SelectionIndicator";
 
 export function BreakdownItem({
   isCurrent,
-  scope,
+  item,
   offset,
   size,
-  id,
   originX,
   originY,
 }) {
-  const {label} = useSelector(getByScopeAndId(scope, id));
+  const {id, label} = useSelector(getByItem(item));
   const planned = 1;
   const actual = 1;
   const width = size - 1 * 15 + itemWidth * size;

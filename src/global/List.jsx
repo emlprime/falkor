@@ -1,19 +1,26 @@
+import {useMemo} from "react";
 import * as R from "ramda";
 import {useSelector} from "react-redux";
+import {getCurrentAncestry, getItemsByParent} from "./selectors";
+import {ListItem} from "./ListItem";
 
-const {map} = R;
+const {find, map, propEq} = R;
 
-export const List = (currentIdSelector, selector, ListItem) => () => {
-  const currentId = useSelector(currentIdSelector);
-  const recordIds = useSelector(selector(currentId));
+export const List = model => () => {
+  const ancestry = useSelector(getCurrentAncestry);
+  const currentAncestorAtModel = useMemo(
+    () => find(propEq("model", model), ancestry),
+    [model, ancestry],
+  );
+  const items = useSelector(getItemsByParent(currentAncestorAtModel));
 
   return (
     <ul>
       {map(
         id => (
-          <ListItem key={id} id={id} />
+          <ListItem key={id} model={model} id={id} />
         ),
-        recordIds,
+        items,
       )}
     </ul>
   );

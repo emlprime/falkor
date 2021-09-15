@@ -1,39 +1,43 @@
 import * as R from "ramda";
 import {createSelector} from "reselect";
-import {NAME, scopeToIdKey} from "./constants";
+import {NAME} from "./constants";
 
-const {prop, pathOr} = R;
+const {curry, equals, last, prop, pathOr} = R;
 
 export const getAll = state => state[NAME];
 
 export const getCurrent = state => pathOr({}, [NAME, "current"], state);
 
-export const getCurrentScope = createSelector(
+export const getCurrentAncestry = createSelector(
   getCurrent,
-  current => prop("scope", current),
+  current => prop("ancestry", current),
 );
 
-export const getCurrentIdFor = key =>
+export const getCurrentGoal = createSelector(
+  getCurrent,
+  current => prop("goal", current),
+);
+
+export const getCurrentItem = createSelector(
+  getCurrentAncestry,
+  currentAncestry => last(currentAncestry),
+);
+
+export const getCurrentModel = createSelector(
+  getCurrentItem,
+  currentItem => prop("model", currentItem),
+);
+
+export const getIsCurrent = itemKey =>
   createSelector(
-    getCurrent,
-    current => prop(key, current),
+    getCurrentItem,
+    currentItem => equals(itemKey, currentItem),
   );
 
-export const getCurrentIdForScope = scope =>
-  createSelector(
-    getCurrent,
-    current => prop(prop(scope, scopeToIdKey), current),
-  );
+export const getByItem = curry(({model, id}, state) => {
+  return pathOr({}, [model, "byId", id], state);
+});
 
-export const getByScopeAndId = (scope, id) => state => {
-    console.log(`scope:`, scope, id)
-    
-    return   pathOr({}, [scope, "byId", id], state);
-}
-
-export const getCurrentProjectId = getCurrentIdFor("projectId");
-export const getCurrentQuarterId = getCurrentIdFor("quarterId");
-export const getCurrentReleaseId = getCurrentIdFor("releaseId");
-export const getCurrentSprintId = getCurrentIdFor("sprintId");
-export const getCurrentGoalId = getCurrentIdFor("goalId");
-export const getCurrentDayId = getCurrentIdFor("dayId");
+export const getItemsByParent = curry(({model, id}, state) => {
+  return pathOr({}, [model, "byId", id], state);
+});

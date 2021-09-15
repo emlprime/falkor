@@ -1,11 +1,11 @@
 export const initialState = {
   current: {
-    scope: "goals",
-    projectId: "abc123",
-    quarterId: "abc123",
-    releaseId: "abc123",
-    sprintId: "def234",
-    goalId: "abc123",
-    dayId: "abc123",
+    ancestry: [
+      {model: "projects", id: "abc123"},
+      {model: "releases", id: "abc123"},
+      {model: "sprints", id: "abc123"},
+      {model: "days", id: "abc123"},
+    ],
+    goal: {model: "goals", id: "abc123"},
   },
 };

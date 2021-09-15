@@ -1,9 +1,23 @@
-import {NAME} from "./constants";
-import {getCurrentSprintId} from "../global/selectors";
-import {getRecordIdsFor, getRecordFor} from "./selectors";
-import {ListItem as GlobalListItem} from "../global/ListItem";
-import {List as GlobalList} from "../global/List";
+import {useMemo} from "react";
+import * as R from "ramda";
+import {useSelector} from "react-redux";
+import {getCurrentGoal} from "../global/selectors";
+import {getItemsByParent} from "./selectors";
 
-const ListItem = GlobalListItem(NAME, getRecordFor);
+const {find, map, propEq} = R;
 
-export const List = GlobalList(getCurrentSprintId, getRecordIdsFor, ListItem);
+export const List = parentItem => () => {
+  const goal = useSelector(getCurrentGoal);
+  const items = useSelector(getItemsByParent(parentItem));
+
+  return (
+    <ul>
+      {map(
+        id => (
+          <ListItem key={id} model="goals" id={id} />
+        ),
+        items,
+      )}
+    </ul>
+  );
+};

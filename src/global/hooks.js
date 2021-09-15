@@ -6,10 +6,18 @@ import {scopes} from "./constants";
 const {actions: a} = global;
 const {pipe, findIndex, equals, inc, flip, nth} = R;
 
-export const useSetCurrentScope = scope => {
+export const useSetCurrentItemByModel = model => {
   const dispatch = useDispatch();
   const handleClick = () => {
-    dispatch(a.setCurrentScope(scope));
+    dispatch(a.setCurrentScope(model));
+  };
+  return handleClick;
+};
+
+export const useSetCurrentItem = itemKey => {
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(a.setCurrentItem(itemKey));
   };
   return handleClick;
 };

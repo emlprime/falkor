@@ -2,7 +2,7 @@ import * as R from "ramda";
 import {createSelector} from "reselect";
 import {NAME} from "./constants";
 
-const {filter, propEq, propOr, prop, pathOr, map, pipe, values} = R;
+const {filter, propEq, propOr, pick, pathOr, map, pipe, values} = R;
 
 export const getAll = state => {
   const {byId} = state[NAME];
@@ -11,14 +11,14 @@ export const getAll = state => {
 
 export const getById = pathOr({}, [NAME, "byId"]);
 
-export const getRecordIdsFor = parentId =>
+export const getItemsByParent = parentId =>
   createSelector(
     getAll,
-    records =>
+    items =>
       pipe(
-        filter(propEq("sprintId", parentId)),
-        map(prop("id")),
-      )(records),
+        filter(propEq("parentId", parentId)),
+        map(pick(["model", "id"])),
+      )(items),
   );
 
 export const getRecordFor = id =>
