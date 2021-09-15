@@ -39,5 +39,9 @@ export const getByItem = curry(({model, id}, state) => {
 });
 
 export const getItemsByParent = curry(({model, id}, state) => {
-  return pathOr({}, [model, "byId", id], state);
+  console.log("model", model, id);
+  console.log("state", state);
+  return [];
 });
+
+// pathOr({}, [model, "byId", id], state);

@@ -1,4 +1,3 @@
-
 import {useSelector} from "react-redux";
 import {getByItem, getIsCurrent} from "./selectors";
 import {colors} from "./constants";

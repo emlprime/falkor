@@ -1,15 +1,15 @@
-import * as R from "ramda";
+// import * as R from "ramda";
 import {NAME} from "./constants";
 import {List} from "./List";
-import {useSelector} from "react-redux";
+// import {useSelector} from "react-redux";
 import {Bracket} from "../global/Bracket";
 import {ProgressChart} from "../global/ProgressChart";
 import {baseProgressRadius, progressWidth} from "../global/constants";
-import {Breadcrumb as BreadcrumbReleases} from "../releases/Breadcrumb";
+// import {Breadcrumb as BreadcrumbReleases} from "../releases/Breadcrumb";
 import {useSetCurrentItemByModel} from "../global/hooks";
-import {getCurrentModel} from "../global/selectors";
+// import {getCurrentModel} from "../global/selectors";
 
-const {equals} = R;
+// const {equals} = R;
 const values = [
   ["resolved", [0, 50]],
   ["active", [50, 75]],
@@ -19,8 +19,9 @@ const values = [
 export const Breadcrumb = ({originX, originY}) => {
   const handleClick = useSetCurrentItemByModel(NAME);
 
-  const currentModel = useSelector(getCurrentModel);
-  const isCurrentScope = equals(NAME, currentModel);
+  // const currentModel = useSelector(getCurrentModel);
+
+  // const isCurrentModel = equals(NAME, currentModel);
 
   const bracketConfig = {
     Component: List,
@@ -34,9 +35,6 @@ export const Breadcrumb = ({originX, originY}) => {
 
   return (
     <>
-      {!isCurrentScope && (
-        <BreadcrumbReleases originX={originX} originY={originY} />
-      )}
       <ProgressChart
         originX={originX}
         originY={originY}
@@ -49,3 +47,6 @@ export const Breadcrumb = ({originX, originY}) => {
     </>
   );
 };
+// {!isCurrentModel && (
+//   <BreadcrumbReleases originX={originX} originY={originY} />
+// )}

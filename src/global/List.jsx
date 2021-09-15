@@ -12,8 +12,9 @@ export const List = model => () => {
     () => find(propEq("model", model), ancestry),
     [model, ancestry],
   );
-  const items = useSelector(getItemsByParent(currentAncestorAtModel));
 
+  const items = useSelector(getItemsByParent(currentAncestorAtModel));
+  console.log("foo:", items);
   return (
     <ul>
       {map(

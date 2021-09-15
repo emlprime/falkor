@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import {Roster} from "./members/Roster";
-// import {Breadcrumb} from "./global/Breadcrumb";
+import {Breadcrumb} from "./global/Breadcrumb";
 // import {ChosenFocus} from "./breakdown/ChosenFocus";
 // import {Breakdown} from "./breakdown/Breakdown";
 // import {List as GoalList} from "./goals/List";
@@ -24,6 +24,7 @@ export const Project = ({width, height}) => {
         <foreignObject id="roster" width="500px" height="200px" x="0" y="0">
           <Roster />
         </foreignObject>
+        <Breadcrumb originX={800} originY={300} />
       </svg>
     </Section>
   );
@@ -37,7 +38,6 @@ const Section = styled.section`
   }
 `;
 
-// <Breadcrumb originX={800} originY={300} />
 // <ChosenFocus originX={200} originY={600} />
 // <Breakdown originX={200} originY={800} />
 // <BurndownChart originX={500} originY={600} />
