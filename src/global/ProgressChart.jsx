@@ -11,9 +11,6 @@ export const ProgressChart = ({
   ...rest
 }) => {
   return map(([status, [startPercent, endPercent]]) => {
-    console.log(`status:`, status);
-    const callback = prop(status, handleClickByStatus);
-    console.log(`callback:`, callback, handleClickByStatus);
     return (
       <ArcNemesis
         key={status}

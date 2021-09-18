@@ -2,7 +2,7 @@ import * as R from "ramda";
 import {useCallback} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import global from "../global";
-import {knownStatuses} from "../global/constants";
+import {knownStatuses as ks} from "../global/constants";
 import {getByParentKey} from "./selectors";
 
 const {actions: a} = global;
@@ -19,17 +19,14 @@ const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
   ),
 );
 
-const useHandleClickStatus = curry((
-  ancestry,
-  itemsByStatus,
-  deriveSetCurrentByStatus,
-  status,
-) => {
-  const dispatch = useDispatch();
-  return useCallback(() => {
-    dispatch(a.setCurrentAncestry(deriveSetCurrentByStatus(status)));
-  }, [dispatch, ancestry, itemsByStatus]);
-});
+const useHandleClickStatus = curry(
+  (ancestry, itemsByStatus, deriveSetCurrentByStatus, status) => {
+    const dispatch = useDispatch();
+    return useCallback(() => {
+      dispatch(a.setCurrentAncestry(deriveSetCurrentByStatus(status)));
+    }, [dispatch, ancestry, itemsByStatus]);
+  },
+);
 
 export const useSetCurrentAncestry = ancestry => {
   const parentKey = head(ancestry);
@@ -40,27 +37,18 @@ export const useSetCurrentAncestry = ancestry => {
     itemsByStatus,
     ancestry,
   );
-  const handleClickResolved = useHandleClickStatus(
+  const deriveHandleClickForStatus = useHandleClickStatus(
     ancestry,
     itemsByStatus,
     deriveSetCurrentByStatus,
-    knownStatuses.resolved,
   );
-  const handleClickActive = useHandleClickStatus(
-    ancestry,
-    itemsByStatus,
-    deriveSetCurrentByStatus,
-    knownStatuses.active,
-  );
-  const handleClickPlanned = useHandleClickStatus(
-    ancestry,
-    itemsByStatus,
-    deriveSetCurrentByStatus,
-    knownStatuses.planned,
-  );
+  const handleClickResolved = deriveHandleClickForStatus(ks.resolved);
+  const handleClickActive = deriveHandleClickForStatus(ks.active);
+  const handleClickPlanned = deriveHandleClickForStatus(ks.planned);
+
   return {
-    [knownStatuses.resolved]: handleClickResolved,
-    [knownStatuses.active]: handleClickActive,
-    [knownStatuses.planned]: handleClickPlanned,
+    [ks.resolved]: handleClickResolved,
+    [ks.active]: handleClickActive,
+    [ks.planned]: handleClickPlanned,
   };
 };
