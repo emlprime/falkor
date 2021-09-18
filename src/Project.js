@@ -20,7 +20,7 @@ export const Project = ({width, height}) => {
         width={width}
         height={height}
       >
-        <Yggdrasil originX={300} originY={100} />
+        <Yggdrasil originX={width / 6} originY={height / 8} />
         <foreignObject id="roster" width="500px" height="200px" x="0" y="0">
           <Roster />
         </foreignObject>
