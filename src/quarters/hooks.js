@@ -19,8 +19,19 @@ const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
   ),
 );
 
-export const useSetCurrentAncestry = ancestry => {
+const useHandleClickStatus = curry((
+  ancestry,
+  itemsByStatus,
+  deriveSetCurrentByStatus,
+  status,
+) => {
   const dispatch = useDispatch();
+  return useCallback(() => {
+    dispatch(a.setCurrentAncestry(deriveSetCurrentByStatus(status)));
+  }, [dispatch, ancestry, itemsByStatus]);
+});
+
+export const useSetCurrentAncestry = ancestry => {
   const parentKey = head(ancestry);
   const items = useSelector(getByParentKey(parentKey));
   const itemsByStatus = groupBy(prop("status"), items);
@@ -29,24 +40,23 @@ export const useSetCurrentAncestry = ancestry => {
     itemsByStatus,
     ancestry,
   );
-  const handleClickResolved = useCallback(() => {
-    dispatch(
-      a.setCurrentAncestry(deriveSetCurrentByStatus(knownStatuses.resolved)),
-    );
-  }, [dispatch, ancestry, itemsByStatus]);
-  const handleClickActive = useCallback(
-    () =>
-      dispatch(
-        a.setCurrentAncestry(deriveSetCurrentByStatus(knownStatuses.active)),
-      ),
-    [dispatch, ancestry, itemsByStatus],
+  const handleClickResolved = useHandleClickStatus(
+    ancestry,
+    itemsByStatus,
+    deriveSetCurrentByStatus,
+    knownStatuses.resolved,
   );
-  const handleClickPlanned = useCallback(
-    () =>
-      dispatch(
-        a.setCurrentAncestry(deriveSetCurrentByStatus(knownStatuses.planned)),
-      ),
-    [dispatch, ancestry, itemsByStatus],
+  const handleClickActive = useHandleClickStatus(
+    ancestry,
+    itemsByStatus,
+    deriveSetCurrentByStatus,
+    knownStatuses.active,
+  );
+  const handleClickPlanned = useHandleClickStatus(
+    ancestry,
+    itemsByStatus,
+    deriveSetCurrentByStatus,
+    knownStatuses.planned,
   );
   return {
     [knownStatuses.resolved]: handleClickResolved,
