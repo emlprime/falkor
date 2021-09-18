@@ -1,13 +1,9 @@
-// import * as R from "ramda";
-import {NAME} from "./constants";
 import {List} from "./List";
-// import {useSelector} from "react-redux";
 import {Bracket} from "../global/Bracket";
 import {ProgressChart} from "../global/ProgressChart";
 import {baseProgressRadius, progressWidth} from "../global/constants";
 // import {Breadcrumb as BreadcrumbReleases} from "../releases/Breadcrumb";
-import {useSetCurrentItemByModel} from "../global/hooks";
-// import {getCurrentModel} from "../global/selectors";
+import {useSetCurrentAncestry} from "./hooks";
 
 // const {equals} = R;
 const values = [
@@ -16,10 +12,8 @@ const values = [
   ["planned", [75, 99.9]],
 ];
 
-export const Breadcrumb = ({originX, originY}) => {
-  const handleClick = useSetCurrentItemByModel(NAME);
-
-  // const currentModel = useSelector(getCurrentModel);
+export const Breadcrumb = ({originX, originY, parentKey}) => {
+  const handleClickByStatus = useSetCurrentAncestry([parentKey]);
 
   // const isCurrentModel = equals(NAME, currentModel);
 
@@ -40,7 +34,7 @@ export const Breadcrumb = ({originX, originY}) => {
         originY={originY}
         radius={baseProgressRadius}
         values={values}
-        handleClick={handleClick}
+        handleClickByStatus={handleClickByStatus}
         width={progressWidth}
       />
       <Bracket {...bracketConfig} />

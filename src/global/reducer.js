@@ -3,11 +3,16 @@ import * as t from "./actionTypes";
 import {initialState} from "./initialState";
 import {scopeToIdKey} from "./constants";
 
-const {assocPath, curry, path, pipe, prop} = R;
+const {assocPath, curry, path, pathOr, pipe, prop, propOr} = R;
 
-const setCurrentScope = curry((action, state) =>
-  assocPath(["current", "scope"], path(["payload", "scope"], action), state),
-);
+const setCurrentItemByModelAndStatus = curry((action, state) => {
+  const {model, status} = propOr({}, "payload", action);
+  const current = pathOr({}, ["global", "current"], state);
+  console.log("model and status:", model, status);
+  console.log("current:", current);
+  console.log("state:", state);
+  return state;
+});
 
 const setCurrentId = curry((action, state) =>
   assocPath(
@@ -17,15 +22,22 @@ const setCurrentId = curry((action, state) =>
   ),
 );
 
+const setCurrentAncestry = curry((action, state) =>
+  assocPath(
+    ["current", "ancestry"],
+    path(["payload", "ancestry"], action),
+    state,
+  ),
+);
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case t.setCurrentScope:
-      return setCurrentScope(action, state);
+    case t.setCurrentItemByModelAndStatus:
+      return setCurrentItemByModelAndStatus(action, state);
     case t.setCurrentId:
-      return pipe(
-        setCurrentScope(action),
-        setCurrentId(action),
-      )(state);
+      return pipe(setCurrentId(action))(state);
+    case t.setCurrentAncestry:
+      return pipe(setCurrentAncestry(action))(state);
     default:
       return state;
   }

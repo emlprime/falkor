@@ -8,6 +8,21 @@ export const scopes = [
   "goals",
   "days",
 ];
+
+export const knownModels = {
+  projects: "projects",
+  quarters: "quarters",
+  releases: "releases",
+  sprints: "sprints",
+  days: "days",
+};
+
+export const knownStatuses = {
+  resolved: "resolved",
+  active: "active",
+  planned: "planned",
+};
+
 export const colors = {
   resolved: "#17435e",
   active: "#5a0d51",

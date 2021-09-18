@@ -5,9 +5,10 @@ import {getChildModel} from "./utils";
 
 const {
   curry,
-  equals,
   filter,
+  find,
   head,
+  includes,
   last,
   map,
   pick,
@@ -38,6 +39,12 @@ export const getCurrentItem = createSelector(
   currentAncestry => last(currentAncestry),
 );
 
+export const getCurrentByModel = model =>
+  createSelector(
+    getCurrentAncestry,
+    currentAncestry => find(propEq("model", model), currentAncestry),
+  );
+
 export const getCurrentProject = createSelector(
   getCurrentAncestry,
   currentAncestry => head(currentAncestry),
@@ -50,8 +57,8 @@ export const getCurrentModel = createSelector(
 
 export const getIsCurrent = itemKey =>
   createSelector(
-    getCurrentItem,
-    currentItem => equals(itemKey, currentItem),
+    getCurrentAncestry,
+    currentAncestry => includes(itemKey, currentAncestry),
   );
 
 export const getByItem = curry(({model, id}, state) =>

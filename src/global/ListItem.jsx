@@ -8,7 +8,7 @@ import styled from "styled-components";
 export const ListItem = itemKey => {
   const item = useSelector(getByItem(itemKey));
   const handleClick = useSetCurrentItem(item);
-  const isCurrent = useSelector(getIsCurrent(item));
+  const isCurrent = useSelector(getIsCurrent(itemKey));
   const {label, status = "PLANNED"} = useSelector(getByItem(item));
 
   return (

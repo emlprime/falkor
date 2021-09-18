@@ -11,6 +11,7 @@ import {Yggdrasil} from "./global/Yggdrasil";
 
 export const Project = ({width, height}) => {
   const viewBox = `0 0 ${width} ${height}`;
+
   return (
     <Section>
       <svg

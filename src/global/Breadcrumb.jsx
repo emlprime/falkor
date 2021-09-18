@@ -17,7 +17,7 @@ export const Breadcrumb = ({originX, originY}) => {
       >
         <h1>{label}</h1>
       </foreignObject>
-      <BreadcrumbQuarter originX={originX} originY={originY} />{" "}
+      <BreadcrumbQuarter originX={originX} originY={originY} parentKey={item} />
     </g>
   );
 };

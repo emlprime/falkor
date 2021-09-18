@@ -1,14 +1,30 @@
-import {useDispatch} from "react-redux";
+import {useCallback} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import global from "../global";
-import {getChildModel} from "./utils";
+import {
+  getCurrentProject,
+  getCurrentByModel,
+  getCurrentAncestry,
+} from "./selectors";
 
 const {actions: a} = global;
 
-export const useSetCurrentItemByModel = model => {
+export const useSetCurrentItemByModelAndStatus = model => {
+  console.log(`model:`, model);
   const dispatch = useDispatch();
-  const handleClick = () => {
-    dispatch(a.setCurrentScope(model));
-  };
+  const currentAncestry = useSelector(getCurrentAncestry);
+  console.log(`currentAncestry:`, currentAncestry);
+  const currentProject = useSelector(getCurrentProject);
+  console.log(`currentProject:`, currentProject);
+
+  const item = useSelector(getCurrentByModel(model));
+  console.log("currrent item:", model, item);
+  const handleClick = useCallback(
+    status => {
+      dispatch(a.setCurrentItemByModelAndStatus(model, status));
+    },
+    [dispatch, model],
+  );
   return handleClick;
 };
 
@@ -23,8 +39,6 @@ export const useSetCurrentItem = itemKey => {
 export const useSetCurrentScopeAndId = (scope, id) => {
   const dispatch = useDispatch();
   const handleClick = () => {
-    const newScope = getChildModel(scope);
-    dispatch(a.setCurrentScope(newScope));
     dispatch(a.setCurrentId(scope, id));
   };
   return handleClick;
