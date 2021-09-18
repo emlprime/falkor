@@ -9,13 +9,11 @@ import {useSetCurrentAncestry} from "./hooks";
 const values = [
   ["resolved", [0, 50]],
   ["active", [50, 75]],
-  ["planned", [75, 99.9]],
+  ["planned", [75, 100]],
 ];
 
 export const Breadcrumb = ({originX, originY, parentKey}) => {
   const handleClickByStatus = useSetCurrentAncestry([parentKey]);
-
-  // const isCurrentModel = equals(NAME, currentModel);
 
   const bracketConfig = {
     Component: List,
