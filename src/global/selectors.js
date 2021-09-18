@@ -7,6 +7,7 @@ const {
   curry,
   equals,
   filter,
+  head,
   last,
   map,
   pick,
@@ -16,7 +17,6 @@ const {
   pathOr,
   propEq,
   values,
-
 } = R;
 
 export const getAll = state => state[NAME];
@@ -38,6 +38,11 @@ export const getCurrentItem = createSelector(
   currentAncestry => last(currentAncestry),
 );
 
+export const getCurrentProject = createSelector(
+  getCurrentAncestry,
+  currentAncestry => head(currentAncestry),
+);
+
 export const getCurrentModel = createSelector(
   getCurrentItem,
   currentItem => prop("model", currentItem),
@@ -49,10 +54,9 @@ export const getIsCurrent = itemKey =>
     currentItem => equals(itemKey, currentItem),
   );
 
-export const getByItem = curry(({model, id}, state) => {
-  console.log("foo:", model, id);
-  return pathOr({}, [model, "byId", id], state);
-});
+export const getByItem = curry(({model, id}, state) =>
+  pathOr({}, [model, "byId", id], state),
+);
 
 const getRecordsByModel = curry((model, state) =>
   pipe(

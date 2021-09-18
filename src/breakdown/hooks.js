@@ -11,7 +11,7 @@ import {
 import {add as addDay} from "../days/actions";
 import styled from "styled-components";
 
-const {add, gt, last, map, sum, prop} = R;
+const {add, prop} = R;
 
 const scopeLength = 4;
 const AddButton = ({
@@ -57,7 +57,7 @@ const AddButton = ({
 export const useGetCurrentChildren = () => {
   // get the current item
   const item = useSelector(getCurrentItem);
-  const goal = useSelector(getCurrentGoal);
+  // const goal = useSelector(getCurrentGoal);
 
   // get the label for the current item
   const {label} = useSelector(getByItem(item));

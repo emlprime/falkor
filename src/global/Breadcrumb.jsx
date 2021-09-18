@@ -1,6 +1,10 @@
+import {useSelector} from "react-redux";
+import {getCurrentProject, getByItem} from "./selectors";
 import {Breadcrumb as BreadcrumbQuarter} from "../quarters/Breadcrumb";
 
 export const Breadcrumb = ({originX, originY}) => {
+  const item = useSelector(getCurrentProject);
+  const {label} = useSelector(getByItem(item));
   const width = 180;
   const height = 40;
   return (
@@ -11,7 +15,7 @@ export const Breadcrumb = ({originX, originY}) => {
         height={height}
         width={width}
       >
-        <h1>Resources</h1>
+        <h1>{label}</h1>
       </foreignObject>
       <BreadcrumbQuarter originX={originX} originY={originY} />{" "}
     </g>

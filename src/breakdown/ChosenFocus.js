@@ -1,5 +1,6 @@
 import * as R from "ramda";
-import {useCurrentRecordIds} from "./hooks";
+import {useSelector} from "react-redux";
+import {getCurrentItem, getByItem} from "../global/selectors";
 import {ProgressChart} from "../global/ProgressChart";
 
 const {map, addIndex} = R;
@@ -16,7 +17,9 @@ const swimlanes = [
 // create a subcomponent to display progress here
 
 export const ChosenFocus = ({originX, originY}) => {
-  const {label} = useCurrentRecordIds();
+  const item = useSelector(getCurrentItem);
+  console.log("item:", item);
+  const {label} = useSelector(getByItem(item));
 
   const handleClick = value => {
     console.log("Chosen Focusvalue:", value);
