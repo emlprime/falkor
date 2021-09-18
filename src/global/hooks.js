@@ -67,33 +67,42 @@ const useHandleClickStatus = curry(
   },
 );
 
-export const useSetCurrentAncestry = curry((getByParentKey, ancestry) => {
-  const parentKey = head(ancestry);
-  const items = useSelector(getByParentKey(parentKey));
-  const itemsByStatus = groupBy(prop("status"), items);
+export const useSetCurrentAncestryByStatus = curry(
+  (getByParentKey, ancestry) => {
+    const parentKey = head(ancestry);
+    const items = useSelector(getByParentKey(parentKey));
+    const itemsByStatus = groupBy(prop("status"), items);
 
-  // curry method to get the first item of a given status for this model
-  const deriveSetCurrentByStatus = deriveFirstItemOfStatus(
-    itemsByStatus,
-    ancestry,
-  );
+    // curry method to get the first item of a given status for this model
+    const deriveSetCurrentByStatus = deriveFirstItemOfStatus(
+      itemsByStatus,
+      ancestry,
+    );
 
-  // curry method to get the appropriate handle click for a given status
-  const deriveHandleClickForStatus = useHandleClickStatus(
-    ancestry,
-    itemsByStatus,
-    deriveSetCurrentByStatus,
-  );
+    // curry method to get the appropriate handle click for a given status
+    const deriveHandleClickForStatus = useHandleClickStatus(
+      ancestry,
+      itemsByStatus,
+      deriveSetCurrentByStatus,
+    );
 
-  // pre calc one method for each known status
-  const handleClickResolved = deriveHandleClickForStatus(ks.resolved);
-  const handleClickActive = deriveHandleClickForStatus(ks.active);
-  const handleClickPlanned = deriveHandleClickForStatus(ks.planned);
+    // pre calc one method for each known status
+    const handleClickResolved = deriveHandleClickForStatus(ks.resolved);
+    const handleClickActive = deriveHandleClickForStatus(ks.active);
+    const handleClickPlanned = deriveHandleClickForStatus(ks.planned);
 
-  // an object that converts the status into a dispatched click handler
-  return {
-    [ks.resolved]: handleClickResolved,
-    [ks.active]: handleClickActive,
-    [ks.planned]: handleClickPlanned,
-  };
-});
+    // an object that converts the status into a dispatched click handler
+    return {
+      [ks.resolved]: handleClickResolved,
+      [ks.active]: handleClickActive,
+      [ks.planned]: handleClickPlanned,
+    };
+  },
+);
+
+export const useSetCurrentAncestry = ancestry => {
+  const dispatch = useDispatch();
+  return useCallback(() => {
+    dispatch(a.setCurrentAncestry(ancestry));
+  }, [dispatch, ancestry]);
+};

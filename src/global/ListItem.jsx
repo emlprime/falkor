@@ -2,12 +2,12 @@ import {useSelector} from "react-redux";
 import {getByItem, getIsCurrent} from "./selectors";
 import {colors} from "./constants";
 import {Bullet} from "./Bullet";
-import {useSetCurrentItem} from "./hooks";
+import {useSetCurrentAncestry} from "./hooks";
 import styled from "styled-components";
 
-export const ListItem = itemKey => {
+export const ListItem = ({itemKey, ancestry}) => {
   const item = useSelector(getByItem(itemKey));
-  const handleClick = useSetCurrentItem(item);
+  const handleClick = useSetCurrentAncestry(ancestry);
   const isCurrent = useSelector(getIsCurrent(itemKey));
   const {label, status = "PLANNED"} = useSelector(getByItem(item));
 

@@ -1,9 +1,9 @@
-import {List} from "./List";
+import {List as ListForAncestry} from "./List";
 import {Bracket} from "../global/Bracket";
 import {ProgressChart} from "../global/ProgressChart";
 import {baseProgressRadius, progressWidth} from "../global/constants";
 // import {Breadcrumb as BreadcrumbReleases} from "../releases/Breadcrumb";
-import {useSetCurrentAncestry} from "./hooks";
+import {useSetCurrentAncestryByStatus} from "./hooks";
 
 // const {equals} = R;
 const values = [
@@ -13,10 +13,10 @@ const values = [
 ];
 
 export const Breadcrumb = ({originX, originY, parentKey}) => {
-  const handleClickByStatus = useSetCurrentAncestry([parentKey]);
+  const ancestry = [parentKey];
+  const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 
   const bracketConfig = {
-    Component: List,
     originX,
     originY: originY - (baseProgressRadius + progressWidth / 2),
     breakoffHeight: 70,
@@ -24,6 +24,7 @@ export const Breadcrumb = ({originX, originY, parentKey}) => {
     breakoffSplit: 400,
     bottomAngleHeight: 135,
   };
+  const List = ListForAncestry(ancestry);
 
   return (
     <>
@@ -35,7 +36,9 @@ export const Breadcrumb = ({originX, originY, parentKey}) => {
         handleClickByStatus={handleClickByStatus}
         width={progressWidth}
       />
-      <Bracket {...bracketConfig} />
+      <Bracket {...bracketConfig}>
+        <List ancestry={ancestry} />
+      </Bracket>
     </>
   );
 };

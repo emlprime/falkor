@@ -1,6 +1,6 @@
 import {getByParentKey} from "./selectors";
-import {useSetCurrentAncestry as useSetCurrentAncestryGlobal} from "../global/hooks";
+import {useSetCurrentAncestryByStatus as useSetCurrentAncestryByStatusGlobal} from "../global/hooks";
 
-export const useSetCurrentAncestry = useSetCurrentAncestryGlobal(
+export const useSetCurrentAncestryByStatus = useSetCurrentAncestryByStatusGlobal(
   getByParentKey,
 );

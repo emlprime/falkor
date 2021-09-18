@@ -27,7 +27,7 @@ const calcD = ({
   };
 };
 
-export function Bracket({Component, ...props}) {
+export function Bracket({children, ...props}) {
   const {d, subComponentX, subComponentY} = calcD(props);
 
   return (
@@ -39,7 +39,7 @@ export function Bracket({Component, ...props}) {
         width="180"
         height="155"
       >
-        <Component />
+        {children}
       </foreignObject>
     </g>
   );
