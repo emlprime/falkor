@@ -14,3 +14,8 @@ export const setCurrentAncestry = ancestry => ({
   type: t.setCurrentAncestry,
   payload: {ancestry},
 });
+
+export const setCurrentGoal = goalKey => ({
+  type: t.setCurrentGoal,
+  payload: {goalKey},
+});

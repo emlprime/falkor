@@ -30,6 +30,10 @@ const setCurrentAncestry = curry((action, state) =>
   ),
 );
 
+const setCurrentGoal = curry((action, state) =>
+  assocPath(["current", "goal"], path(["payload", "goalKey"], action), state),
+);
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case t.setCurrentItemByModelAndStatus:
@@ -38,6 +42,8 @@ const reducer = (state = initialState, action) => {
       return pipe(setCurrentId(action))(state);
     case t.setCurrentAncestry:
       return pipe(setCurrentAncestry(action))(state);
+    case t.setCurrentGoal:
+      return pipe(setCurrentGoal(action))(state);
     default:
       return state;
   }

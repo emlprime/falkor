@@ -4,7 +4,7 @@ import {Roster} from "./members/Roster";
 import {Breadcrumb} from "./global/Breadcrumb";
 import {ChosenFocus} from "./breakdown/ChosenFocus";
 // import {Breakdown} from "./breakdown/Breakdown";
-// import {List as GoalList} from "./goals/List";
+import {List as GoalList} from "./goals/List";
 // import {CurrentActions} from "./breakdown/CurrentActions";
 // import {BurndownChart} from "./breakdown/BurndownChart";
 import {Yggdrasil} from "./global/Yggdrasil";
@@ -27,6 +27,9 @@ export const Project = ({width, height}) => {
         </foreignObject>
         <Breadcrumb originX={800} originY={300} />
         <ChosenFocus originX={200} originY={600} />
+        <foreignObject id="goals" width="300px" height="400px" x="1050" y="720">
+          <GoalList />
+        </foreignObject>
       </svg>
     </Section>
   );
@@ -43,6 +46,3 @@ const Section = styled.section`
 // <Breakdown originX={200} originY={800} />
 // <BurndownChart originX={500} originY={600} />
 // <CurrentActions originX={800} originY={730} />
-// <foreignObject id="goals" width="300px" height="400px" x="1050" y="720">
-//   <GoalList />
-// </foreignObject>

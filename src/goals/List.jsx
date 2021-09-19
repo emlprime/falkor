@@ -1,23 +1,23 @@
-import {useMemo} from "react";
 import * as R from "ramda";
 import {useSelector} from "react-redux";
-import {getCurrentGoal} from "../global/selectors";
+import {getCurrentItem} from "../global/selectors";
 import {getItemsByParent} from "./selectors";
+import {ListItem} from "./ListItem";
 
-const {find, map, propEq} = R;
+const {map} = R;
 
-export const List = parentItem => () => {
-  const goal = useSelector(getCurrentGoal);
+export const List = () => {
+  const parentItem = useSelector(getCurrentItem);
+  console.log(`parentItem:`, parentItem);
+
   const items = useSelector(getItemsByParent(parentItem));
+  console.log(`items:`, items);
 
   return (
     <ul>
-      {map(
-        id => (
-          <ListItem key={id} model="goals" id={id} />
-        ),
-        items,
-      )}
+      {map(id => {
+        return <ListItem key={id} model="goals" itemKey={id} />;
+      }, items)}
     </ul>
   );
 };

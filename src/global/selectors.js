@@ -5,6 +5,7 @@ import {getChildModel} from "./utils";
 
 const {
   curry,
+  equals,
   filter,
   find,
   head,
@@ -59,6 +60,12 @@ export const getIsCurrent = itemKey =>
   createSelector(
     getCurrentAncestry,
     currentAncestry => includes(itemKey, currentAncestry),
+  );
+
+export const getIsCurrentGoal = itemKey =>
+  createSelector(
+    getCurrentGoal,
+    currentGoal => equals(itemKey, currentGoal),
   );
 
 export const getByItem = curry(({model, id}, state) =>

@@ -1,10 +1,9 @@
 import {useCallback} from "react";
 import * as R from "ramda";
 import {useDispatch, useSelector} from "react-redux";
-import global from "../global";
+import {setCurrentAncestry, setCurrentGoal} from "./actions";
 import {knownStatuses as ks} from "./constants";
 
-const {actions: a} = global;
 const {append, curry, head, groupBy, pick, pipe, prop} = R;
 
 const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
@@ -22,7 +21,7 @@ const useHandleClickStatus = curry(
   (ancestry, itemsByStatus, deriveSetCurrentByStatus, status) => {
     const dispatch = useDispatch();
     return useCallback(() => {
-      dispatch(a.setCurrentAncestry(deriveSetCurrentByStatus(status)));
+      dispatch(setCurrentAncestry(deriveSetCurrentByStatus(status)));
     }, [dispatch, ancestry, itemsByStatus]);
   },
 );
@@ -63,6 +62,13 @@ export const useSetCurrentAncestryByStatus = curry(
 export const useSetCurrentAncestry = ancestry => {
   const dispatch = useDispatch();
   return useCallback(() => {
-    dispatch(a.setCurrentAncestry(ancestry));
+    dispatch(setCurrentAncestry(ancestry));
   }, [dispatch, ancestry]);
+};
+
+export const useSetCurrentGoal = goalKey => {
+  const dispatch = useDispatch();
+  return useCallback(() => {
+    dispatch(setCurrentGoal(goalKey));
+  }, [dispatch, goalKey]);
 };

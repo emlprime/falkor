@@ -21,8 +21,11 @@ export const getItemsByParent = parentId =>
       )(items),
   );
 
-export const getRecordFor = id =>
+export const getByItem = ({id}) =>
   createSelector(
     getById,
-    byId => propOr({}, id, byId),
+    byId => {
+      console.log(`byId:`, byId);
+      return propOr({}, id, byId);
+    },
   );
