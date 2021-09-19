@@ -2,34 +2,10 @@ import {useCallback} from "react";
 import * as R from "ramda";
 import {useDispatch, useSelector} from "react-redux";
 import global from "../global";
-import {
-  getCurrentProject,
-  getCurrentByModel,
-  getCurrentAncestry,
-} from "./selectors";
 import {knownStatuses as ks} from "./constants";
 
 const {actions: a} = global;
 const {append, curry, head, groupBy, pick, pipe, prop} = R;
-
-export const useSetCurrentItemByModelAndStatus = model => {
-  console.log(`model:`, model);
-  const dispatch = useDispatch();
-  const currentAncestry = useSelector(getCurrentAncestry);
-  console.log(`currentAncestry:`, currentAncestry);
-  const currentProject = useSelector(getCurrentProject);
-  console.log(`currentProject:`, currentProject);
-
-  const item = useSelector(getCurrentByModel(model));
-  console.log("currrent item:", model, item);
-  const handleClick = useCallback(
-    status => {
-      dispatch(a.setCurrentItemByModelAndStatus(model, status));
-    },
-    [dispatch, model],
-  );
-  return handleClick;
-};
 
 export const useSetCurrentItem = itemKey => {
   const dispatch = useDispatch();
