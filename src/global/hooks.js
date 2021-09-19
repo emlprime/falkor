@@ -7,22 +7,6 @@ import {knownStatuses as ks} from "./constants";
 const {actions: a} = global;
 const {append, curry, head, groupBy, pick, pipe, prop} = R;
 
-export const useSetCurrentItem = itemKey => {
-  const dispatch = useDispatch();
-  const handleClick = () => {
-    dispatch(a.setCurrentItem(itemKey));
-  };
-  return handleClick;
-};
-
-export const useSetCurrentScopeAndId = (scope, id) => {
-  const dispatch = useDispatch();
-  const handleClick = () => {
-    dispatch(a.setCurrentId(scope, id));
-  };
-  return handleClick;
-};
-
 const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
   append(
     pipe(
