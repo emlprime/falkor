@@ -2,9 +2,10 @@ import {useCallback} from "react";
 import * as R from "ramda";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrentAncestry, setCurrentGoal} from "./actions";
+import {getItemsByParent} from "../goals/selectors";
 import {knownStatuses as ks} from "./constants";
 
-const {append, curry, head, groupBy, pick, pipe, prop} = R;
+const {append, curry, head, groupBy, last, pick, pipe, prop} = R;
 
 const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
   append(
@@ -61,8 +62,12 @@ export const useSetCurrentAncestryByStatus = curry(
 
 export const useSetCurrentAncestry = ancestry => {
   const dispatch = useDispatch();
+  const item = last(ancestry);
+  const goals = useSelector(getItemsByParent(item));
+  const goal = head(goals);
   return useCallback(() => {
     dispatch(setCurrentAncestry(ancestry));
+    dispatch(setCurrentGoal(goal));
   }, [dispatch, ancestry]);
 };
 
