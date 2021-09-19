@@ -1,25 +1,15 @@
 import * as R from "ramda";
-import {useSelector} from "react-redux";
-import {getCurrentItem, getByItem} from "../global/selectors";
 import {ProgressChart} from "../global/ProgressChart";
+import {useChosenFocus} from "./hooks";
 
 const {map, addIndex} = R;
 
 const mapWithIndex = addIndex(map);
 
-const swimlanes = [
-  [["resolved", [0, 40]], ["active", [40, 60]], ["planned", [60, 99.9]]],
-  [["resolved", [0, 40]], ["active", [40, 60]], ["planned", [60, 99.9]]],
-  [["resolved", [0, 20]], ["active", [20, 60]], ["planned", [60, 99.9]]],
-  [["resolved", [0, 40]], ["active", [40, 60]], ["planned", [60, 99.9]]],
-];
-
 // create a subcomponent to display progress here
 
 export const ChosenFocus = ({originX, originY}) => {
-  const item = useSelector(getCurrentItem);
-  console.log("item:", item);
-  const {label} = useSelector(getByItem(item));
+  const {label, swimlanes} = useChosenFocus();
 
   const handleClick = value => {
     console.log("Chosen Focusvalue:", value);

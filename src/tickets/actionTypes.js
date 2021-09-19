@@ -1,0 +1,6 @@
+export const ADD = "TICKETS/ADD";
+export const DELETE = "TICKETS/DELETE";
+export const EDIT = "TICKETS/EDIT";
+export const COMPLETE = "TICKETS/COMPLETE";
+export const COMPLETE_ALL = "TICKETS/COMPLETE_ALL";
+export const CLEAR_COMPLETED = "TICKETS/CLEAR_COMPLETED";

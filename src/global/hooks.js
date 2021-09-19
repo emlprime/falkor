@@ -5,7 +5,7 @@ import {setCurrentAncestry, setCurrentGoal} from "./actions";
 import {getItemsByParent} from "../goals/selectors";
 import {knownStatuses as ks} from "./constants";
 
-const {append, curry, head, groupBy, last, pick, pipe, prop} = R;
+const {append, curry, head, last, pick, pipe, prop} = R;
 
 const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
   append(
@@ -28,10 +28,10 @@ const useHandleClickStatus = curry(
 );
 
 export const useSetCurrentAncestryByStatus = curry(
-  (getByParentKey, ancestry) => {
+  (getByParentKey, getGroupedByStatus, ancestry) => {
     const parentKey = head(ancestry);
     const items = useSelector(getByParentKey(parentKey));
-    const itemsByStatus = groupBy(prop("status"), items);
+    const itemsByStatus = useSelector(getGroupedByStatus(items));
 
     // curry method to get the first item of a given status for this model
     const deriveSetCurrentByStatus = deriveFirstItemOfStatus(
