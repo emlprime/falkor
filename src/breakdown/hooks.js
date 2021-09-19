@@ -83,18 +83,18 @@ export const useChosenFocus = () => {
 
   const goal = useSelector(getCurrentGoal);
   const childrenSelector = prop(model, selectorsByModel);
-  const items = useSelector(childrenSelector(item));
-  console.log(`children:`, item, items);
+  const columns = useSelector(childrenSelector(item));
 
   // get the label for the current item
   const {label} = useSelector(getByItem(item));
 
-  const getGoals = useSelector(getItemsByParent(item));
-  console.log(`getGoals:`, getGoals);
+  const rows = useSelector(getItemsByParent(item));
 
-  const tickets = useSelector(getItemsByParentAndGoal(item, goal));
-  console.log(`tickets:`, tickets);
-  // const recordIds = useSelector(getChildrenByItemAndGoal(item, goal));
+  const breakdown = useSelector(getItemsByParentAndGoal(item, goal));
+
+  // select the length of the records to determine
+  // if there's space for an add button
+
   // const records = map(recordId => [recordId, 1], recordIds);
   // const recordLength = sum(map(last, records));
   // const canAdd = gt(scopeLength, recordLength);
@@ -109,7 +109,7 @@ export const useChosenFocus = () => {
   //     )
   //   : null;
 
-  return {label, swimlanes};
+  return {label, rows, columns, breakdown};
 };
 
 // const Article = styled.article`
