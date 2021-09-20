@@ -109,7 +109,7 @@ export const useChosenFocus = () => {
   //     )
   //   : null;
 
-  return {label, rows, columns, breakdown};
+    return {label, rows, columns, breakdown, swimlanes};
 };
 
 // const Article = styled.article`
