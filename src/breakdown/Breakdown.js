@@ -1,50 +1,50 @@
 import * as R from "ramda";
 import {itemWidth} from "../global/constants";
 import {BreakdownItem} from "./BreakdownItem";
-import {useCurrentRecordIds} from "./hooks";
+import {useChosenFocus} from "./hooks";
 
-const {append, equals, prop, reduce} = R;
+const {append, prop, reduce} = R;
+
 const gap = 15;
 
-export const Breakdown = ({originX, originY}) => {
-    const {scope, records, AddActionButton} = useCurrentRecordIds();
+const deriveBreakdownItems = (model, columns, originX, originY) => {
+  const reduced = reduce(
+    ({offset, result}, [id, size]) => {
+      return {
+        result: append(
+          <BreakdownItem
+            isCurrent={false}
+            key={id}
+            model={model}
+            item={{model, id}}
+            size={size}
+            offset={offset}
+            originX={originX}
+            originY={originY}
+          />,
 
-  const currentId = "Do Tuesday and Wednesday's Thing";
-  return (
-    <>
-      {prop(
-        "result",
-        reduce(
-          ({offset, result}, [id, size]) => {
-            return {
-              result: append(
-                <BreakdownItem
-                  isCurrent={equals(currentId, id)}
-                  key={id}
-                  scope={scope}
-                  id={id}
-                  size={size}
-                  offset={offset}
-                  originX={originX}
-                  originY={originY}
-                />,
-                result,
-              ),
-              offset: offset + itemWidth * size + gap,
-            };
-          },
-          {offset: 0, result: []},
-          records,
+          result,
         ),
-      )}
-      {AddActionButton && (
-        <AddActionButton
-          originX={originX}
-          originY={originY}
-          itemWidth={itemWidth}
-          gap={gap}
-        />
-      )}
-    </>
+        offset: offset + itemWidth * size + gap,
+      };
+    },
+    {offset: 0, result: []},
+    columns,
   );
+  return prop("result", reduced);
 };
+
+export const Breakdown = ({originX, originY}) => {
+  const {model, columns} = useChosenFocus();
+
+  return <>{deriveBreakdownItems(model, columns, originX, originY)}</>;
+};
+
+// {AddActionButton && (
+//   <AddActionButton
+//     originX={originX}
+//     originY={originY}
+//     itemWidth={itemWidth}
+//     gap={gap}
+//   />
+// )}

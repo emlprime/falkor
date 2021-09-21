@@ -20,6 +20,7 @@ import {getItemsByParentAndGoal} from "../tickets/selectors";
 
 const {
   // add,
+  map,
   prop,
 } = R;
 
@@ -79,11 +80,12 @@ const selectorsByModel = {
 export const useChosenFocus = () => {
   const item = useSelector(getCurrentItem);
   const {model} = item;
-  console.log(`model:`, model);
 
   const goal = useSelector(getCurrentGoal);
   const childrenSelector = prop(model, selectorsByModel);
-  const columns = useSelector(childrenSelector(item));
+  const rawColumns = useSelector(childrenSelector(item));
+
+  const columns = map(({id}) => [id, 1], rawColumns);
 
   // get the label for the current item
   const {label} = useSelector(getByItem(item));
@@ -109,7 +111,7 @@ export const useChosenFocus = () => {
   //     )
   //   : null;
 
-    return {label, rows, columns, breakdown, swimlanes};
+  return {model, label, rows, columns, breakdown, swimlanes};
 };
 
 // const Article = styled.article`

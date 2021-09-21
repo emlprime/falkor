@@ -8,10 +8,7 @@ const {map} = R;
 
 export const List = () => {
   const parentItem = useSelector(getCurrentItem);
-  console.log(`parentItem:`, parentItem);
-
   const items = useSelector(getItemsByParent(parentItem));
-  console.log(`items:`, items);
 
   return (
     <ul>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Roster} from "./members/Roster";
 import {Breadcrumb} from "./global/Breadcrumb";
 import {ChosenFocus} from "./breakdown/ChosenFocus";
-// import {Breakdown} from "./breakdown/Breakdown";
+import {Breakdown} from "./breakdown/Breakdown";
 import {List as GoalList} from "./goals/List";
 // import {CurrentActions} from "./breakdown/CurrentActions";
 // import {BurndownChart} from "./breakdown/BurndownChart";
@@ -27,6 +27,7 @@ export const Project = ({width, height}) => {
         </foreignObject>
         <Breadcrumb originX={800} originY={300} />
         <ChosenFocus originX={200} originY={600} />
+        <Breakdown originX={200} originY={800} />
         <foreignObject id="goals" width="300px" height="400px" x="1050" y="720">
           <GoalList />
         </foreignObject>
@@ -43,6 +44,5 @@ const Section = styled.section`
   }
 `;
 
-// <Breakdown originX={200} originY={800} />
 // <BurndownChart originX={500} originY={600} />
 // <CurrentActions originX={800} originY={730} />

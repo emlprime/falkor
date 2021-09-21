@@ -24,8 +24,5 @@ export const getItemsByParent = parentId =>
 export const getByItem = ({id}) =>
   createSelector(
     getById,
-    byId => {
-      console.log(`byId:`, byId);
-      return propOr({}, id, byId);
-    },
+    byId => propOr({}, id, byId),
   );
