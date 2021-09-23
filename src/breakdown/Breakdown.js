@@ -1,23 +1,21 @@
 import * as R from "ramda";
 import {itemWidth} from "../global/constants";
-import {BreakdownItem} from "./BreakdownItem";
+import {BreakdownHeader} from "./BreakdownHeader";
 import {useChosenFocus} from "./hooks";
 
 const {append, prop, reduce} = R;
 
-const gap = 15;
-
-const deriveBreakdownItems = (model, columns, originX, originY) => {
+const deriveBreakdownHeaders = (model, columns, originX, originY) => {
   const reduced = reduce(
-    ({offset, result}, [id, size]) => {
+    ({offset, result}, column) => {
+      console.log(`column:`, column, offset);
       return {
         result: append(
-          <BreakdownItem
+          <BreakdownHeader
             isCurrent={false}
-            key={id}
+            key={column}
             model={model}
-            item={{model, id}}
-            size={size}
+            item={column}
             offset={offset}
             originX={originX}
             originY={originY}
@@ -25,7 +23,7 @@ const deriveBreakdownItems = (model, columns, originX, originY) => {
 
           result,
         ),
-        offset: offset + itemWidth * size + gap,
+        offset: offset + itemWidth,
       };
     },
     {offset: 0, result: []},
@@ -37,7 +35,7 @@ const deriveBreakdownItems = (model, columns, originX, originY) => {
 export const Breakdown = ({originX, originY}) => {
   const {model, columns} = useChosenFocus();
 
-  return <>{deriveBreakdownItems(model, columns, originX, originY)}</>;
+  return <>{deriveBreakdownHeaders(model, columns, originX, originY)}</>;
 };
 
 // {AddActionButton && (
