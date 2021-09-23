@@ -3,8 +3,8 @@ export const initialState = {
     abc123: {
       id: "abc123",
       model: "goals",
-      label: "Quarter Goal 1",
-      parentId: {model: "quarters", id: "abc123"},
+      label: "Goal 1 for Project abc123",
+      parentId: {model: "projects", id: "abc123"},
       status: "resolved",
     },
     def234: {

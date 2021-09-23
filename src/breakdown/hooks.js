@@ -15,7 +15,6 @@ import {
 import {getByParentKey as getQuartersByParentKey} from "../quarters/selectors";
 import {getByParentKey as getReleasesByParentKey} from "../releases/selectors";
 import {getItemsByParent} from "../goals/selectors";
-import {getItemsByParentAndGoal} from "../tickets/selectors";
 // import {add as addDay} from "../days/actions";
 
 const {
@@ -83,14 +82,11 @@ export const useChosenFocus = () => {
   const goal = useSelector(getCurrentGoal);
   const childrenSelector = prop(model, selectorsByModel);
   const columns = useSelector(childrenSelector(item));
-  console.log(`columns:`, columns);
 
   // get the label for the current item
   const {label} = useSelector(getByItem(item));
 
   const rows = useSelector(getItemsByParent(item));
-
-  const breakdown = useSelector(getItemsByParentAndGoal(item, goal));
 
   // select the length of the records to determine
   // if there's space for an add button
@@ -109,7 +105,7 @@ export const useChosenFocus = () => {
   //     )
   //   : null;
 
-  return {model, label, rows, columns, breakdown, swimlanes};
+  return {model, label, rows, columns, swimlanes, goal};
 };
 
 // const Article = styled.article`
