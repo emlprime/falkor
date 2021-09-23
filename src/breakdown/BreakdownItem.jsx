@@ -1,9 +1,11 @@
-import {map} from "ramda";
+import {addIndex, map} from "ramda";
 import {useSelector} from "react-redux";
 import {colors} from "../global/constants";
 import {getByItem} from "../global/selectors";
 import {SelectionIndicator} from "../global/SelectionIndicator";
 import {getItemsByParentAndGoal} from "../tickets/selectors";
+
+const mapWithIndex = addIndex(map);
 
 export function BreakdownItem({
   isCurrent,
@@ -19,11 +21,15 @@ export function BreakdownItem({
   const width = 200;
   return (
     <>
-      {map(({model, id}) => {
+      {mapWithIndex(({model, id}, i) => {
         const {label} = useSelector(getByItem({model, id}));
 
         return (
-                <svg key={`itemdetail_${model}_${id}`} x={originX + offset} y={originY}>
+          <svg
+            key={`itemdetail_${model}_${id}`}
+            x={originX + offset}
+            y={originY + i * 65}
+          >
             {isCurrent && <SelectionIndicator width={width + 20} />}
             <rect x={10} y={10} width={200} height={10} fill={colors.planned} />
             <rect x={10} y={22} width={200} height={10} fill={colors.active} />
