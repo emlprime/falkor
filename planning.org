@@ -43,7 +43,12 @@ h1. TACTICS:
 * DONE Create a page in Sketch that demonstrates the Projects page.
 * DONE Symbolize the elements of the Projects page.
 * Make breakdown dynamic
-** 
+** DONE Unnest the list of ids
+** DONE Add a form if the number of items is less than the max
+** TODO Make the form appear in the correct position
+** Refactor the hook to be more generic
+** Refactor the action creator to be more generic
+** Refactor the reducer to be more generic
 * Make burndown dynamic
 * Create a reducer for add Release
 * Create an action creator for add release
