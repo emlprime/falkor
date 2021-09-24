@@ -40,3 +40,26 @@ const Style = styled.button`
   background-color: transparent;
   border: none;
 `;
+
+export function ButtonText({onClick, children}) {
+  return (
+    <TextStyle type="button" onClick={onClick}>
+      {children}
+    </TextStyle>
+  );
+}
+
+const TextStyle = styled.button`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: none;
+  color: ${colors.selected};
+  :hover {
+    filter: brightness(1.4);
+  }
+
+`;
