@@ -32,5 +32,13 @@ export const initialState = {
       goalId: {model: "goals", id: "abc123"},
       status: "RESOLVED",
     },
+    aaaa: {
+      id: "aaaa",
+      model: "tickets",
+      label: "Goal for Release 157 Quarter Goal 2",
+      parentId: {model: "releases", id: "abc123"},
+      goalId: {model: "goals", id: "def234"},
+      status: "RESOLVED",
+    },
   },
 };
