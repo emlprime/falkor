@@ -61,5 +61,4 @@ const TextStyle = styled.button`
   :hover {
     filter: brightness(1.4);
   }
-
 `;

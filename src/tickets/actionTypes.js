@@ -1,4 +1,4 @@
-export const ADD = "TICKETS/ADD";
+export const CREATE = "TICKETS/CREATE";
 export const DELETE = "TICKETS/DELETE";
 export const EDIT = "TICKETS/EDIT";
 export const COMPLETE = "TICKETS/COMPLETE";
