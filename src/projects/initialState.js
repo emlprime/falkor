@@ -4,19 +4,19 @@ export const initialState = {
       id: "abc123",
       model: "projects",
       label: "Resources",
-      status: "active",
+      status: "ACTIVE",
     },
     def234: {
       id: "def234",
       model: "projects",
       label: "Dashboards",
-      status: "planned",
+      status: "PLANNED",
     },
     sffds1: {
       id: "sffds1",
       model: "projects",
       label: "Cloud Exchange",
-      status: "resolved",
+      status: "RESOLVED",
     },
   },
 };

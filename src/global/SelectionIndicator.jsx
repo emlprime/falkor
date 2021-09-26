@@ -8,7 +8,7 @@ export function SelectionIndicator({width}) {
       y={0}
       d={d}
       fill="transparent"
-      stroke={colors.selected}
+      stroke={colors.SELECTED}
       strokeWidth={1}
     />
   );

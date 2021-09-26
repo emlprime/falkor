@@ -5,7 +5,7 @@ export const add = ({parentId, label}) => ({
   type: t.ADD,
   payload: {
     id: git.shortSha(),
-    status: "planned",
+    status: "PLANNED",
     scope: "sprints",
     releaseId: parentId,
     label,

@@ -7,7 +7,7 @@ const {map} = R;
 const Goal = ({index}) => {
   return (
     <Article>
-      <Bullet status={index == 2 ? "active" : "deselected"} />
+      <Bullet status={index == 2 ? "ACTIVE" : "DESELECTED"} />
       <div>Goal for Swimlane {index}. Things that we should know.</div>
     </Article>
   );

@@ -18,7 +18,7 @@ export function Button({name, originX, originY}) {
         cx={originX}
         cy={originY}
         r={size}
-        stroke={colors.selected}
+        stroke={colors.SELECTED}
         strokeWidth="1"
         fill="transparent"
       />
@@ -57,7 +57,7 @@ const TextStyle = styled.button`
   align-items: center;
   background-color: transparent;
   border: none;
-  color: ${colors.selected};
+  color: ${colors.SELECTED};
   :hover {
     filter: brightness(1.4);
   }

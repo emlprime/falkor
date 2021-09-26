@@ -47,15 +47,15 @@ export const useSetCurrentAncestryByStatus = curry(
     );
 
     // pre calc one method for each known status
-    const handleClickResolved = deriveHandleClickForStatus(ks.resolved);
-    const handleClickActive = deriveHandleClickForStatus(ks.active);
-    const handleClickPlanned = deriveHandleClickForStatus(ks.planned);
+    const handleClickResolved = deriveHandleClickForStatus(ks.RESOLVED);
+    const handleClickActive = deriveHandleClickForStatus(ks.ACTIVE);
+    const handleClickPlanned = deriveHandleClickForStatus(ks.PLANNED);
 
     // an object that converts the status into a dispatched click handler
     return {
-      [ks.resolved]: handleClickResolved,
-      [ks.active]: handleClickActive,
-      [ks.planned]: handleClickPlanned,
+      [ks.RESOLVED]: handleClickResolved,
+      [ks.ACTIVE]: handleClickActive,
+      [ks.PLANNED]: handleClickPlanned,
     };
   },
 );

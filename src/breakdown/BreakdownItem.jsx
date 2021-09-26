@@ -19,8 +19,8 @@ function Ticket({model, id, originX, originY, offset, width, isCurrent, i}) {
       y={originY + i * 65}
     >
       {isCurrent && <SelectionIndicator width={width + 20} />}
-      <rect x={10} y={10} width={200} height={10} fill={colors.planned} />
-      <rect x={10} y={22} width={200} height={10} fill={colors.active} />
+      <rect x={10} y={10} width={200} height={10} fill={colors.PLANNED} />
+      <rect x={10} y={22} width={200} height={10} fill={colors.ACTIVE} />
       <foreignObject x={10} y={36} width={width} height={60}>
         <span>{label}</span>
       </foreignObject>
@@ -66,7 +66,7 @@ export function BreakdownItem({
           width={width}
           height={60}
         >
-          <AddForm />
+          <AddForm parentId={item} goalId={goal} />
         </foreignObject>
       )}
     </>

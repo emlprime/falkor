@@ -130,7 +130,7 @@ export const chartOptions = {
 
   title: {
     text: "Peter Stradinger 2021",
-    style: {color: colors.selected},
+    style: {color: colors.SELECTED},
   },
 
   credits: {

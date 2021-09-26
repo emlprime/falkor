@@ -1,15 +1,19 @@
 import {List as ListForAncestry} from "./List";
 import {Bracket} from "../global/Bracket";
 import {ProgressChart} from "../global/ProgressChart";
-import {baseProgressRadius, progressWidth} from "../global/constants";
+import {
+  baseProgressRadius,
+  progressWidth,
+  knownStatuses as ks,
+} from "../global/constants";
 // import {Breadcrumb as BreadcrumbReleases} from "../releases/Breadcrumb";
 import {useSetCurrentAncestryByStatus} from "./hooks";
 
 // const {equals} = R;
 const values = [
-  ["resolved", [0, 50]],
-  ["active", [50, 75]],
-  ["planned", [75, 100]],
+  [ks.RESOLVED, [0, 50]],
+  [ks.ACTIVE, [50, 75]],
+  [ks.PLANNED, [75, 100]],
 ];
 
 export const Breadcrumb = ({originX, originY, parentKey}) => {

@@ -19,7 +19,7 @@ function Link({to, children}) {
   const location = useLocation();
   const isSelectedLink = equals(to, location.pathname);
 
-  const linkClass = isSelectedLink ? "selected" : "deselected";
+  const linkClass = isSelectedLink ? "SELECTED" : "DESELECTED";
   return (
     <RouterLink className={linkClass} to={to}>
       {children}

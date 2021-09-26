@@ -22,7 +22,7 @@ export const ListItem = ({itemKey, ancestry}) => {
 };
 
 const calcColor = ({isCurrent}) =>
-  isCurrent ? colors.selected : colors.deselected;
+  isCurrent ? colors.SELECTED : colors.DESELECTED;
 
 const LI = styled.li`
   display: flex;

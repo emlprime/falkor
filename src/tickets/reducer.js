@@ -1,10 +1,12 @@
 import {assocPath} from "ramda";
+import {git} from "faker";
 import * as t from "./actionTypes";
 
 import {initialState} from "./initialState";
 
 const create = (action, state) => {
-  return assocPath(["byId", "foo"], action.payload, state);
+  const id = git.shortSha();
+  return assocPath(["byId", id], {...action.payload, id}, state);
 };
 
 const reducer = (state = initialState, action) => {
