@@ -10,6 +10,7 @@ const mapWithIndex = addIndex(map);
 
 export const ChosenFocus = ({originX, originY}) => {
   const {label, swimlanes} = useChosenFocus();
+  console.log(`swimlanes:`, swimlanes);
 
   const handleClick = value => {
     console.log("Chosen Focusvalue:", value);

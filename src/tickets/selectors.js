@@ -3,7 +3,9 @@ import {createSelector} from "reselect";
 import {NAME} from "./constants";
 
 const {
+  add,
   allPass,
+  always,
   append,
   curry,
   divide,
@@ -24,6 +26,7 @@ const {
   map,
   pipe,
   reduce,
+  when,
   values,
 } = R;
 
@@ -58,17 +61,24 @@ const derivePercent = curry((total, amount) =>
     multiply(100),
   )(amount),
 );
+const maxValue = 99.9;
 const segmentReducer = ({prev, result, byStatus, calcPercent}, status) => {
   const current = pipe(
     propOr([], status),
     length,
     calcPercent,
+    add(prev),
+    when(equals(100), always(maxValue)),
   )(byStatus);
+
+  const hasValue = equals(maxValue, prev);
+  const start = prev;
+  const end = current;
+  console.log(`foo:`, status, start, end, hasValue);
+
   return {
-    prev: equals(100, prev) ? prev : current,
-    result: equals(100, prev)
-      ? result
-      : append([status, [prev, current]], result),
+    prev: hasValue ? prev : current,
+    result: append([status, [start, end]], result),
     byStatus,
     calcPercent,
   };
@@ -84,6 +94,12 @@ const deriveSegments = tickets => {
   )(["RESOLVED", "ACTIVE", "PLANNED"]);
 };
 
+const mockResult = [
+  [["RESOLVED", [0, 99.9]], ["ACTIVE", [0, 0]], ["PLANNED", [0, 0]]],
+  [["RESOLVED", [0, 40]], ["ACTIVE", [40, 60]], ["PLANNED", [60, 100]]],
+  [["RESOLVED", [0, 20]], ["ACTIVE", [20, 60]], ["PLANNED", [60, 100]]],
+  [["RESOLVED", [0, 40]], ["ACTIVE", [40, 60]], ["PLANNED", [60, 100]]],
+];
 export const getSwimlanes = goals =>
   createSelector(
     getAll,
@@ -95,7 +111,9 @@ export const getSwimlanes = goals =>
         values,
         map(deriveSegments),
       )(tickets);
-      // console.log(`result:`, JSON.stringify(result, null, 2), goals);
+      console.log(`result:`, R.toString(result, null, 2));
+
+      console.log(`mockResult:`, R.toString(mockResult, null, 2));
 
       return result;
     },

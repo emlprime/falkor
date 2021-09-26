@@ -22,7 +22,7 @@ export const initialState = {
       label: "Work for 2021Q4",
       parentId: {model: "quarters", id: "def234"},
       goalId: {model: "goals", id: "abc123"},
-      status: "RESOLVED",
+      status: "ACTIVE",
     },
     rewqo1: {
       id: "rewqo1",
@@ -30,7 +30,7 @@ export const initialState = {
       label: "Work for 2022Q1",
       parentId: {model: "quarters", id: "fds343"},
       goalId: {model: "goals", id: "abc123"},
-      status: "RESOLVED",
+      status: "PLANNED",
     },
     aaaa: {
       id: "aaaa",
@@ -46,7 +46,15 @@ export const initialState = {
       label: "Goal for Release 157 Quarter Goal 2 B",
       parentId: {model: "releases", id: "abc123"},
       goalId: {model: "goals", id: "def234"},
-      status: "RESOLVED",
+      status: "ACTIVE",
+    },
+    cccc: {
+      id: "cccc",
+      model: "tickets",
+      label: "Goal for Release 158 Quarter Goal 1",
+      parentId: {model: "releases", id: "def234"},
+      goalId: {model: "goals", id: "def234"},
+      status: "PLANNED",
     },
   },
 };
