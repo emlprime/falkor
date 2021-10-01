@@ -1,6 +1,7 @@
 import * as R from "ramda";
 import {createSelector} from "reselect";
-import {NAME} from "./constants";
+import {makeGetAncestryByDescendents} from "../global/selectors";
+import {NAME, PARENT_KEY} from "./constants";
 
 const {filter, pick, propEq, propOr, pathOr, map, pipe, values} = R;
 
@@ -26,3 +27,7 @@ export const getRecordFor = id =>
     getById,
     byId => propOr({}, id, byId),
   );
+
+export const getAncestryByDescendents = makeGetAncestryByDescendents(
+  PARENT_KEY,
+);

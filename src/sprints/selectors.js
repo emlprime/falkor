@@ -1,8 +1,9 @@
 import * as R from "ramda";
 import {createSelector} from "reselect";
-import {NAME} from "./constants";
+import {makeGetAncestryByDescendents} from "../global/selectors";
+import {NAME, PARENT_KEY} from "./constants";
 
-const {filter, propEq, propOr, prop, pathOr, map, pipe, values} = R;
+const {filter, pick, propEq, propOr, prop, pathOr, map, pipe, values} = R;
 
 export const getAll = state => {
   const {byId} = state[NAME];
@@ -21,8 +22,22 @@ export const getRecordIdsFor = parentId =>
       )(records),
   );
 
+export const getByParentKey = parentKey =>
+  createSelector(
+    getAll,
+    records =>
+      pipe(
+        filter(propEq("releaseId", parentKey)),
+        map(pick(["model", "id"])),
+      )(records),
+  );
+
 export const getRecordFor = id =>
   createSelector(
     getById,
     byId => propOr({}, id, byId),
   );
+
+export const getAncestryByDescendents = makeGetAncestryByDescendents(
+  PARENT_KEY,
+);

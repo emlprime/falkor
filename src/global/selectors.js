@@ -7,8 +7,10 @@ const {
   curry,
   equals,
   filter,
+  prepend,
   find,
   head,
+  isNil,
   includes,
   last,
   map,
@@ -93,3 +95,11 @@ export const getItemsByParent = curry(({model, id}, state) => {
     filterByParent({model, id}),
   )(state);
 });
+
+export const makeGetAncestryByDescendents = curry(
+  (parentKey, descendents) => state => {
+    const {model, id} = head(descendents);
+    const parentId = path([model, "byId", id, parentKey], state);
+    return isNil(parentId) ? descendents : prepend(parentId, descendents);
+  },
+);

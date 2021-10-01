@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setCurrentAncestry, setCurrentGoal} from "./actions";
 import {getItemsByParent} from "../goals/selectors";
 import {knownStatuses as ks} from "./constants";
+import {knownAncestrySelectors as kas} from "./knownAncestrySelectors";
 
 const {append, curry, head, last, pick, pipe, prop} = R;
 
@@ -63,6 +64,19 @@ export const useSetCurrentAncestryByStatus = curry(
 export const useSetCurrentAncestry = ancestry => {
   const dispatch = useDispatch();
   const item = last(ancestry);
+  const goals = useSelector(getItemsByParent(item));
+  const goal = head(goals);
+  return useCallback(() => {
+    dispatch(setCurrentAncestry(ancestry));
+    dispatch(setCurrentGoal(goal));
+  }, [dispatch, ancestry]);
+};
+
+export const useSetCurrentAncestryByItem = item => {
+  const dispatch = useDispatch();
+
+  const ancestrySelector = prop(prop("model", item), kas);
+  const ancestry = useSelector(ancestrySelector([item]));
   const goals = useSelector(getItemsByParent(item));
   const goal = head(goals);
   return useCallback(() => {

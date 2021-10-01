@@ -8,11 +8,14 @@ import {getParentModel} from "./utils";
 const {append, curry, find, map, propEq} = R;
 
 export const List = curry((model, ancestry) => () => {
+  console.log(`ancestry:`, R.toString(ancestry));
   const parentModel = getParentModel(model);
+  console.log(`parentModel:`, parentModel);
   const currentAncestorAtModel = useMemo(
     () => find(propEq("model", parentModel), ancestry),
     [model, ancestry],
   );
+  console.log(`currentAncestorAtModel:`, currentAncestorAtModel);
 
   const items = useSelector(getItemsByParent(currentAncestorAtModel));
 

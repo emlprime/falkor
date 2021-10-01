@@ -1,3 +1,4 @@
+import {useSelector} from "react-redux";
 import {List as ListForAncestry} from "./List";
 import {Bracket} from "../global/Bracket";
 import {ProgressChart} from "../global/ProgressChart";
@@ -6,6 +7,7 @@ import {
   progressWidth,
   knownStatuses as ks,
 } from "../global/constants";
+import {knownAncestrySelectors as kas} from "../global/knownAncestrySelectors";
 // import {Breadcrumb as BreadcrumbReleases} from "../releases/Breadcrumb";
 import {useSetCurrentAncestryByStatus} from "./hooks";
 
@@ -17,7 +19,9 @@ const values = [
 ];
 
 export const Breadcrumb = ({originX, originY, parentKey}) => {
-  const ancestry = [parentKey];
+    console.log(`parentKey:`, parentKey)
+  const ancestry = useSelector(kas.quarters([parentKey]));
+  console.log(`ancestry:`, ancestry);
   const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 
   const bracketConfig = {
