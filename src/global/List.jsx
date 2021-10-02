@@ -16,21 +16,6 @@ export const List = curry((model, ancestry) => () => {
 
   const items = useSelector(getItemsByParent(currentAncestorAtModel));
 
-  console.log(
-    `context:`,
-    JSON.stringify(
-      {
-        ancestry: ancestry,
-        parentModel,
-        model,
-        currentAncestorAtModel,
-        items,
-      },
-      null,
-      2,
-    ),
-  );
-
   return (
     <ul>
       {map(({model, id}) => {

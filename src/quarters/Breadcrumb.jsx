@@ -19,9 +19,7 @@ const values = [
 ];
 
 export const Breadcrumb = ({originX, originY, parentKey}) => {
-  console.log(`parentKey:`, parentKey);
   const ancestry = useSelector(getAncestryByDescendents([parentKey]));
-  console.log(`ancestry:`, ancestry);
   const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 
   const bracketConfig = {

@@ -103,22 +103,21 @@ export const getAncestryByDescendents = curry((descendents, state) => {
   const ancestry = isNil(parentId)
     ? descendents
     : prepend(parentId, descendents);
+
   return equals("projects", model)
     ? ancestry
-    : getAncestryByDescendents(ancestry);
+    : getAncestryByDescendents(ancestry, state);
 });
 
 export const getByParentId = curry((getRecords, parentId) =>
   createSelector(
     getRecords,
-    records => {
-      const result = pipe(
+    records => 
+       pipe(
         filter(propEq("parentId", parentId)),
         map(pick(["model", "id"])),
-      )(records);
-      console.log(`records:`, {records, parentId, result});
+      )(records)
 
-      return result;
-    },
+
   ),
 );

@@ -5,7 +5,6 @@ import {NAME} from "./constants";
 const {filter, propEq, propOr, prop, pathOr, map, pipe, values} = R;
 
 export const getAll = state => {
-  console.log("state:", state);
   const {byId} = state[NAME];
   return values(byId);
 };

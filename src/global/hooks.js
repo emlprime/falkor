@@ -32,12 +32,6 @@ export const useSetCurrentAncestryByStatus = curry(
   (getAllForModel, getGroupedByStatus, ancestry) => {
     const parentId = head(ancestry);
     const items = useSelector(getByParentId(getAllForModel, parentId));
-    console.log(`useSetCurrentAncestryByStatus context:`, {
-      parentId,
-      items,
-      getGroupedByStatus,
-      ancestry,
-    });
     const itemsByStatus = useSelector(getGroupedByStatus(items));
 
     // curry method to get the first item of a given status for this model
@@ -82,7 +76,7 @@ export const useSetCurrentAncestryByItem = item => {
   const dispatch = useDispatch();
 
   const ancestry = useSelector(getAncestryByDescendents([item]));
-  console.log(`ancestry:`, R.toString(ancestry));
+
   const goals = useSelector(getItemsByParent(item));
   const goal = head(goals);
   return useCallback(() => {
