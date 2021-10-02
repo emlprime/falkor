@@ -1,51 +1,53 @@
-import * as R from "ramda";
+import {last} from "ramda";
 import {NAME} from "./constants";
 import {useSelector} from "react-redux";
-import {ProgressChart} from "../global/ProgressChart";
+import {List as ListForAncestry} from "./List";
 import {Bracket} from "../global/Bracket";
-import {Breadcrumb as BreadcrumbGoals} from "../goals/Breadcrumb";
-import {List} from "./List";
+import {ProgressChart} from "../global/ProgressChart";
 import {baseProgressRadius, progressWidth, ringGap} from "../global/constants";
-import {useSetCurrentItemByModel} from "../global/hooks";
-import {getCurrentModel} from "../global/selectors";
-
-const {equals} = R;
+import {getCurrentAncestry, getIsTerminus} from "../global/selectors";
+import {clipAncestry} from "../global/utils";
+import {useSetCurrentAncestryByStatus} from "./hooks";
+// import {Breadcrumb as BreadcrumbDays} from "../days/Breadcrumb";
 
 const values = [
   ["resolved", [0, 50]],
-  ["active", [50, 53]],
-  ["planned", [53, 56.25]],
+  ["active", [50, 56.26]],
+  ["planned", [56.25, 75]],
 ];
 
 export const Breadcrumb = ({originX, originY}) => {
-  const handleClick = useSetCurrentItemByModel("sprints");
-
-  const currentModel = useSelector(getCurrentModel);
-  const isCurrentModel = equals(NAME, currentModel);
+  const currentAncestry = useSelector(getCurrentAncestry);
+  const ancestry = clipAncestry(NAME, currentAncestry);
+  const parentId = last(ancestry);
+  const isTerminus = useSelector(getIsTerminus(parentId));
+  console.log(`isTerminus:`, isTerminus);
+  const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 
   const bracketConfig = {
-    Component: List,
-    originX: originX + 3.7 * ringGap,
-    originY: originY + baseProgressRadius + 4 * ringGap,
-    breakoffHeight: -40,
-    breakoffWidth: 60,
-    breakoffSplit: 50,
-    bottomAngleHeight: 100,
+    originX: originX + baseProgressRadius + progressWidth + ringGap * 1.2,
+    originY: 300,
+    breakoffHeight: 10,
+    breakoffWidth: 20,
+    breakoffSplit: 120,
+    bottomAngleHeight: 135,
   };
+  const List = ListForAncestry(ancestry);
+
   return (
     <>
-      {!isCurrentModel && (
-        <BreadcrumbGoals originX={originX} originY={originY} />
-      )}
       <ProgressChart
         originX={originX}
         originY={originY}
-        radius={baseProgressRadius + 4 * ringGap}
+        radius={baseProgressRadius + 2 * ringGap}
         values={values}
-        handleClick={handleClick}
+        handleClick={handleClickByStatus}
         width={progressWidth}
       />
-      <Bracket {...bracketConfig} />
+      <Bracket {...bracketConfig}>
+        <List ancestry={ancestry} />
+      </Bracket>
     </>
   );
 };
+      // {!isTerminus && <BreadcrumbSprints originX={originX} originY={originY} />}

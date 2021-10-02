@@ -64,6 +64,16 @@ export const getIsCurrent = itemKey =>
     currentAncestry => includes(itemKey, currentAncestry),
   );
 
+export const getIsTerminus = itemKey =>
+  createSelector(
+    getCurrentAncestry,
+    currentAncestry =>
+      pipe(
+        last,
+        equals(itemKey),
+      )(currentAncestry),
+  );
+
 export const getIsCurrentGoal = itemKey =>
   createSelector(
     getCurrentGoal,
@@ -112,12 +122,10 @@ export const getAncestryByDescendents = curry((descendents, state) => {
 export const getByParentId = curry((getRecords, parentId) =>
   createSelector(
     getRecords,
-    records => 
-       pipe(
+    records =>
+      pipe(
         filter(propEq("parentId", parentId)),
         map(pick(["model", "id"])),
-      )(records)
-
-
+      )(records),
   ),
 );

@@ -1,15 +1,14 @@
-import * as R from "ramda";
+import {last} from "ramda";
 import {NAME} from "./constants";
 import {useSelector} from "react-redux";
-import {ProgressChart} from "../global/ProgressChart";
+import {List as ListForAncestry} from "./List";
 import {Bracket} from "../global/Bracket";
-import {Breadcrumb as BreadcrumbSprints} from "../sprints/Breadcrumb";
-import {List} from "./List";
+import {ProgressChart} from "../global/ProgressChart";
 import {baseProgressRadius, progressWidth, ringGap} from "../global/constants";
-import {useSetCurrentItemByModel} from "../global/hooks";
-import {getCurrentModel} from "../global/selectors";
-
-const {equals} = R;
+import {getCurrentAncestry, getIsTerminus} from "../global/selectors";
+import {clipAncestry} from "../global/utils";
+import {useSetCurrentAncestryByStatus} from "./hooks";
+import {Breadcrumb as BreadcrumbSprints} from "../sprints/Breadcrumb";
 
 const values = [
   ["resolved", [0, 50]],
@@ -18,13 +17,14 @@ const values = [
 ];
 
 export const Breadcrumb = ({originX, originY}) => {
-  const handleClick = useSetCurrentItemByModel("releases");
-
-  const currentModel = useSelector(getCurrentModel);
-  const isCurrentModel = equals(NAME, currentModel);
+  const currentAncestry = useSelector(getCurrentAncestry);
+  const ancestry = clipAncestry(NAME, currentAncestry);
+  const parentId = last(ancestry);
+  const isTerminus = useSelector(getIsTerminus(parentId));
+    console.log(`isTerminus:`, isTerminus)
+  const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 
   const bracketConfig = {
-    Component: List,
     originX: originX + baseProgressRadius + progressWidth + ringGap * 1.2,
     originY: 300,
     breakoffHeight: 10,
@@ -32,21 +32,22 @@ export const Breadcrumb = ({originX, originY}) => {
     breakoffSplit: 120,
     bottomAngleHeight: 135,
   };
+  const List = ListForAncestry(ancestry);
+
   return (
     <>
-      {!isCurrentModel && (
-        <BreadcrumbSprints originX={originX} originY={originY} />
-      )}
       <ProgressChart
-        key="breadcrumb_goals"
         originX={originX}
         originY={originY}
         radius={baseProgressRadius + 2 * ringGap}
         values={values}
-        handleClick={handleClick}
+        handleClick={handleClickByStatus}
         width={progressWidth}
       />
-      <Bracket {...bracketConfig} />
+      <Bracket {...bracketConfig}>
+        <List ancestry={ancestry} />
+      </Bracket>
+      {!isTerminus && <BreadcrumbSprints originX={originX} originY={originY} />}
     </>
   );
 };
