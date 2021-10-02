@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {setCurrentAncestry, setCurrentGoal} from "./actions";
 import {getItemsByParent} from "../goals/selectors";
 import {knownStatuses as ks} from "./constants";
-import {getAncestryByDescendents} from "./selectors";
+import {getAncestryByDescendents, getByParentId} from "./selectors";
 
 const {append, curry, head, last, pick, pipe, prop} = R;
 
@@ -29,9 +29,15 @@ const useHandleClickStatus = curry(
 );
 
 export const useSetCurrentAncestryByStatus = curry(
-  (getByParentKey, getGroupedByStatus, ancestry) => {
-    const parentKey = head(ancestry);
-    const items = useSelector(getByParentKey(parentKey));
+  (getAllForModel, getGroupedByStatus, ancestry) => {
+    const parentId = head(ancestry);
+    const items = useSelector(getByParentId(getAllForModel, parentId));
+    console.log(`useSetCurrentAncestryByStatus context:`, {
+      parentId,
+      items,
+      getGroupedByStatus,
+      ancestry,
+    });
     const itemsByStatus = useSelector(getGroupedByStatus(items));
 
     // curry method to get the first item of a given status for this model

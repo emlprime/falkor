@@ -107,3 +107,18 @@ export const getAncestryByDescendents = curry((descendents, state) => {
     ? ancestry
     : getAncestryByDescendents(ancestry);
 });
+
+export const getByParentId = curry((getRecords, parentId) =>
+  createSelector(
+    getRecords,
+    records => {
+      const result = pipe(
+        filter(propEq("parentId", parentId)),
+        map(pick(["model", "id"])),
+      )(records);
+      console.log(`records:`, {records, parentId, result});
+
+      return result;
+    },
+  ),
+);

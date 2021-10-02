@@ -1,27 +1,34 @@
-import * as R from "ramda";
+import {prop} from "ramda";
 import {useSelector} from "react-redux";
-import {getCurrentItem, getCurrentGoal, getByItem} from "../global/selectors";
-import {getByParentKey as getQuartersByParentKey} from "../quarters/selectors";
-import {getByParentKey as getReleasesByParentKey} from "../releases/selectors";
-import {getByParentKey as getSprintsByParentKey} from "../sprints/selectors";
+import {
+  getCurrentItem,
+  getCurrentGoal,
+  getByItem,
+  getByParentId,
+} from "../global/selectors";
+import {getChildModel} from "../global/utils";
+import {getAll as getAllProjects} from "../projects/selectors";
+import {getAll as getAllQuarters} from "../quarters/selectors";
+import {getAll as getAllReleases} from "../releases/selectors";
 import {getItemsByParent} from "../goals/selectors";
 import {getSwimlanes} from "../tickets/selectors";
 
-const {prop} = R;
-
-const selectorsByModel = {
-  projects: getQuartersByParentKey,
-  quarters: getReleasesByParentKey,
-  releases: getSprintsByParentKey,
+const modelGetAllSelectors = {
+  projects: getAllProjects,
+  quarters: getAllQuarters,
+  releases: getAllReleases,
 };
 
 export const useChosenFocus = () => {
   const item = useSelector(getCurrentItem);
-  const {model} = item;
+    const {model} = item;
+    const childModel = getChildModel(model)
 
   const goal = useSelector(getCurrentGoal);
-  const childrenSelector = prop(model, selectorsByModel);
-  const columns = useSelector(childrenSelector(item));
+  const getAllSelector = prop(childModel, modelGetAllSelectors);
+
+  const childrenSelector = getByParentId(getAllSelector, item);
+  const columns = useSelector(childrenSelector);
 
   const {label} = useSelector(getByItem(item));
 
