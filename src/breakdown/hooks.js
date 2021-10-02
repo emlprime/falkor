@@ -10,6 +10,8 @@ import {getChildModel} from "../global/utils";
 import {getAll as getAllProjects} from "../projects/selectors";
 import {getAll as getAllQuarters} from "../quarters/selectors";
 import {getAll as getAllReleases} from "../releases/selectors";
+import {getAll as getAllSprints} from "../sprints/selectors";
+import {getAll as getAllDays} from "../days/selectors";
 import {getItemsByParent} from "../goals/selectors";
 import {getSwimlanes} from "../tickets/selectors";
 
@@ -17,12 +19,14 @@ const modelGetAllSelectors = {
   projects: getAllProjects,
   quarters: getAllQuarters,
   releases: getAllReleases,
+  sprints: getAllSprints,
+  days: getAllDays,
 };
 
 export const useChosenFocus = () => {
   const item = useSelector(getCurrentItem);
-    const {model} = item;
-    const childModel = getChildModel(model)
+  const {model} = item;
+  const childModel = getChildModel(model);
 
   const goal = useSelector(getCurrentGoal);
   const getAllSelector = prop(childModel, modelGetAllSelectors);
