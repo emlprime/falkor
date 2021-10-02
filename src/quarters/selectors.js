@@ -1,7 +1,6 @@
 import * as R from "ramda";
 import {createSelector} from "reselect";
-import {makeGetAncestryByDescendents} from "../global/selectors";
-import {NAME, PARENT_KEY} from "./constants";
+import {NAME} from "./constants";
 
 const {
   filter,
@@ -48,7 +47,3 @@ export const getGroupedByStatus = items =>
         groupBy(prop("status")),
       )(items),
   );
-
-export const getAncestryByDescendents = makeGetAncestryByDescendents(
-  PARENT_KEY,
-);

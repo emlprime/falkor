@@ -7,7 +7,7 @@ import {
   progressWidth,
   knownStatuses as ks,
 } from "../global/constants";
-import {knownAncestrySelectors as kas} from "../global/knownAncestrySelectors";
+import {getAncestryByDescendents} from "../global/selectors";
 // import {Breadcrumb as BreadcrumbReleases} from "../releases/Breadcrumb";
 import {useSetCurrentAncestryByStatus} from "./hooks";
 
@@ -19,8 +19,8 @@ const values = [
 ];
 
 export const Breadcrumb = ({originX, originY, parentKey}) => {
-    console.log(`parentKey:`, parentKey)
-  const ancestry = useSelector(kas.quarters([parentKey]));
+  console.log(`parentKey:`, parentKey);
+  const ancestry = useSelector(getAncestryByDescendents([parentKey]));
   console.log(`ancestry:`, ancestry);
   const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 

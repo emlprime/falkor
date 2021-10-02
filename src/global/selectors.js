@@ -83,7 +83,7 @@ const getRecordsByModel = curry((model, state) =>
 
 const filterByParent = curry((parentId, records) =>
   pipe(
-    filter(propEq("projectId", parentId)),
+    filter(propEq("parentId", parentId)),
     map(pick(["model", "id"])),
   )(records),
 );
@@ -96,10 +96,14 @@ export const getItemsByParent = curry(({model, id}, state) => {
   )(state);
 });
 
-export const makeGetAncestryByDescendents = curry(
-  (parentKey, descendents) => state => {
-    const {model, id} = head(descendents);
-    const parentId = path([model, "byId", id, parentKey], state);
-    return isNil(parentId) ? descendents : prepend(parentId, descendents);
-  },
-);
+export const getAncestryByDescendents = curry((descendents, state) => {
+  const {model, id} = head(descendents);
+  const parentId = path([model, "byId", id, "parentId"], state);
+
+  const ancestry = isNil(parentId)
+    ? descendents
+    : prepend(parentId, descendents);
+  return equals("projects", model)
+    ? ancestry
+    : getAncestryByDescendents(ancestry);
+});
