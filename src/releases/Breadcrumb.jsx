@@ -4,16 +4,21 @@ import {useSelector} from "react-redux";
 import {List as ListForAncestry} from "./List";
 import {Bracket} from "../global/Bracket";
 import {ProgressChart} from "../global/ProgressChart";
-import {baseProgressRadius, progressWidth, ringGap} from "../global/constants";
+import {
+  baseProgressRadius,
+  progressWidth,
+  ringGap,
+  knownStatuses as ks,
+} from "../global/constants";
 import {getCurrentAncestry, getIsTerminus} from "../global/selectors";
 import {clipAncestry} from "../global/utils";
 import {useSetCurrentAncestryByStatus} from "./hooks";
 import {Breadcrumb as BreadcrumbSprints} from "../sprints/Breadcrumb";
 
 const values = [
-  ["resolved", [0, 50]],
-  ["active", [50, 56.26]],
-  ["planned", [56.25, 75]],
+  [ks.RESOLVED, [0, 50]],
+  [ks.ACTIVE, [50, 56.26]],
+  [ks.PLANNED, [56.25, 75]],
 ];
 
 export const Breadcrumb = ({originX, originY}) => {
@@ -21,7 +26,7 @@ export const Breadcrumb = ({originX, originY}) => {
   const ancestry = clipAncestry(NAME, currentAncestry);
   const parentId = last(ancestry);
   const isTerminus = useSelector(getIsTerminus(parentId));
-    console.log(`isTerminus:`, isTerminus)
+
   const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 
   const bracketConfig = {

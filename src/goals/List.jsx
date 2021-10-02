@@ -12,8 +12,8 @@ export const List = () => {
 
   return (
     <ul>
-      {map(id => {
-        return <ListItem key={id} model="goals" itemKey={id} />;
+      {map(({model, id}) => {
+        return <ListItem key={`${model}_${id}`} model="goals" itemKey={id} />;
       }, items)}
     </ul>
   );

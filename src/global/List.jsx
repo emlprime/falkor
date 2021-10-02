@@ -22,7 +22,7 @@ export const List = curry((model, ancestry) => () => {
         const itemKey = {model, id};
         return (
           <ListItem
-            key={id}
+            key={`${model}:${id}`}
             itemKey={itemKey}
             ancestry={append(itemKey, ancestry)}
           />
