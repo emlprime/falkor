@@ -4,16 +4,21 @@ import {useSelector} from "react-redux";
 import {List as ListForAncestry} from "./List";
 import {Bracket} from "../global/Bracket";
 import {ProgressChart} from "../global/ProgressChart";
-import {baseProgressRadius, progressWidth, ringGap} from "../global/constants";
+import {
+  baseProgressRadius,
+  progressWidth,
+  ringGap,
+  knownStatuses as ks,
+} from "../global/constants";
 import {getCurrentAncestry, getIsTerminus} from "../global/selectors";
 import {clipAncestry} from "../global/utils";
 import {useSetCurrentAncestryByStatus} from "./hooks";
 import {Breadcrumb as BreadcrumbDays} from "../days/Breadcrumb";
 
 const values = [
-  ["resolved", [0, 50]],
-  ["active", [50, 56.26]],
-  ["planned", [56.25, 75]],
+  [ks.RESOLVED, [0, 50]],
+  [ks.ACTIVE, [50, 53]],
+  [ks.PLANNED, [53, 56.25]],
 ];
 
 export const Breadcrumb = ({originX, originY}) => {
@@ -25,12 +30,12 @@ export const Breadcrumb = ({originX, originY}) => {
   const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 
   const bracketConfig = {
-    originX: originX + baseProgressRadius + progressWidth + ringGap * 1.2,
-    originY: 300,
-    breakoffHeight: 10,
-    breakoffWidth: 20,
-    breakoffSplit: 120,
-    bottomAngleHeight: 135,
+    originX: originX + 3.7 + ringGap + 13,
+    originY: 300 + baseProgressRadius + 4 * ringGap + 13,
+    breakoffHeight: 20,
+    breakoffWidth: 130,
+    breakoffSplit: 50,
+    bottomAngleHeight: 100,
   };
   const List = ListForAncestry(ancestry);
 
@@ -39,7 +44,7 @@ export const Breadcrumb = ({originX, originY}) => {
       <ProgressChart
         originX={originX}
         originY={originY}
-        radius={baseProgressRadius + 2 * ringGap}
+        radius={baseProgressRadius + 4 * ringGap}
         values={values}
         handleClick={handleClickByStatus}
         width={progressWidth}

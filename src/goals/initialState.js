@@ -49,5 +49,12 @@ export const initialState = {
       parentId: {model: "sprints", id: "abc123"},
       status: "RESOLVED",
     },
+    mmkkjj: {
+      id: "mmkkjj",
+      model: "goals",
+      label: "Day Goal 1",
+      parentId: {model: "days", id: "abc123"},
+      status: "RESOLVED",
+    },
   },
 };

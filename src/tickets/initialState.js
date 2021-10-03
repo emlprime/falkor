@@ -78,5 +78,19 @@ export const initialState = {
       label: "bar",
       status: "ACTIVE",
     },
+    ddddda: {
+      id: "ddddda",
+      model: "tickets",
+      parentId: {
+        model: "days",
+        id: "abc123",
+      },
+      goalId: {
+        model: "goals",
+        id: "rrrrrr",
+      },
+      label: "Do the day",
+      status: "ACTIVE",
+    },
   },
 };
