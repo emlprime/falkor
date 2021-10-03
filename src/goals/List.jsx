@@ -13,7 +13,13 @@ export const List = () => {
   return (
     <ul>
       {map(({model, id}) => {
-        return <ListItem key={`${model}_${id}`} model="goals" itemKey={id} />;
+        return (
+          <ListItem
+            key={`${model}_${id}`}
+            model="goals"
+            itemKey={{model, id}}
+          />
+        );
       }, items)}
     </ul>
   );

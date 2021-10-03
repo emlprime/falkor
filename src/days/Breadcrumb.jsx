@@ -1,14 +1,12 @@
-import {last} from "ramda";
 import {NAME} from "./constants";
 import {useSelector} from "react-redux";
 import {List as ListForAncestry} from "./List";
 import {Bracket} from "../global/Bracket";
 import {ProgressChart} from "../global/ProgressChart";
 import {baseProgressRadius, progressWidth, ringGap} from "../global/constants";
-import {getCurrentAncestry, getIsTerminus} from "../global/selectors";
+import {getCurrentAncestry} from "../global/selectors";
 import {clipAncestry} from "../global/utils";
 import {useSetCurrentAncestryByStatus} from "./hooks";
-import {Breadcrumb as BreadcrumbDays} from "../days/Breadcrumb";
 
 const values = [
   ["resolved", [0, 50]],
@@ -19,8 +17,6 @@ const values = [
 export const Breadcrumb = ({originX, originY}) => {
   const currentAncestry = useSelector(getCurrentAncestry);
   const ancestry = clipAncestry(NAME, currentAncestry);
-  const parentId = last(ancestry);
-  const isTerminus = useSelector(getIsTerminus(parentId));
 
   const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 
@@ -47,7 +43,6 @@ export const Breadcrumb = ({originX, originY}) => {
       <Bracket {...bracketConfig}>
         <List ancestry={ancestry} />
       </Bracket>
-      {!isTerminus && <BreadcrumbDays originX={originX} originY={originY} />}
     </>
   );
 };

@@ -10,7 +10,6 @@ export const ProgressChart = ({
   values: statuses,
   ...rest
 }) => {
-  console.log(`statuses:`, JSON.stringify({statuses, radius, rest}));
   return map(([status, [startPercent, endPercent]]) => {
     return (
       <ArcNemesis
