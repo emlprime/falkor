@@ -56,5 +56,27 @@ export const initialState = {
       goalId: {model: "goals", id: "def234"},
       status: "PLANNED",
     },
+    ttttt: {
+      id: "ttttt",
+      model: "tickets",
+      label: "Work for sprint 158:week1 Goal 1",
+      parentId: {model: "sprints", id: "abc123"},
+      goalId: {model: "goals", id: "poiu23"},
+      status: "RESOLVED",
+    },
+    ppppp: {
+      id: "ppppp",
+      model: "tickets",
+      parentId: {
+        model: "sprints",
+        id: "def234",
+      },
+      goalId: {
+        model: "goals",
+        id: "poiu23",
+      },
+      label: "bar",
+      status: "ACTIVE",
+    },
   },
 };

@@ -42,5 +42,12 @@ export const initialState = {
       parentId: {model: "releases", id: "abc123"},
       status: "ACTIVE",
     },
+    rrrrrr: {
+      id: "rrrrrr",
+      model: "goals",
+      label: "Sprint Goal 1",
+      parentId: {model: "sprints", id: "abc123"},
+      status: "RESOLVED",
+    },
   },
 };
