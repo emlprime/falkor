@@ -1,4 +1,4 @@
-export const ADD = "GOALS/ADD";
+export const CREATE = "GOALS/CREATE";
 export const DELETE = "GOALS/DELETE";
 export const EDIT = "GOALS/EDIT";
 export const COMPLETE = "GOALS/COMPLETE";

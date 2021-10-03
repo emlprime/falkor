@@ -2,13 +2,14 @@ import * as R from "ramda";
 import {useSelector} from "react-redux";
 import {getCurrentItem} from "../global/selectors";
 import {getItemsByParent} from "./selectors";
+import {AddForm} from "./AddForm";
 import {ListItem} from "./ListItem";
 
 const {map} = R;
 
 export const List = () => {
-  const parentItem = useSelector(getCurrentItem);
-  const items = useSelector(getItemsByParent(parentItem));
+  const parentId = useSelector(getCurrentItem);
+  const items = useSelector(getItemsByParent(parentId));
 
   return (
     <ul>
@@ -21,6 +22,9 @@ export const List = () => {
           />
         );
       }, items)}
+      <li>
+        <AddForm parentId={parentId} />
+      </li>
     </ul>
   );
 };
