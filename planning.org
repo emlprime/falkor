@@ -42,22 +42,22 @@ Milestones indicate their status as TODO (Planned), DOING (Active), or DONE (Dem
 h1. TACTICS:
 * DONE Create a page in Sketch that demonstrates the Projects page.
 * DONE Symbolize the elements of the Projects page.
-* Make breakdown dynamic
+* DONE Make breakdown dynamic
 ** DONE Unnest the list of ids
 ** DONE Add a form if the number of items is less than the max
 ** TODO Make the form appear in the correct position
 ** Refactor the hook to be more generic
 ** Refactor the action creator to be more generic
 ** Refactor the reducer to be more generic
-* Make burndown dynamic
-* Create a reducer for add Release
+* TODO Make burndown dynamic
+* TODO Create a reducer for add Release
 * Create an action creator for add release
 * Create an SVG button that dispatches an add release action
 * Display the add Release SVG button at the first empty release position
 * Reduce burndown data from the status of the items and the current scope
 * Animate the paths for the breadcrumb
-* Decide what gets shown when you click on the Release list items
-* Decide what gets shown when you click the breadcrumb level/status
+* DONE Decide what gets shown when you click on the Release list items
+* DONE Decide what gets shown when you click the breadcrumb level/status
 * Create a reducer for "Delay Demo Date"
 * Create a hopper for carryover work
 * Create docked configurations when navigation elements move to the sides

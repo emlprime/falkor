@@ -12,6 +12,7 @@ export const Breadcrumb = ({originX, originY}) => {
   const height = 40;
   return (
     <g>
+      <BreadcrumbQuarter originX={originX} originY={originY} parentId={item} />
       <foreignObject
         x={originX - width / 2}
         y={originY - height / 2}
@@ -22,7 +23,6 @@ export const Breadcrumb = ({originX, originY}) => {
           <h1>{label}</h1>
         </ButtonText>
       </foreignObject>
-      <BreadcrumbQuarter originX={originX} originY={originY} parentId={item} />
     </g>
   );
 };

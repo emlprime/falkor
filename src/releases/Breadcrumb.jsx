@@ -41,6 +41,7 @@ export const Breadcrumb = ({originX, originY}) => {
 
   return (
     <>
+      {!isTerminus && <BreadcrumbSprints originX={originX} originY={originY} />}
       <ProgressChart
         originX={originX}
         originY={originY}
@@ -52,7 +53,6 @@ export const Breadcrumb = ({originX, originY}) => {
       <Bracket {...bracketConfig}>
         <List ancestry={ancestry} />
       </Bracket>
-      {!isTerminus && <BreadcrumbSprints originX={originX} originY={originY} />}
     </>
   );
 };
