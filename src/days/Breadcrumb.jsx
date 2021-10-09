@@ -42,7 +42,7 @@ export const Breadcrumb = ({originX, originY}) => {
         originY={originY}
         radius={baseProgressRadius + 6 * ringGap}
         values={values}
-        handleClick={handleClickByStatus}
+        handleClickByStatus={handleClickByStatus}
         width={progressWidth}
       />
       <Bracket {...bracketConfig}>

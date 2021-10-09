@@ -1,4 +1,4 @@
-import {prop} from "ramda";
+import {propOr} from "ramda";
 import {useSelector} from "react-redux";
 import {
   getCurrentItem,
@@ -29,7 +29,7 @@ export const useChosenFocus = () => {
   const childModel = getChildModel(model);
 
   const goal = useSelector(getCurrentGoal);
-  const getAllSelector = prop(childModel, modelGetAllSelectors);
+  const getAllSelector = propOr(() => [], childModel, modelGetAllSelectors);
 
   const childrenSelector = getByParentId(getAllSelector, item);
   const columns = useSelector(childrenSelector);

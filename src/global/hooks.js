@@ -29,14 +29,10 @@ const useHandleClickStatus = curry(
 );
 
 export const useSetCurrentAncestryByStatus = curry(
-    (getAllForModel, getGroupedByStatus, ancestry) => {
-        // PDS todo
-      // this can't be head for all levels
-      // do a find for the parent model
-      const parentId = head(ancestry);
+  (getAllForModel, getGroupedByStatus, ancestry) => {
+    const parentId = last(ancestry);
     const items = useSelector(getByParentId(getAllForModel, parentId));
     const itemsByStatus = useSelector(getGroupedByStatus(items));
-    console.log(`itemsByStatus:`, itemsByStatus, items, parentId);
 
     // curry method to get the first item of a given status for this model
     const deriveSetCurrentByStatus = deriveFirstItemOfStatus(

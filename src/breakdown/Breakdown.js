@@ -29,7 +29,7 @@ const deriveBreakdownHeaders = (model, columns, originX, originY) => {
     {offset: 0, result: []},
     columns,
   );
-    console.log(`reduced:`, reduced)
+
   return prop("result", reduced);
 };
 

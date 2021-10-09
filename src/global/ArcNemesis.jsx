@@ -50,8 +50,6 @@ export const ArcNemesis = ({
   const handleClick = useMemo(() => prop(status, handleClickByStatus), []);
 
   const onClick = useCallback(() => {
-    console.log("click", {status, handleClick, handleClickByStatus});
-    console.log(`handleClick:`, handleClick);
     handleClick(status);
   }, [handleClick]);
 

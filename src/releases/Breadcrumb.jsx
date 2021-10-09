@@ -28,7 +28,6 @@ export const Breadcrumb = ({originX, originY}) => {
   const isTerminus = useSelector(getIsTerminus(parentId));
 
   const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
-  console.log(`release handleClickByStatus:`, handleClickByStatus);
 
   const bracketConfig = {
     originX: originX + baseProgressRadius + progressWidth + ringGap * 1.2,
