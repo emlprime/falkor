@@ -1,6 +1,7 @@
-export const ADD = "todos/ADD";
-export const DELETE = "todos/DELETE";
-export const EDIT = "todos/EDIT";
-export const COMPLETE = "todos/COMPLETE";
-export const COMPLETE_ALL = "todos/COMPLETE_ALL";
-export const CLEAR_COMPLETED = "todos/CLEAR_COMPLETED";
+export const ADD = "projects/ADD";
+export const LOAD_DATA = "projects/LOAD_DATA";
+export const DELETE = "projects/DELETE";
+export const EDIT = "projects/EDIT";
+export const COMPLETE = "projects/COMPLETE";
+export const COMPLETE_ALL = "projects/COMPLETE_ALL";
+export const CLEAR_COMPLETED = "projects/CLEAR_COMPLETED";

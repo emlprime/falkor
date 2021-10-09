@@ -1,5 +1,6 @@
 import * as R from "ramda";
 import {useRef} from "react";
+import {QueryClient, QueryClientProvider} from "react-query";
 import {useLocation} from "react-router-dom";
 import useSize from "@react-hook/size";
 import styled from "styled-components";
@@ -28,6 +29,7 @@ function Link({to, children}) {
 }
 
 function App() {
+  const queryClient = new QueryClient();
   const target = useRef(null);
   const [width, height] = useSize(target);
 
@@ -44,14 +46,17 @@ function App() {
             </li>
           </ul>
         </nav>
-        <Switch>
-          <Route path="/falkor">
-            <Project width={width} height={height} />
-          </Route>
-          <Route path="/budget">
-            <Budget />
-          </Route>
-        </Switch>
+        <QueryClientProvider client={queryClient}>
+
+          <Switch>
+            <Route path="/falkor">
+              <Project width={width} height={height} />
+            </Route>
+            <Route path="/budget">
+              <Budget />
+            </Route>
+          </Switch>
+        </QueryClientProvider>
       </Main>
     </Router>
   );

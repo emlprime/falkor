@@ -1,17 +1,32 @@
-import React from "react";
+import React, {useEffect} from "react";
+import {equals} from "ramda";
+import {useDispatch} from "react-redux";
+import {useQuery} from "react-query";
 import styled from "styled-components";
 import {Roster} from "./members/Roster";
 import {Breadcrumb} from "./global/Breadcrumb";
 import {ChosenFocus} from "./breakdown/ChosenFocus";
 import {Breakdown} from "./breakdown/Breakdown";
 import {List as GoalList} from "./goals/List";
+import {actions} from "./projects/actions";
 // import {CurrentActions} from "./breakdown/CurrentActions";
 // import {BurndownChart} from "./breakdown/BurndownChart";
 import {Yggdrasil} from "./global/Yggdrasil";
 
+const fetchAllProjects = async () =>
+  await (await fetch("http://localhost:5000/projects")).json();
+
 export const Project = ({width, height}) => {
+  const dispatch = useDispatch();
   const viewBox = `0 0 ${width} ${height}`;
 
+  const {data, status} = useQuery("projects", fetchAllProjects);
+
+  useEffect(() => {
+    if (equals("success", status)) {
+      dispatch(actions.loadData(data));
+    }
+  }, [data]);
   return (
     <Section>
       <svg
