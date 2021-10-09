@@ -1,4 +1,4 @@
-import {useCallback} from "react";
+import {useCallback, useMemo} from "react";
 import * as R from "ramda";
 import {colors} from "./constants";
 import styled from "styled-components";
@@ -45,11 +45,16 @@ export const ArcNemesis = ({
   status,
   startPercent = 0,
   endPercent = 0,
-  handleClick,
+  handleClickByStatus,
 }) => {
+  const handleClick = useMemo(() => prop(status, handleClickByStatus), []);
+
   const onClick = useCallback(() => {
+    console.log("click", {status, handleClick, handleClickByStatus});
+    console.log(`handleClick:`, handleClick);
     handleClick(status);
   }, [handleClick]);
+
   const x = originX;
   const y = originY;
 

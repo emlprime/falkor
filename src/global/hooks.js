@@ -6,12 +6,12 @@ import {getItemsByParent} from "../goals/selectors";
 import {knownStatuses as ks} from "./constants";
 import {getAncestryByDescendents, getByParentId} from "./selectors";
 
-const {append, curry, head, last, pick, pipe, prop} = R;
+const {append, curry, head, last, pick, pipe, propOr} = R;
 
 const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
   append(
     pipe(
-      prop(status),
+      propOr([], status),
       head,
       pick(["model", "id"]),
     )(itemsByStatus),
@@ -29,10 +29,14 @@ const useHandleClickStatus = curry(
 );
 
 export const useSetCurrentAncestryByStatus = curry(
-  (getAllForModel, getGroupedByStatus, ancestry) => {
-    const parentId = head(ancestry);
+    (getAllForModel, getGroupedByStatus, ancestry) => {
+        // PDS todo
+      // this can't be head for all levels
+      // do a find for the parent model
+      const parentId = head(ancestry);
     const items = useSelector(getByParentId(getAllForModel, parentId));
     const itemsByStatus = useSelector(getGroupedByStatus(items));
+    console.log(`itemsByStatus:`, itemsByStatus, items, parentId);
 
     // curry method to get the first item of a given status for this model
     const deriveSetCurrentByStatus = deriveFirstItemOfStatus(

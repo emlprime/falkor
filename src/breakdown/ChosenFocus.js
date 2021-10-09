@@ -11,9 +11,6 @@ const mapWithIndex = addIndex(map);
 export const ChosenFocus = ({originX, originY}) => {
   const {label, swimlanes} = useChosenFocus();
 
-  const handleClick = value => {
-    console.log("Chosen Focusvalue:", value);
-  };
   const width = 130;
   const height = 40;
 
@@ -35,7 +32,6 @@ export const ChosenFocus = ({originX, originY}) => {
             originY={originY}
             radius={80 + i * 10}
             values={values}
-            handleClick={handleClick}
             width={5}
           />
         ),

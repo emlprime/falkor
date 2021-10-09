@@ -1,11 +1,8 @@
-import {useCallback} from "react";
-import * as R from "ramda";
+import {map} from "ramda";
 import {ArcNemesis} from "./ArcNemesis";
 
-const {map, prop} = R;
-
 export const ProgressChart = ({
-  handleClickByStatus,
+  handleClickByStatus = {},
   radius,
   values: statuses,
   ...rest
@@ -18,10 +15,7 @@ export const ProgressChart = ({
         status={status}
         startPercent={startPercent}
         endPercent={endPercent}
-        handleClick={useCallback(prop(status, handleClickByStatus), [
-          status,
-          handleClickByStatus,
-        ])}
+        handleClickByStatus={handleClickByStatus}
         {...rest}
       />
     );
