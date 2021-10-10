@@ -1,4 +1,5 @@
 export const CREATE = "GOALS/CREATE";
+export const LOAD_DATA = "GOALS/LOAD_DATA";
 export const DELETE = "GOALS/DELETE";
 export const EDIT = "GOALS/EDIT";
 export const COMPLETE = "GOALS/COMPLETE";

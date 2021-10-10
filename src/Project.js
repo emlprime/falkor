@@ -17,6 +17,7 @@ export const Project = ({width, height}) => {
   useData("releases");
   useData("sprints");
   useData("tickets");
+  useData("goals");
   return (
     <Section>
       <svg

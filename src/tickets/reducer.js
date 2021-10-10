@@ -1,7 +1,7 @@
 import {assocPath} from "ramda";
 import {git} from "faker";
 import * as t from "./actionTypes";
-import { reduceLoadData} from "../global/reducerUtils";
+import {reduceLoadData} from "../global/reducerUtils";
 
 import {initialState} from "./initialState";
 

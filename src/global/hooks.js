@@ -10,6 +10,7 @@ import {actions as projectsActions} from "../projects/actions";
 import {actions as releasesActions} from "../releases/actions";
 import {actions as sprintsActions} from "../sprints/actions";
 import {actions as ticketsActions} from "../tickets/actions";
+import {actions as goalsActions} from "../goals/actions";
 
 const {equals, prop, append, curry, head, last, pick, pipe, propOr} = R;
 const actionsByModel = {
@@ -17,6 +18,7 @@ const actionsByModel = {
   releases: releasesActions,
   sprints: sprintsActions,
   tickets: ticketsActions,
+  goals: goalsActions,
 };
 
 const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
