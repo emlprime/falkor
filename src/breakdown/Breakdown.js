@@ -49,7 +49,7 @@ const deriveBreakdownItems = (model, columns, goal, originX, originY) => {
           />,
           result,
         ),
-        offset: offset + itemWidth,
+        offset: offset + itemWidth + 10,
       };
     },
     {offset: 0, result: []},

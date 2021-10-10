@@ -34,7 +34,7 @@ export const Project = ({width, height}) => {
         <Breadcrumb originX={800} originY={300} />
         <ChosenFocus originX={200} originY={600} />
         <Breakdown originX={280} originY={670} />
-        <foreignObject id="goals" width="300px" height="400px" x="1090" y="630">
+        <foreignObject id="goals" width="300px" height="400px" x="1150" y="704">
           <GoalList />
         </foreignObject>
       </svg>

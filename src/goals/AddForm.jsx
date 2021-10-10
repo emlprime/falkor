@@ -1,6 +1,6 @@
 import {useCallback, useState} from "react";
 import {useMutation} from "react-query";
-import {isEmpty, complement} from "ramda";
+import {isEmpty, complement, isNil} from "ramda";
 import {useDispatch} from "react-redux";
 import {create} from "./actions";
 import {colors} from "../global/constants";
@@ -15,7 +15,8 @@ export function AddForm({parentId}) {
   const dispatch = useDispatch();
 
   const onBlur = useCallback(() => {
-    if (complement(isEmpty)(value)) {
+    if (complement(isEmpty)(value) && complement(isNil)(value)) {
+      console.log(`value:`, value);
       const createAction = create(NAME, parentId, value);
       dispatch(createAction);
       mutation.mutate(createAction);
@@ -39,9 +40,10 @@ export function AddForm({parentId}) {
 
 const Input = styled.input`
   background-color: transparent;
-  border: 1px solid ${colors.SELECTED};
+  border: 1px solid transparent;
   color: ${colors.SELECTED};
   padding: 4px;
+  :hover,
   :focus {
     outline: 1px solid ${colors.SELECTED};
   }
