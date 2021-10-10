@@ -35,9 +35,15 @@ const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
 const useHandleClickStatus = curry(
   (ancestry, itemsByStatus, deriveSetCurrentByStatus, status) => {
     const dispatch = useDispatch();
+    const newAncestry = deriveSetCurrentByStatus(status);
+    const currentItem = last(newAncestry);
+    const goals = useSelector(getItemsByParent(currentItem));
+    const goal = head(goals);
     return useCallback(() => {
-      dispatch(setCurrentAncestry(deriveSetCurrentByStatus(status)));
-    }, [dispatch, ancestry, itemsByStatus]);
+      console.log(`ancestry and goal:`, newAncestry, goal);
+      dispatch(setCurrentAncestry(newAncestry));
+      dispatch(setCurrentGoal(goal));
+    }, [dispatch, newAncestry, goal]);
   },
 );
 
@@ -79,6 +85,7 @@ export const useSetCurrentAncestry = ancestry => {
   const item = last(ancestry);
   const goals = useSelector(getItemsByParent(item));
   const goal = head(goals);
+
   return useCallback(() => {
     dispatch(setCurrentAncestry(ancestry));
     dispatch(setCurrentGoal(goal));

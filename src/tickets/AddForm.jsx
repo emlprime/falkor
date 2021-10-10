@@ -33,10 +33,11 @@ export function AddForm({parentId, goalId}) {
 
 const Input = styled.input`
   background-color: transparent;
-  border: 1px solid ${colors.SELECTED};
+  border: transparent;
   color: ${colors.SELECTED};
   padding: 4px;
-  :focus {
+  :focus,
+  :hover {
     outline: 1px solid ${colors.SELECTED};
   }
 `;
