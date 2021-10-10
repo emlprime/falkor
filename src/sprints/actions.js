@@ -11,3 +11,10 @@ export const add = ({parentId, label}) => ({
     label,
   },
 });
+
+export const loadData = data => ({
+  type: t.LOAD_DATA,
+  payload: {data},
+});
+
+export const actions = {add, loadData};

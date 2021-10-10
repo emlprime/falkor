@@ -1,8 +1,10 @@
+import axios from "axios";
 import {
   curry,
   takeWhile,
   propEq,
   not,
+  prop,
   pipe,
   dec,
   equals,
@@ -36,3 +38,8 @@ const isModelNot = model =>
 export const clipAncestry = curry((model, ancestry) =>
   takeWhile(isModelNot(model), ancestry),
 );
+
+export const makePostRecord = model => async newRecord => {
+  const data = prop("payload", newRecord);
+  await (await axios.post(`http://localhost:5000/${model}`, data)).data;
+};

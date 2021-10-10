@@ -1,12 +1,23 @@
-import {useCallback} from "react";
+import {useCallback, useEffect} from "react";
+import {useQuery} from "react-query";
 import * as R from "ramda";
 import {useDispatch, useSelector} from "react-redux";
 import {setCurrentAncestry, setCurrentGoal} from "./actions";
 import {getItemsByParent} from "../goals/selectors";
 import {knownStatuses as ks} from "./constants";
 import {getAncestryByDescendents, getByParentId} from "./selectors";
+import {actions as projectsActions} from "../projects/actions";
+import {actions as releasesActions} from "../releases/actions";
+import {actions as sprintsActions} from "../sprints/actions";
+import {actions as ticketsActions} from "../tickets/actions";
 
-const {append, curry, head, last, pick, pipe, propOr} = R;
+const {equals, prop, append, curry, head, last, pick, pipe, propOr} = R;
+const actionsByModel = {
+  projects: projectsActions,
+  releases: releasesActions,
+  sprints: sprintsActions,
+  tickets: ticketsActions,
+};
 
 const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
   append(
@@ -90,4 +101,19 @@ export const useSetCurrentGoal = goalKey => {
   return useCallback(() => {
     dispatch(setCurrentGoal(goalKey));
   }, [dispatch, goalKey]);
+};
+
+const fetchAll = model => async () =>
+  await (await fetch(`http://localhost:5000/${model}`)).json();
+
+export const useData = model => {
+  const dispatch = useDispatch();
+
+  const {data, status} = useQuery(model, fetchAll(model));
+
+  useEffect(() => {
+    if (equals("success", status)) {
+      dispatch(prop(model, actionsByModel).loadData(data));
+    }
+  }, [data]);
 };

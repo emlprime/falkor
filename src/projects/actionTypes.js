@@ -1,7 +1,7 @@
-export const ADD = "projects/ADD";
-export const LOAD_DATA = "projects/LOAD_DATA";
-export const DELETE = "projects/DELETE";
-export const EDIT = "projects/EDIT";
-export const COMPLETE = "projects/COMPLETE";
-export const COMPLETE_ALL = "projects/COMPLETE_ALL";
-export const CLEAR_COMPLETED = "projects/CLEAR_COMPLETED";
+export const ADD = "PROJECTS/ADD";
+export const LOAD_DATA = "PROJECTS/LOAD_DATA";
+export const DELETE = "PROJECTS/DELETE";
+export const EDIT = "PROJECTS/EDIT";
+export const COMPLETE = "PROJECTS/COMPLETE";
+export const COMPLETE_ALL = "PROJECTS/COMPLETE_ALL";
+export const CLEAR_COMPLETED = "PROJECTS/CLEAR_COMPLETED";

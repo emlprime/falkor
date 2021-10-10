@@ -47,7 +47,6 @@ function App() {
           </ul>
         </nav>
         <QueryClientProvider client={queryClient}>
-
           <Switch>
             <Route path="/falkor">
               <Project width={width} height={height} />

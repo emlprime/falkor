@@ -1,4 +1,5 @@
 export const ADD = "RELEASES/ADD";
+export const LOAD_DATA = "RELEASES/LOAD_DATA";
 export const DELETE = "RELEASES/DELETE";
 export const EDIT = "RELEASES/EDIT";
 export const COMPLETE = "RELEASES/COMPLETE";
