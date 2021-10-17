@@ -8,7 +8,7 @@ export function CurrentActions({originX, originY}) {
         cx={originX}
         cy={originY}
         r={80}
-        stroke={colors.selected}
+        stroke={colors.SELECTED}
         strokeWidth="1"
         fill="transparent"
       />

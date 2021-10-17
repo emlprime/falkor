@@ -8,6 +8,7 @@ import {AddForm} from "../tickets/AddForm";
 import {getItemsByParentAndGoal} from "../tickets/selectors";
 import {BreakdownHeader} from "./BreakdownHeader";
 import {CurrentActions} from "./CurrentActions";
+import {CurrentItemIndicator} from "./CurrentItemIndicator";
 import {setCurrentTicket} from "../global/actions";
 
 const mapWithIndex = addIndex(map);
@@ -43,7 +44,6 @@ const Button = styled.button`
 export function BreakdownItem({item, goal, offset, originX, originY}) {
   const items = useSelector(getItemsByParentAndGoal(item, goal));
   const isCurrent = useSelector(getIsCurrentItem(item));
-  console.log(`isCurrent:`, isCurrent);
 
   const showAddForm = isEmpty(items);
 
@@ -51,9 +51,12 @@ export function BreakdownItem({item, goal, offset, originX, originY}) {
   const childOriginX = useMemo(() => originX + (width + 10) * offset);
 
   return (
-    <Svg>
+    <svg isCurrent={isCurrent}>
       {isCurrent && (
-        <CurrentActions originX={childOriginX + 130} originY={originY - 50} />
+        <>
+          <CurrentActions originX={childOriginX + 240} originY={originY - 60} />
+          <CurrentItemIndicator originX={childOriginX} originY={originY} />
+        </>
       )}
       <BreakdownHeader
         item={item}
@@ -86,10 +89,6 @@ export function BreakdownItem({item, goal, offset, originX, originY}) {
           <AddForm parentId={item} goalId={goal} />
         </foreignObject>
       )}
-    </Svg>
+    </svg>
   );
 }
-
-const Svg = styled.svg`
-  outline: 1px dashed green;
-`;
