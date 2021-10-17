@@ -6,8 +6,6 @@ import {ChosenFocus} from "./breakdown/ChosenFocus";
 import {Breakdown} from "./breakdown/Breakdown";
 import {List as GoalList} from "./goals/List";
 import {useData} from "./global/hooks";
-
-// import {CurrentActions} from "./breakdown/CurrentActions";
 // import {BurndownChart} from "./breakdown/BurndownChart";
 import {Yggdrasil} from "./global/Yggdrasil";
 
@@ -51,4 +49,3 @@ const Section = styled.section`
 `;
 
 // <BurndownChart originX={500} originY={600} />
-// <CurrentActions originX={800} originY={730} />

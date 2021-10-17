@@ -1,7 +1,7 @@
 import {propOr} from "ramda";
 import {useSelector} from "react-redux";
 import {
-  getCurrentItem,
+  getCurrentParent,
   getCurrentGoal,
   getByItem,
   getByParentId,
@@ -24,19 +24,19 @@ const modelGetAllSelectors = {
 };
 
 export const useChosenFocus = () => {
-  const item = useSelector(getCurrentItem);
-  const {model} = item;
+  const parent = useSelector(getCurrentParent);
+  const {model} = parent;
   const childModel = getChildModel(model);
 
   const goal = useSelector(getCurrentGoal);
   const getAllSelector = propOr(() => [], childModel, modelGetAllSelectors);
 
-  const childrenSelector = getByParentId(getAllSelector, item);
+  const childrenSelector = getByParentId(getAllSelector, parent);
   const columns = useSelector(childrenSelector);
 
-  const {label} = useSelector(getByItem(item));
+  const {label} = useSelector(getByItem(parent));
 
-  const rows = useSelector(getItemsByParent(item));
+  const rows = useSelector(getItemsByParent(parent));
   const swimlanes = useSelector(getSwimlanes(rows));
 
   return {model, label, rows, columns, swimlanes, goal};

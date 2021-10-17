@@ -37,7 +37,17 @@ export const getCurrentGoal = createSelector(
   current => prop("goal", current),
 );
 
+export const getCurrentTicket = createSelector(
+  getCurrent,
+  current => prop("ticket", current),
+);
+
 export const getCurrentItem = createSelector(
+  getCurrent,
+  current => prop("item", current),
+);
+
+export const getCurrentParent = createSelector(
   getCurrentAncestry,
   currentAncestry => last(currentAncestry),
 );
@@ -58,10 +68,19 @@ export const getCurrentModel = createSelector(
   currentItem => prop("model", currentItem),
 );
 
-export const getIsCurrent = itemKey =>
+export const getIsCurrentItem = itemKey =>
   createSelector(
     getCurrentAncestry,
     currentAncestry => includes(itemKey, currentAncestry),
+  );
+
+export const getIsCurrentTicket = key =>
+  createSelector(
+    getCurrentTicket,
+    currentTicket => {
+      console.log({isCurrent: equals(key, currentTicket), key, currentTicket});
+      return equals(key, currentTicket);
+    },
   );
 
 export const getIsTerminus = itemKey =>

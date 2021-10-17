@@ -1,16 +1,23 @@
-import {isEmpty} from "ramda";
-import {addIndex, map} from "ramda";
-import {useSelector} from "react-redux";
+import {useCallback, useMemo} from "react";
+import {addIndex, isEmpty, map} from "ramda";
+import {useDispatch, useSelector} from "react-redux";
+import styled from "styled-components";
 import {colors} from "../global/constants";
-import {getByItem} from "../global/selectors";
+import {getByItem, getIsCurrentItem} from "../global/selectors";
 import {AddForm} from "../tickets/AddForm";
-import {SelectionIndicator} from "../global/SelectionIndicator";
 import {getItemsByParentAndGoal} from "../tickets/selectors";
+import {BreakdownHeader} from "./BreakdownHeader";
+import {CurrentActions} from "./CurrentActions";
+import {setCurrentTicket} from "../global/actions";
 
 const mapWithIndex = addIndex(map);
 
-function Ticket({model, id, originX, originY, offset, width, isCurrent, i}) {
+function Ticket({model, id, originX, originY, offset, width, i}) {
+  const dispatch = useDispatch();
   const {label} = useSelector(getByItem({model, id}));
+  const onClick = useCallback(() => {
+    dispatch(setCurrentTicket({model, id}));
+  }, [dispatch]);
 
   return (
     <svg
@@ -18,42 +25,52 @@ function Ticket({model, id, originX, originY, offset, width, isCurrent, i}) {
       x={originX + offset}
       y={originY + i * 65}
     >
-      {isCurrent && <SelectionIndicator width={width + 20} />}
       <rect x={10} y={10} width={200} height={10} fill={colors.PLANNED} />
       <rect x={10} y={22} width={200} height={10} fill={colors.ACTIVE} />
       <foreignObject x={10} y={36} width={width} height={60}>
-        <span>{label}</span>
+        <Button onClick={onClick}>{label}</Button>
       </foreignObject>
     </svg>
   );
 }
 
-export function BreakdownItem({
-  isCurrent,
-  item,
-  goal,
-  offset,
-  originX,
-  originY,
-}) {
+const Button = styled.button`
+  background-color: transparent;
+  color: ${colors.PLANNED};
+  border: none;
+`;
+
+export function BreakdownItem({item, goal, offset, originX, originY}) {
   const items = useSelector(getItemsByParentAndGoal(item, goal));
+  const isCurrent = useSelector(getIsCurrentItem(item));
+  console.log(`isCurrent:`, isCurrent);
+
   const showAddForm = isEmpty(items);
 
   const width = 200;
+  const childOriginX = useMemo(() => originX + (width + 10) * offset);
 
   return (
     <>
+      {isCurrent && (
+        <CurrentActions originX={childOriginX + width} originY={originY - 50} />
+      )}
+      <BreakdownHeader
+        item={item}
+        offset={offset}
+        originX={childOriginX}
+        originY={originY}
+      />
       {mapWithIndex(
         ({model, id}, i) => (
           <Ticket
             key={`${model}_${id}`}
             model={model}
             id={id}
-            originX={originX}
-            originY={originY}
-            offset={offset}
+            originX={childOriginX - width / 2}
+            originY={originY + 50}
+            offset={i + 100}
             width={width}
-            isCurrent={isCurrent}
             i={i}
           />
         ),
@@ -61,8 +78,8 @@ export function BreakdownItem({
       )}
       {showAddForm && (
         <foreignObject
-          x={originX + offset + 70}
-          y={originY + 10}
+          x={childOriginX + 40}
+          y={originY + 40}
           width={width}
           height={60}
         >

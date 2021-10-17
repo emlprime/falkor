@@ -10,6 +10,11 @@ export const setCurrentId = (scope, id) => ({
   payload: {scope, id},
 });
 
+export const setCurrentTicket = ticket => ({
+  type: t.setCurrentTicket,
+  payload: {ticket},
+});
+
 export const setCurrentAncestry = ancestry => ({
   type: t.setCurrentAncestry,
   payload: {ancestry},
@@ -18,4 +23,9 @@ export const setCurrentAncestry = ancestry => ({
 export const setCurrentGoal = goalKey => ({
   type: t.setCurrentGoal,
   payload: {goalKey},
+});
+
+export const setCurrentItem = item => ({
+  type: t.setCurrentItem,
+  payload: {item},
 });

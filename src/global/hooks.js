@@ -2,17 +2,40 @@ import {useCallback, useEffect} from "react";
 import {useQuery} from "react-query";
 import * as R from "ramda";
 import {useDispatch, useSelector} from "react-redux";
-import {setCurrentAncestry, setCurrentGoal} from "./actions";
+import {
+  setCurrentAncestry,
+  setCurrentItem,
+  setCurrentGoal,
+  setCurrentTicket,
+} from "./actions";
 import {getItemsByParent} from "../goals/selectors";
+import {getItemsByParentAndGoal} from "../tickets/selectors";
 import {knownStatuses as ks} from "./constants";
-import {getAncestryByDescendents, getByParentId} from "./selectors";
+import {
+  getAncestryByDescendents,
+  getByParentId,
+  getCurrentGoal,
+} from "./selectors";
 import {actions as projectsActions} from "../projects/actions";
 import {actions as releasesActions} from "../releases/actions";
 import {actions as sprintsActions} from "../sprints/actions";
 import {actions as ticketsActions} from "../tickets/actions";
 import {actions as goalsActions} from "../goals/actions";
 
-const {equals, prop, append, curry, head, last, pick, pipe, propOr} = R;
+const {
+  when,
+  isNil,
+  not,
+  equals,
+  prop,
+  append,
+  curry,
+  head,
+  last,
+  pick,
+  pipe,
+  propOr,
+} = R;
 const actionsByModel = {
   projects: projectsActions,
   releases: releasesActions,
@@ -26,7 +49,13 @@ const deriveFirstItemOfStatus = curry((itemsByStatus, ancestry, status) =>
     pipe(
       propOr([], status),
       head,
-      pick(["model", "id"]),
+      when(
+        pipe(
+          isNil,
+          not,
+        ),
+        pick(["model", "id"]),
+      ),
     )(itemsByStatus),
     ancestry,
   ),
@@ -103,6 +132,18 @@ export const useSetCurrentAncestryByItem = item => {
     dispatch(setCurrentAncestry(ancestry));
     dispatch(setCurrentGoal(goal));
   }, [dispatch, ancestry]);
+};
+
+export const useSetCurrentTicketByItem = item => {
+  const dispatch = useDispatch();
+
+  const goal = useSelector(getCurrentGoal);
+  const ticket = useSelector(getItemsByParentAndGoal(item, goal));
+
+  return useCallback(() => {
+    dispatch(setCurrentItem(item));
+    dispatch(setCurrentTicket(ticket));
+  }, [dispatch, ticket, setCurrentTicket]);
 };
 
 export const useSetCurrentGoal = goalKey => {

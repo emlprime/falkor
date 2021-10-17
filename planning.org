@@ -51,14 +51,13 @@ h1. TACTICS:
 ** Refactor the reducer to be more generic
 * TODO Make burndown dynamic
 * TODO Create a reducer for add Release
-* Create an action creator for add release
+* TODO Create an action creator for add release
 * Create an SVG button that dispatches an add release action
 * Display the add Release SVG button at the first empty release position
 * Reduce burndown data from the status of the items and the current scope
 * Animate the paths for the breadcrumb
 * DONE Decide what gets shown when you click on the Release list items
 * DONE Decide what gets shown when you click the breadcrumb level/status
-* Create a reducer for "Delay Demo Date"
 * Create a hopper for carryover work
 * Create docked configurations when navigation elements move to the sides
 * Animate bars for burndown

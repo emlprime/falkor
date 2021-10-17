@@ -1,5 +1,5 @@
 import {useSelector} from "react-redux";
-import {getByItem, getIsCurrent} from "./selectors";
+import {getByItem, getIsCurrentItem} from "./selectors";
 import {colors} from "./constants";
 import {Bullet} from "./Bullet";
 import {useSetCurrentAncestry} from "./hooks";
@@ -8,7 +8,7 @@ import styled from "styled-components";
 export const ListItem = ({itemKey, ancestry}) => {
   const item = useSelector(getByItem(itemKey));
   const handleClick = useSetCurrentAncestry(ancestry);
-  const isCurrent = useSelector(getIsCurrent(itemKey));
+  const isCurrent = useSelector(getIsCurrentItem(itemKey));
   const {label, status = "PLANNED"} = useSelector(getByItem(item));
 
   return (
