@@ -68,19 +68,22 @@ export const getCurrentModel = createSelector(
   currentItem => prop("model", currentItem),
 );
 
-export const getIsCurrentItem = itemKey =>
+export const getIsCurrentParent = itemKey =>
   createSelector(
     getCurrentAncestry,
     currentAncestry => includes(itemKey, currentAncestry),
   );
 
+export const getIsCurrentItem = item =>
+  createSelector(
+    getCurrentItem,
+    currentItem => equals(item, currentItem),
+  );
+
 export const getIsCurrentTicket = key =>
   createSelector(
     getCurrentTicket,
-    currentTicket => {
-      console.log({isCurrent: equals(key, currentTicket), key, currentTicket});
-      return equals(key, currentTicket);
-    },
+    currentTicket => equals(key, currentTicket),
   );
 
 export const getIsTerminus = itemKey =>

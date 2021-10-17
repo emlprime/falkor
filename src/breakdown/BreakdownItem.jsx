@@ -51,9 +51,9 @@ export function BreakdownItem({item, goal, offset, originX, originY}) {
   const childOriginX = useMemo(() => originX + (width + 10) * offset);
 
   return (
-    <>
+    <Svg>
       {isCurrent && (
-        <CurrentActions originX={childOriginX + width} originY={originY - 50} />
+        <CurrentActions originX={childOriginX + 130} originY={originY - 50} />
       )}
       <BreakdownHeader
         item={item}
@@ -86,6 +86,10 @@ export function BreakdownItem({item, goal, offset, originX, originY}) {
           <AddForm parentId={item} goalId={goal} />
         </foreignObject>
       )}
-    </>
+    </Svg>
   );
 }
+
+const Svg = styled.svg`
+  outline: 1px dashed green;
+`;
