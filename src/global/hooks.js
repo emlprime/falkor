@@ -17,6 +17,7 @@ import {
   getCurrentGoal,
 } from "./selectors";
 import {actions as projectsActions} from "../projects/actions";
+import {actions as quartersActions} from "../quarters/actions";
 import {actions as releasesActions} from "../releases/actions";
 import {actions as sprintsActions} from "../sprints/actions";
 import {actions as ticketsActions} from "../tickets/actions";
@@ -38,6 +39,7 @@ const {
 } = R;
 const actionsByModel = {
   projects: projectsActions,
+  quarters: quartersActions,
   releases: releasesActions,
   sprints: sprintsActions,
   tickets: ticketsActions,
@@ -69,17 +71,20 @@ const useHandleClickStatus = curry(
     const goals = useSelector(getItemsByParent(currentItem));
     const goal = head(goals);
     return useCallback(() => {
-      console.log(`ancestry and goal:`, newAncestry, goal);
-      dispatch(setCurrentAncestry(newAncestry));
-      dispatch(setCurrentGoal(goal));
+      if (last(newAncestry) && goal) {
+        dispatch(setCurrentAncestry(newAncestry));
+        dispatch(setCurrentGoal(goal));
+      } else {
+        console.log("invalid value for set current:", {newAncestry, goal});
+      }
     }, [dispatch, newAncestry, goal]);
   },
 );
 
 export const useSetCurrentAncestryByStatus = curry(
   (getAllForModel, getGroupedByStatus, ancestry) => {
-    const parentId = last(ancestry);
-    const items = useSelector(getByParentId(getAllForModel, parentId));
+    const parentKey = last(ancestry);
+    const items = useSelector(getByParentId(getAllForModel, parentKey));
     const itemsByStatus = useSelector(getGroupedByStatus(items));
 
     // curry method to get the first item of a given status for this model
@@ -160,7 +165,7 @@ export const deleteItem = async ({model, id}) => {
   console.log(`id:`, id);
   return await fetch(`http://localhost:5000/${model}/${id}`, {
     method: "DELETE",
-  })
+  });
 };
 
 export const useData = model => {

@@ -11,12 +11,12 @@ export const getAll = state => {
 
 export const getById = pathOr({}, [NAME, "byId"]);
 
-export const getItemsByParent = parentId =>
+export const getItemsByParent = parentKey =>
   createSelector(
     getAll,
     items =>
       pipe(
-        filter(propEq("parentId", parentId)),
+        filter(propEq("parentKey", parentKey)),
         map(pick(["model", "id"])),
       )(items),
   );

@@ -1,13 +1,13 @@
 import {git} from "faker";
 import * as t from "./actionTypes";
 
-export const add = ({parentId, label}) => ({
+export const add = ({parentKey, label}) => ({
   type: t.ADD,
   payload: {
     id: git.shortSha(),
     status: "PLANNED",
     scope: "releases",
-    quarterId: parentId,
+    quarterId: parentKey,
     label,
   },
 });

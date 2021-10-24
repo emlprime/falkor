@@ -37,13 +37,13 @@ export const getAll = state => {
 
 export const getById = pathOr({}, [NAME, "byId"]);
 
-export const getItemsByParentAndGoal = (parentId, goalId) =>
+export const getItemsByParentAndGoal = (parentKey, goalKey) =>
   createSelector(
     getAll,
     items =>
       pipe(
         filter(
-          allPass([propEq("parentId", parentId), propEq("goalId", goalId)]),
+          allPass([propEq("parentKey", parentKey), propEq("goalKey", goalKey)]),
         ),
         map(pick(["model", "id"])),
       )(items),
@@ -97,10 +97,10 @@ export const getSwimlanes = goals =>
   createSelector(
     getAll,
     tickets => {
-      const isInGoals = propSatisfies(flip(includes)(goals), "goalId");
+      const isInGoals = propSatisfies(flip(includes)(goals), "goalKey");
       const result = pipe(
         filter(isInGoals),
-        groupBy(path(["goalId", "id"])),
+        groupBy(path(["goalKey", "id"])),
         values,
         map(deriveSegments),
       )(tickets);

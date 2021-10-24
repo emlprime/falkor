@@ -1,6 +1,7 @@
-export const ADD = "todos/ADD";
-export const DELETE = "todos/DELETE";
-export const EDIT = "todos/EDIT";
-export const COMPLETE = "todos/COMPLETE";
-export const COMPLETE_ALL = "todos/COMPLETE_ALL";
-export const CLEAR_COMPLETED = "todos/CLEAR_COMPLETED";
+export const ADD = "QUARTERS/ADD";
+export const LOAD_DATA = "QUARTERS/LOAD_DATA";
+export const DELETE = "QUARTERS/DELETE";
+export const EDIT = "QUARTERS/EDIT";
+export const COMPLETE = "QUARTERS/COMPLETE";
+export const COMPLETE_ALL = "QUARTERS/COMPLETE_ALL";
+export const CLEAR_COMPLETED = "QUARTERS/CLEAR_COMPLETED";

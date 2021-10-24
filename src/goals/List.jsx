@@ -1,6 +1,6 @@
 import * as R from "ramda";
 import {useSelector} from "react-redux";
-import {getCurrentItem} from "../global/selectors";
+import {getCurrentParent} from "../global/selectors";
 import {getItemsByParent} from "./selectors";
 import {AddForm} from "./AddForm";
 import {ListItem} from "./ListItem";
@@ -8,8 +8,8 @@ import {ListItem} from "./ListItem";
 const {map} = R;
 
 export const List = () => {
-  const parentId = useSelector(getCurrentItem);
-  const items = useSelector(getItemsByParent(parentId));
+  const parentKey = useSelector(getCurrentParent);
+  const items = useSelector(getItemsByParent(parentKey));
 
   return (
     <ul>
@@ -23,7 +23,7 @@ export const List = () => {
         );
       }, items)}
       <li>
-        <AddForm parentId={parentId} />
+        <AddForm parentKey={parentKey} />
       </li>
     </ul>
   );

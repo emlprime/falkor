@@ -1,9 +1,9 @@
 import {curry} from "ramda";
 import * as t from "./actionTypes";
 
-export const create = curry((model, parentId, goalId, label) => ({
+export const create = curry((model, parentKey, goalKey, label) => ({
   type: t.CREATE,
-  payload: {model, parentId, goalId, label, status: "PLANNED"},
+  payload: {model, parentKey, goalKey, label, status: "PLANNED"},
 }));
 
 export const loadData = data => ({

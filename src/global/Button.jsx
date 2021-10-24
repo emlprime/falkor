@@ -13,12 +13,13 @@ const {equals, prop} = R;
 const size = 24;
 export function Button({name, originX, originY}) {
   const currentTicket = useSelector(getCurrentTicket);
-  const {mutateAsync: deleteTicket} = useMutation(deleteItem);
+  console.log(`currentTicket:`, currentTicket);
+  const {mutate: deleteTicket} = useMutation(deleteItem);
 
   const onClick = useCallback(() => {
     if (equals("trash", name)) {
-      const result = deleteTicket(currentTicket);
-      console.log(`result:`, result);
+      const response = deleteTicket(currentTicket);
+      console.log(`response:`, response);
     }
   }, [deleteTicket, currentTicket]);
 

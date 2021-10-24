@@ -5,17 +5,12 @@ import {Breadcrumb} from "./global/Breadcrumb";
 import {ChosenFocus} from "./breakdown/ChosenFocus";
 import {Breakdown} from "./breakdown/Breakdown";
 import {List as GoalList} from "./goals/List";
-import {useData} from "./global/hooks";
+// import {useData} from "./global/hooks";
 // import {BurndownChart} from "./breakdown/BurndownChart";
 import {Yggdrasil} from "./global/Yggdrasil";
 
 export const Project = ({width, height}) => {
   const viewBox = `0 0 ${width} ${height}`;
-  useData("projects");
-  useData("releases");
-  useData("sprints");
-  useData("tickets");
-  useData("goals");
   return (
     <Section>
       <svg

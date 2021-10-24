@@ -9,7 +9,7 @@ import {makePostRecord} from "../global/utils";
 import styled from "styled-components";
 
 const postGoal = makePostRecord(NAME);
-export function AddForm({parentId}) {
+export function AddForm({parentKey}) {
   const mutation = useMutation(newRecord => postGoal(newRecord));
   const [value, setValue] = useState();
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export function AddForm({parentId}) {
   const onBlur = useCallback(() => {
     if (complement(isEmpty)(value) && complement(isNil)(value)) {
       console.log(`value:`, value);
-      const createAction = create(NAME, parentId, value);
+      const createAction = create(NAME, parentKey, value);
       dispatch(createAction);
       mutation.mutate(createAction);
       setValue("");

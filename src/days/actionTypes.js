@@ -1,4 +1,5 @@
 export const ADD = "DAYS/ADD";
+export const LOAD_DATA = "DAYS/LOAD_DATA";
 export const DELETE = "DAYS/DELETE";
 export const EDIT = "DAYS/EDIT";
 export const COMPLETE = "DAYS/COMPLETE";

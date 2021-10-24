@@ -2,13 +2,19 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import {createStore} from "redux";
+import {createStore, applyMiddleware} from "redux";
+import createSagaMiddleware from "redux-saga";
 import {Provider} from "react-redux";
 import reportWebVitals from "./reportWebVitals";
 import rootReducer from "./rootReducer";
 import {composeWithDevTools} from "redux-devtools-extension";
+import rootSaga from "./sagas";
 
-const store = createStore(rootReducer, composeWithDevTools());
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(sagaMiddleware)),
+);
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,6 +24,8 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root"),
 );
+
+sagaMiddleware.run(rootSaga);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

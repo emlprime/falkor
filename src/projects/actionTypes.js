@@ -1,4 +1,5 @@
 export const ADD = "PROJECTS/ADD";
+export const FETCH = "PROJECTS/FETCH";
 export const LOAD_DATA = "PROJECTS/LOAD_DATA";
 export const DELETE = "PROJECTS/DELETE";
 export const EDIT = "PROJECTS/EDIT";

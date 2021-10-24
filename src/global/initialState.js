@@ -1,4 +1,5 @@
 export const initialState = {
+  status: "LOADED",
   current: {
     ancestry: [
       {model: "projects", id: "abc123"},

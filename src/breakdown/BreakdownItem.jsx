@@ -1,9 +1,9 @@
 import {useCallback, useMemo} from "react";
-import {addIndex, isEmpty, map} from "ramda";
+import {addIndex, head, isEmpty, map} from "ramda";
 import {useDispatch, useSelector} from "react-redux";
 import styled from "styled-components";
 import {colors} from "../global/constants";
-import {getByItem, getIsCurrentItem} from "../global/selectors";
+import {getByItem, getIsCurrentTicket} from "../global/selectors";
 import {AddForm} from "../tickets/AddForm";
 import {getItemsByParentAndGoal} from "../tickets/selectors";
 import {BreakdownHeader} from "./BreakdownHeader";
@@ -43,7 +43,9 @@ const Button = styled.button`
 
 export function BreakdownItem({item, goal, offset, originX, originY}) {
   const items = useSelector(getItemsByParentAndGoal(item, goal));
-  const isCurrent = useSelector(getIsCurrentItem(item));
+  const firstTicket = head(items);
+  const isCurrent = useSelector(getIsCurrentTicket(firstTicket));
+  console.log(`isCurrent:`, firstTicket, isCurrent);
 
   const showAddForm = isEmpty(items);
 
@@ -86,7 +88,7 @@ export function BreakdownItem({item, goal, offset, originX, originY}) {
           width={width}
           height={60}
         >
-          <AddForm parentId={item} goalId={goal} />
+          <AddForm parentKey={item} goalKey={goal} />
         </foreignObject>
       )}
     </svg>

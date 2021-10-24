@@ -12,7 +12,7 @@ export const Breadcrumb = ({originX, originY}) => {
   const height = 40;
   return (
     <g>
-      <BreadcrumbQuarter originX={originX} originY={originY} parentId={item} />
+      <BreadcrumbQuarter originX={originX} originY={originY} parentKey={item} />
       <foreignObject
         x={originX - width / 2}
         y={originY - height / 2}

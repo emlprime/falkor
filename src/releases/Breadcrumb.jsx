@@ -24,8 +24,8 @@ const values = [
 export const Breadcrumb = ({originX, originY}) => {
   const currentAncestry = useSelector(getCurrentAncestry);
   const ancestry = clipAncestry(NAME, currentAncestry);
-  const parentId = last(ancestry);
-  const isTerminus = useSelector(getIsTerminus(parentId));
+  const parentKey = last(ancestry);
+  const isTerminus = useSelector(getIsTerminus(parentKey));
 
   const handleClickByStatus = useSetCurrentAncestryByStatus(ancestry);
 

@@ -32,7 +32,7 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
-    "db": "json-server --watch db.json --port 5000",
+    "db": "json-server --watch db.json --port 5000 --no-delete-cascade",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

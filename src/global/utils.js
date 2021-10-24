@@ -35,9 +35,9 @@ const isModelNot = model =>
     not,
   );
 
-export const clipAncestry = curry((model, ancestry) =>
-  takeWhile(isModelNot(model), ancestry),
-);
+export const clipAncestry = curry((model, ancestry) => {
+  return takeWhile(isModelNot(model), ancestry);
+});
 
 export const makePostRecord = model => async newRecord => {
   const data = prop("payload", newRecord);

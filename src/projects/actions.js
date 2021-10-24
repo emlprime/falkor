@@ -10,4 +10,8 @@ export const loadData = data => ({
   payload: {data},
 });
 
-export const actions = {add, loadData};
+export const fetch = () => ({
+  type: t.FETCH,
+});
+
+export const actions = {add, loadData, fetch};

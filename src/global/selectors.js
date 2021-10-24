@@ -14,6 +14,7 @@ const {
   includes,
   last,
   map,
+  not,
   pick,
   pipe,
   prop,
@@ -32,6 +33,8 @@ export const getCurrentAncestry = createSelector(
   current => prop("ancestry", current),
 );
 
+export const getGlobalStatus = state => pathOr({}, [NAME, "status"], state);
+
 export const getCurrentGoal = createSelector(
   getCurrent,
   current => prop("goal", current),
@@ -40,11 +43,6 @@ export const getCurrentGoal = createSelector(
 export const getCurrentTicket = createSelector(
   getCurrent,
   current => prop("ticket", current),
-);
-
-export const getCurrentItem = createSelector(
-  getCurrent,
-  current => prop("item", current),
 );
 
 export const getCurrentParent = createSelector(
@@ -64,26 +62,30 @@ export const getCurrentProject = createSelector(
 );
 
 export const getCurrentModel = createSelector(
-  getCurrentItem,
+  getCurrentParent,
   currentItem => prop("model", currentItem),
 );
 
-export const getIsCurrentParent = itemKey =>
+export const getIsInAncestry = itemKey =>
   createSelector(
     getCurrentAncestry,
     currentAncestry => includes(itemKey, currentAncestry),
   );
 
-export const getIsCurrentItem = item =>
+export const getIsCurrentParent = item =>
   createSelector(
-    getCurrentItem,
+    getCurrentParent,
     currentItem => equals(item, currentItem),
   );
 
 export const getIsCurrentTicket = key =>
   createSelector(
     getCurrentTicket,
-    currentTicket => equals(key, currentTicket),
+    currentTicket =>
+      pipe(
+        isNil,
+        not,
+      )(key) && equals(key, currentTicket),
   );
 
 export const getIsTerminus = itemKey =>
@@ -113,9 +115,9 @@ const getRecordsByModel = curry((model, state) =>
   )(state),
 );
 
-const filterByParent = curry((parentId, records) =>
+const filterByParent = curry((parentKey, records) =>
   pipe(
-    filter(propEq("parentId", parentId)),
+    filter(propEq("parentKey", parentKey)),
     map(pick(["model", "id"])),
   )(records),
 );
@@ -130,23 +132,23 @@ export const getItemsByParent = curry(({model, id}, state) => {
 
 export const getAncestryByDescendents = curry((descendents, state) => {
   const {model, id} = head(descendents);
-  const parentId = path([model, "byId", id, "parentId"], state);
+  const parentKey = path([model, "byId", id, "parentKey"], state);
 
-  const ancestry = isNil(parentId)
+  const ancestry = isNil(parentKey)
     ? descendents
-    : prepend(parentId, descendents);
+    : prepend(parentKey, descendents);
 
   return equals("projects", model)
     ? ancestry
     : getAncestryByDescendents(ancestry, state);
 });
 
-export const getByParentId = curry((getRecords, parentId) =>
+export const getByParentId = curry((getRecords, parentKey) =>
   createSelector(
     getRecords,
     records =>
       pipe(
-        filter(propEq("parentId", parentId)),
+        filter(propEq("parentKey", parentKey)),
         map(pick(["model", "id"])),
       )(records),
   ),

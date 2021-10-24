@@ -9,16 +9,22 @@ import styled from "styled-components";
 
 const postTicket = makePostRecord("tickets");
 
-export function AddForm({parentId, goalId}) {
-  const mutation = useMutation(newRecord => postTicket(newRecord));
+const onSuccess = result => {
+  console.log(`result:`, result);
+};
+
+export function AddForm({parentKey, goalKey}) {
+  const {mutateAsync} = useMutation(newRecord => postTicket(newRecord), {
+    mutationKey: "AddForm",
+      onSettled: onSuccess,
+  });
   const dispatch = useDispatch();
 
   const onBlur = useCallback(
     ({target: {value}}) => {
       if (complement(isEmpty)(value)) {
-        const createAction = create("tickets", parentId, goalId, value);
-        dispatch(createAction);
-        mutation.mutate(createAction);
+        const createAction = create("tickets", parentKey, goalKey, value);
+        mutateAsync(createAction);
       }
     },
     [dispatch],
