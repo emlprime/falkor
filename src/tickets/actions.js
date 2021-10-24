@@ -11,4 +11,9 @@ export const loadData = data => ({
   payload: {data},
 });
 
+export const deleteItem = ticket => ({
+  type: t.DELETE,
+  payload: {ticket, foo: "bar"},
+});
+
 export const actions = {create, loadData};

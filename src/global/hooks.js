@@ -138,12 +138,12 @@ export const useSetCurrentTicketByItem = item => {
   const dispatch = useDispatch();
 
   const goal = useSelector(getCurrentGoal);
-  const ticket = useSelector(getItemsByParentAndGoal(item, goal));
-
+  const tickets = useSelector(getItemsByParentAndGoal(item, goal));
+  const newCurrentTicket = head(tickets);
   return useCallback(() => {
     dispatch(setCurrentItem(item));
-    dispatch(setCurrentTicket(ticket));
-  }, [dispatch, ticket, setCurrentTicket]);
+    dispatch(setCurrentTicket(newCurrentTicket));
+  }, [dispatch, newCurrentTicket, setCurrentTicket]);
 };
 
 export const useSetCurrentGoal = goalKey => {
@@ -155,6 +155,13 @@ export const useSetCurrentGoal = goalKey => {
 
 const fetchAll = model => async () =>
   await (await fetch(`http://localhost:5000/${model}`)).json();
+
+export const deleteItem = async ({model, id}) => {
+  console.log(`id:`, id);
+  return await fetch(`http://localhost:5000/${model}/${id}`, {
+    method: "DELETE",
+  })
+};
 
 export const useData = model => {
   const dispatch = useDispatch();

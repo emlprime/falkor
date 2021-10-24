@@ -1,16 +1,27 @@
 import {useCallback} from "react";
+import {useMutation} from "react-query";
+import {useSelector} from "react-redux";
 import * as R from "ramda";
 import styled from "styled-components";
 import {colors} from "./constants";
 import {Trash, Decompose} from "./icons";
+import {getCurrentTicket} from "./selectors";
+import {deleteItem} from "./hooks";
 
-const {prop} = R;
+const {equals, prop} = R;
 
 const size = 24;
 export function Button({name, originX, originY}) {
+  const currentTicket = useSelector(getCurrentTicket);
+  const {mutateAsync: deleteTicket} = useMutation(deleteItem);
+
   const onClick = useCallback(() => {
-    console.log("button clicked", name);
-  }, [name]);
+    if (equals("trash", name)) {
+      const result = deleteTicket(currentTicket);
+      console.log(`result:`, result);
+    }
+  }, [deleteTicket, currentTicket]);
+
   const Icon = prop(name, {trash: Trash, decompose: Decompose});
   return (
     <svg>
