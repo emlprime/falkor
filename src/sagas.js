@@ -7,6 +7,7 @@ import {fetchData as fetchDaysData} from "./days/sagas";
 import {
   fetchData as fetchTicketsData,
   create as createTicket,
+  deleteItem as deleteTicket,
 } from "./tickets/sagas";
 import {fetchData as fetchGoalsData} from "./goals/sagas";
 import * as ticketActionTypes from "./tickets/actionTypes";
@@ -26,6 +27,10 @@ function* createTicketSaga() {
   yield takeEvery(ticketActionTypes.CREATE, createTicket);
 }
 
+function* deleteTicketSaga() {
+  yield takeEvery(ticketActionTypes.DELETE, deleteTicket);
+}
+
 export default function* rootSaga() {
-  yield all([createTicketSaga(), init()]);
+  yield all([createTicketSaga(), deleteTicketSaga(), init()]);
 }

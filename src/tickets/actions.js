@@ -11,9 +11,14 @@ export const loadData = data => ({
   payload: {data},
 });
 
-export const deleteItem = ticket => ({
+export const deleteItem = item => ({
   type: t.DELETE,
-  payload: {ticket, foo: "bar"},
+  payload: {item},
 });
 
-export const actions = {create, loadData};
+export const unloadItem = item => ({
+  type: t.UNLOAD_ITEM,
+  payload: {item},
+});
+
+export const actions = {create, loadData, deleteItem, unloadItem};

@@ -1,5 +1,6 @@
 export const CREATE = "TICKETS/CREATE";
 export const LOAD_DATA = "TICKETS/LOAD_DATA";
+export const UNLOAD_ITEM = "TICKETS/UNLOAD_ITEM";
 export const DELETE = "TICKETS/DELETE";
 export const EDIT = "TICKETS/EDIT";
 export const COMPLETE = "TICKETS/COMPLETE";

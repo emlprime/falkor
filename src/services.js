@@ -13,8 +13,9 @@ export const fetchAll = async model => {
 };
 
 export const deleteItem = async ({model, id}) => {
-  console.log(`id:`, id);
-  return await fetch(`http://localhost:5000/${model}/${id}`, {
+  await fetch(`http://localhost:5000/${model}/${id}`, {
     method: "DELETE",
   });
+  console.log("after delete");
+  return {model, id};
 };

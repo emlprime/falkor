@@ -1,27 +1,24 @@
 import {useCallback} from "react";
-import {useMutation} from "react-query";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import * as R from "ramda";
 import styled from "styled-components";
 import {colors} from "./constants";
 import {Trash, Decompose} from "./icons";
 import {getCurrentTicket} from "./selectors";
-import {deleteItem} from "./hooks";
+import {deleteItem} from "../tickets/actions";
 
 const {equals, prop} = R;
 
 const size = 24;
 export function Button({name, originX, originY}) {
+  const dispatch = useDispatch();
   const currentTicket = useSelector(getCurrentTicket);
-  console.log(`currentTicket:`, currentTicket);
-  const {mutate: deleteTicket} = useMutation(deleteItem);
 
   const onClick = useCallback(() => {
     if (equals("trash", name)) {
-      const response = deleteTicket(currentTicket);
-      console.log(`response:`, response);
+      dispatch(deleteItem(currentTicket));
     }
-  }, [deleteTicket, currentTicket]);
+  }, [dispatch, currentTicket]);
 
   const Icon = prop(name, {trash: Trash, decompose: Decompose});
   return (
