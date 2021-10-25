@@ -45,7 +45,6 @@ export function BreakdownItem({item, goal, offset, originX, originY}) {
   const items = useSelector(getItemsByParentAndGoal(item, goal));
   const firstTicket = head(items);
   const isCurrent = useSelector(getIsCurrentTicket(firstTicket));
-  console.log(`isCurrent:`, firstTicket, isCurrent);
 
   const showAddForm = isEmpty(items);
 
