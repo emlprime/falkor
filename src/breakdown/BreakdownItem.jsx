@@ -52,7 +52,7 @@ export function BreakdownItem({item, goal, offset, originX, originY}) {
   const childOriginX = useMemo(() => originX + (width + 10) * offset);
 
   return (
-    <svg isCurrent={isCurrent}>
+    <svg>
       {isCurrent && (
         <>
           <CurrentActions originX={childOriginX + 240} originY={originY - 60} />

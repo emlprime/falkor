@@ -40,6 +40,10 @@ Milestones indicate their status as TODO (Planned), DOING (Active), or DONE (Dem
 
 
 h1. TACTICS:
+* When adding a goal, choose that goal 
+* 
+
+
 * DONE Create a page in Sketch that demonstrates the Projects page.
 * DONE Symbolize the elements of the Projects page.
 * DONE Make breakdown dynamic

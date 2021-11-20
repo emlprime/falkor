@@ -14,7 +14,7 @@ export function AddForm({parentKey, goalKey}) {
         dispatch(create("tickets", parentKey, goalKey, value));
       }
     },
-    [dispatch],
+    [dispatch, goalKey, parentKey],
   );
 
   return (
